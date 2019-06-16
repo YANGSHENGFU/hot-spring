@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_shape_back">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/li_login_set_ini">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="接口地址"
+            android:id="@+id/tv_login_set_ini"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_16sp"/>
+        <EditText
+            android:id="@+id/txt_login_set_iniurl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="URL"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_16sp"
+            android:layout_toRightOf="@id/tv_login_set_ini" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/li_login_set_img"
+        android:layout_below="@id/li_login_set_ini">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="图片地址"
+            android:id="@+id/tv_login_set_img"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_16sp"/>
+        <EditText
+            android:id="@+id/txt_login_set_imgurl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="URL"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_16sp"
+            android:layout_toRightOf="@id/tv_login_set_img" />
+
+    </LinearLayout>
+
+</RelativeLayout>
