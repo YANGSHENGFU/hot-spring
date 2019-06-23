@@ -160,55 +160,20 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
                 @Override
                 public void onClick(View v) {
                     if(checkLisnter!=null){
-
-//                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
-//                        view1 = View.inflate(v.getContext(), R.layout.click_ward_round, null);
-//                        iv_goods = view1.findViewById(R.id.iv_goods);
-//                        Button btn_upload_pic = view1.findViewById(R.id.btn_upload_pic);//上传图片按钮
-//                        et_ward_content = view1.findViewById(R.id.et_ward_content);//备注
-//                        TextView tv_ward_ok = view1.findViewById(R.id.tv_ward_ok);//确认退房
-//                        TextView tv_ward_leave = view1.findViewById(R.id.tv_ward_leave); //遗留物品
-//
-//                        alertDialog
-//                                .setTitle("查房")
-//                                .setView(view1)
-//                                .create();
-//                        final AlertDialog show = alertDialog.show();
-//                        btn_upload_pic.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                //checkLisnter.check(getRoundID(getAdapterPosition()-1));
-//                                checkLisnter.check(getRoundID(getAdapterPosition()-1),(ImageView) iv_goods );
-//                            }
-//                        });
-//                        tv_ward_ok.setOnClickListener(new View.OnClickListener(){
-//                            @Override
-//                            public void onClick(View v) {
-//                                String memo = et_ward_content.getText().toString();
-//                                checkLisnter.check_out(getRoundID(getAdapterPosition()-1), memo);
-//                                checkLisnter.reRequest();
-//                                show.dismiss();
-//                            }
-//                        });
-//                        tv_ward_leave.setOnClickListener(new View.OnClickListener(){
-//                            @Override
-//                            public void onClick(View v) {
-//                                String memo = et_ward_content.getText().toString();
-//                                checkLisnter.check_out(getRoundID(getAdapterPosition()-1), memo);
-//                                checkLisnter.reRequest();
-//                                show.dismiss();
-//                            }
-//                        });
+                        int i = getAdapterPosition()-1 ; //获取点击的位置
+                        checkLisnter.check(data.get(i));
                     }
                 }
             });
-
-
 
             roundLayout.setOnClickListener(new View.OnClickListener(){
 
                 @Override
                 public void onClick(View v) {
+                    if(checkLisnter!=null){
+                        int i = getAdapterPosition()-1 ; //获取点击的位置
+                        checkLisnter.check(data.get(i));
+                    }
 //                    int i = getAdapterPosition()-1 ; //获取点击的位置
 //                    System.out.println(i);
 //                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
@@ -254,6 +219,7 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
         void check(String roundID, ImageView iv_goods);
         void check_out(String roundID, String memo);
         void reRequest();
+        void check(Round round);
     }
 
 }

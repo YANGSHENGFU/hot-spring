@@ -27,6 +27,7 @@ import com.hotspr.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.api.WardRoundPressenterAPI;
 import com.hotspr.business.presenter.UnClearPressenter;
+import com.hotspr.ui.activity.WardRoundActivity;
 import com.hotspr.ui.adapter.RoundAdapter;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.view.SearchView;
@@ -111,7 +112,8 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
                     return;
                 }
                 page = 1;
-                mPressenter.loadData(WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page ,null); // 加载网络数据
+                load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
+                //mPressenter.loadData(WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page ,null); // 加载网络数据
             }
         });
         // 加载更多
@@ -119,7 +121,8 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
             @Override
             public void onLoadMore() {
                 if (page < TOLTE_PAGE_NUMBER) {
-                    mPressenter.loadData(WardRoundPressenterAPI.Pressente.LOAD_MODLE_MORE , ++page , null); // 加载网络数据
+                    load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_MORE , ++page );
+                    //mPressenter.loadData(WardRoundPressenterAPI.Pressente.LOAD_MODLE_MORE , ++page , null); // 加载网络数据
                 } else {
                     mLRecyclerView.setNoMore(true); //没有更多了
                 }
@@ -227,6 +230,15 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
 //        mPressenter.isRsh=true;
 //        mPressenter.isLodMore=false;
 //        mPressenter.startLoad(1, 1, "N");
+    }
+
+    @Override
+    public void check(Round round) {
+        Bundle bundle = new Bundle();
+        Intent intent = new Intent(mContext , WardRoundActivity.class);
+        bundle.putParcelable(WardRoundActivity.round_key , round);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 

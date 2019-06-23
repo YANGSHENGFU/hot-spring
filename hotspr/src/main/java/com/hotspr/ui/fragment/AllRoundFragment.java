@@ -27,6 +27,7 @@ import com.hotspr.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.api.WardRoundPressenterAPI;
 import com.hotspr.business.presenter.WardRoundPressenter;
+import com.hotspr.ui.activity.WardRoundActivity;
 import com.hotspr.ui.adapter.RoundAdapter;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.view.SearchView;
@@ -122,7 +123,7 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
             @Override
             public void onLoadMore() {
                 if (page < TOLTE_PAGE_NUMBER) {
-                    load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_MORE , page );
+                    load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_MORE , ++page );
                 } else {
                     mLRecyclerView.setNoMore(true); //没有更多了
                 }
@@ -165,6 +166,19 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
     public void reRequest() {
         page = 1 ;
         mPressenter.loadData(WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page , null);
+    }
+
+    /**
+     * 查房
+     * @param round
+     */
+    @Override
+    public void check(Round round) {
+        Bundle bundle = new Bundle();
+        Intent intent = new Intent(mContext , WardRoundActivity.class);
+        bundle.putParcelable(WardRoundActivity.round_key , round);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 

@@ -12,7 +12,6 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hotspr.HttpConfig;
 import com.hotspr.R;
@@ -116,7 +115,7 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
      * 查看房间
      */
     private void goChekRoom(){
-        Intent intent = new Intent(this,WardRoundActivity.class);
+        Intent intent = new Intent(this, WardRoundListInfoActivity.class);
         startActivity(intent);
     }
 

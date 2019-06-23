@@ -52,6 +52,86 @@ public class Round implements Parcelable {
     private String look_picture_path ;
     private String look_tage ;
 
+    public Round(){
+
+    }
+
+
+    protected Round(Parcel in) {
+        rownum = in.readString();
+        room_id = in.readString();
+        ROOM = in.readString();
+        CLASS = in.readString();
+        STATE1 = in.readString();
+        RESE = in.readString();
+        FLOOR = in.readString();
+        LHMC = in.readString();
+        NAME = in.readString();
+        HKP = in.readString();
+        DIRE = in.readString();
+        DIR1 = in.readString();
+        STANNUM = in.readString();
+        STATE2 = in.readString();
+        STATE3 = in.readString();
+        RENT1 = in.readString();
+        STATE4 = in.readString();
+        STATE5 = in.readString();
+        CONF = in.readString();
+        in_date = in.readString();
+        in_time = in.readString();
+        out_date = in.readString();
+        days = in.readString();
+        zcp = in.readString();
+        room_s = in.readString();
+        room_n = in.readString();
+        look_id = in.readString();
+        room_wh_id = in.readString();
+        wx_id = in.readString();
+        tage = in.readString();
+        look_cash_name = in.readString();
+        look_date_call = in.readString();
+        look_hotel_name = in.readString();
+        look_time_call = in.readString();
+        look_time_answer = in.readString();
+        look_server_name = in.readString();
+        look_time_out = in.readString();
+        look_server_memo = in.readString();
+        look_picture_path = in.readString();
+        look_tage = in.readString();
+        cl_class_old = in.readString();
+        cl_class_n_old = in.readString();
+        cl_room = in.readString();
+        cl_onduty1n = in.readString();
+        cl_onduty2n = in.readString();
+        cl_date1 = in.readString();
+        cl_time1 = in.readString();
+        cl_onduty4n = in.readString();
+        cl_date2 = in.readString();
+        cl_time2 = in.readString();
+        cl_onduty3n = in.readString();
+        cl_class_new = in.readString();
+        cl_class_n_new = in.readString();
+        cl_date3 = in.readString();
+        cl_time3 = in.readString();
+        cl_check_er = in.readString();
+        cl_check_time = in.readString();
+        cl_picture_path = in.readString();
+        cl_vido_path = in.readString();
+        cl_memo1 = in.readString();
+        cl_state = in.readString();
+    }
+
+    public static final Creator<Round> CREATOR = new Creator<Round>() {
+        @Override
+        public Round createFromParcel(Parcel in) {
+            return new Round(in);
+        }
+
+        @Override
+        public Round[] newArray(int size) {
+            return new Round[size];
+        }
+    };
 
     public String getRownum() {
         return rownum;
@@ -711,6 +791,66 @@ public class Round implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeString(rownum);
+        dest.writeString(room_id);
+        dest.writeString(ROOM);
+        dest.writeString(CLASS);
+        dest.writeString(STATE1);
+        dest.writeString(RESE);
+        dest.writeString(FLOOR);
+        dest.writeString(LHMC);
+        dest.writeString(NAME);
+        dest.writeString(HKP);
+        dest.writeString(DIRE);
+        dest.writeString(DIR1);
+        dest.writeString(STANNUM);
+        dest.writeString(STATE2);
+        dest.writeString(STATE3);
+        dest.writeString(RENT1);
+        dest.writeString(STATE4);
+        dest.writeString(STATE5);
+        dest.writeString(CONF);
+        dest.writeString(in_date);
+        dest.writeString(in_time);
+        dest.writeString(out_date);
+        dest.writeString(days);
+        dest.writeString(zcp);
+        dest.writeString(room_s);
+        dest.writeString(room_n);
+        dest.writeString(look_id);
+        dest.writeString(room_wh_id);
+        dest.writeString(wx_id);
+        dest.writeString(tage);
+        dest.writeString(look_cash_name);
+        dest.writeString(look_date_call);
+        dest.writeString(look_hotel_name);
+        dest.writeString(look_time_call);
+        dest.writeString(look_time_answer);
+        dest.writeString(look_server_name);
+        dest.writeString(look_time_out);
+        dest.writeString(look_server_memo);
+        dest.writeString(look_picture_path);
+        dest.writeString(look_tage);
+        dest.writeString(cl_class_old);
+        dest.writeString(cl_class_n_old);
+        dest.writeString(cl_room);
+        dest.writeString(cl_onduty1n);
+        dest.writeString(cl_onduty2n);
+        dest.writeString(cl_date1);
+        dest.writeString(cl_time1);
+        dest.writeString(cl_onduty4n);
+        dest.writeString(cl_date2);
+        dest.writeString(cl_time2);
+        dest.writeString(cl_onduty3n);
+        dest.writeString(cl_class_new);
+        dest.writeString(cl_class_n_new);
+        dest.writeString(cl_date3);
+        dest.writeString(cl_time3);
+        dest.writeString(cl_check_er);
+        dest.writeString(cl_check_time);
+        dest.writeString(cl_picture_path);
+        dest.writeString(cl_vido_path);
+        dest.writeString(cl_memo1);
+        dest.writeString(cl_state);
     }
 }
