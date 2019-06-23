@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="52dp"
+    android:layout_width="match_parent"
+    android:background="@color/color_000000">
+
+    <TextView
+        android:id="@+id/back_tv"
+        android:gravity="center"
+        android:text="返回"
+        android:textSize="@dimen/text_size_16sp"
+        android:textColor="@color/color_ffffff"
+        android:layout_height="52dp"
+        android:layout_width="52dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/text_size_20sp"
+        android:textColor="@color/color_ffffff"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+    </TextView>
+
+</RelativeLayout>

@@ -1,6 +1,8 @@
 package com.hotspr.ui.bean;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String key ;
     private String U_NO ; // 登陆编号

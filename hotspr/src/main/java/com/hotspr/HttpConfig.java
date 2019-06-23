@@ -31,7 +31,8 @@ public class HttpConfig {
         public static String look_id = "look_id";
         public static String img = "img";
         public static String room = "room";
-
+        public static String floor = "floor";
+        public static String type_class = "class";
 
 
         public static String tage = "tage";
@@ -44,6 +45,8 @@ public class HttpConfig {
 
 
         public static String errCode = "errCode" ;
+
+
     }
 
 }

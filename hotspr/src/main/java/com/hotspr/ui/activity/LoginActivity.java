@@ -73,44 +73,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
      * 检查权限
      */
     private void chekPermission() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-                PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
         } else {
             FileUtils.caretCachAndXlogExists();
         }
     }
-
-
-//    public void getUserInfo(){
-//        String mid = readSharedPreferences("user_id");
-//        String key = readSharedPreferences("key");
-//        String timestamp = "" + (new Date().getTime()/1000);
-//
-//        TreeMap<String, String> parameter = null;
-//        try {
-//            parameter = prepareReq("mid",mid,"key",key,"timestamp",timestamp);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        MyOkHttp.get().get(LoginActivity.this, HOST_NAME+"UserInter/GetUserInfo?",parameter,new JsonResponseHandler(){
-//            @Override
-//            public void onSuccess(int statusCode, String response) {
-//
-//                progressDialog.dismiss();
-//
-//                saveSharedPreferences(response);
-//
-//                OpenNew(MainActivity.class);
-//            }
-//            @Override
-//            public void onFailure(int statusCode, String error_msg) {
-//                progressDialog.dismiss();
-//                Log.i("fail",error_msg);
-//            }
-//        } );
-//    }
 
     /**
      * 打开窗口不带参数
@@ -238,7 +207,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void dismissDialog() {
-        if (!isFinishing() && progressDialog != null && progressDialog.isShowing()) {
+        if (!isFinishing() && progressDialog != null && progressDialog.isShowing() && !isFinishing()) {
             progressDialog.dismiss();
         }
     }
@@ -247,7 +216,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void lodingResult(boolean isOk, String error_msg) {
         dismissDialog();
         if (isOk) {
-
+            Intent intent = new Intent(this , UserRightsActivity.class);
+            startActivity(intent);
         } else {
             if (!TextUtils.isEmpty(error_msg)) {
                 Toast.makeText(this, error_msg, Toast.LENGTH_SHORT).show();

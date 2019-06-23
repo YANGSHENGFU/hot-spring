@@ -6,6 +6,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.util.Log;
+
+import com.modulebase.log.LogF;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -116,6 +119,26 @@ public class NetworkUtils {
             //Toast.makeText( context , "无网络连接，请检查网络设置",Toast.LENGTH_SHORT).show();
         }
         return null;
+    }
+
+    public static boolean isNetworkConnected(Context context) {
+        if (context == null) {
+            return false;
+        } else {
+            try {
+                NetworkInfo networkInfo = ((ConnectivityManager)context.getApplicationContext().getSystemService("connectivity")).getActiveNetworkInfo();
+                if (networkInfo != null) {
+                    Log.i("NetworkUtils", "-------networkInfo.isConnected------" + networkInfo.isConnected() + "-----");
+                } else {
+                    Log.i("NetworkUtils", "-------networkInfo------" + networkInfo + "-----");
+                }
+
+                return networkInfo != null && networkInfo.isConnected();
+            } catch (Exception var2) {
+                LogF.e("NetworkUtils", "isNetworkConnected FAIL:" + var2.getMessage());
+                return false;
+            }
+        }
     }
     /**
      * 将得到的int类型的IP转换为String类型

@@ -7,6 +7,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.hotspr.HttpConfig;
 import com.hotspr.business.api.LogingAPI;
+import com.hotspr.toolkit.FileHandle;
 import com.hotspr.toolkit.SharepreFHelp;
 import com.hotspr.ui.bean.User;
 import com.modulebase.log.LogF;
@@ -54,8 +55,11 @@ public class LoginPresenter implements LogingAPI.Pressente {
                         if(user !=null ){
                             SharepreFHelp.getInstance(mContent).setUserID(user.getUser_id());
                             SharepreFHelp.getInstance(mContent).setUserKey(user.getKey());
+                            FileHandle.saveUser(user);
+                            mView.lodingResult(true , null);
+                        } else {
+                            mView.lodingResult(false , "用户不存在");
                         }
-                        mView.lodingResult(true , null);
                     }else{
                         mView.lodingResult(false , res.getString("errTxt"));
                     }

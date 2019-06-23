@@ -8,7 +8,7 @@
     android:orientation="horizontal">
 
 
-    <ywq.com.view.recyclerview.headandfootview.SimpleViewSwitcher
+    <com.modulebase.view.recyclerview.headandfootview.SimpleViewSwitcher
         android:id="@+id/loading_progressbar"
         android:layout_width="30dip"
         android:layout_height="30dip"

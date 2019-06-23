@@ -2,7 +2,9 @@
     package="com.hotspr">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".app.HotSpringApp"
@@ -13,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
-
-        <activity android:name=".ui.activity.LoginActivity"
+        <!--登录界面-->
+        <activity
+            android:name=".ui.activity.LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"></action>
@@ -22,5 +25,18 @@
             </intent-filter>
         </activity>
 
+        <!--用户选择权限管理界面-->
+        <activity
+            android:name=".ui.activity.UserRightsActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+
+        <!--查房界面-->
+        <activity
+            android:name=".ui.activity.WardRoundActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+
     </application>
+
 </manifest>
