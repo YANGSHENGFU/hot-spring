@@ -149,6 +149,8 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
             } else {
                 mAdapter.addData(rounds);
             }
+        } else {
+            mLRecyclerView.refreshComplete(0);  // 不调用这句方法就表示没有刷新成功
         }
         if (pageNumber >= 0) {
             TOLTE_PAGE_NUMBER = pageNumber;
