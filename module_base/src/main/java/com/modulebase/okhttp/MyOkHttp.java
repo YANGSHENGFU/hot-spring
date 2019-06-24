@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.modulebase.log.LogF;
 import com.modulebase.toolkit.MD5;
 
 import java.io.File;
@@ -84,14 +85,14 @@ public class MyOkHttp {
                     link.append("&");
                 }
             }catch (Exception e){
-                Log.d("post_url" ,  "解析链接异常" ) ;
+                Log.d(TAG ,  "post_url 解析链接异常" ) ;
                 Toast.makeText( context , "缺少必要的字段" , Toast.LENGTH_SHORT).show();
             }
         }
         try{
-            Log.d("post_url" ,  link.toString().substring(0 , link.toString().length()-1) ) ;
+            LogF.i(TAG , "post_url = "+link.toString().substring(0 , link.toString().length()-1) ) ;
         }catch (Exception e){
-            Log.d("post_url" ,  "链接拼接异常" ) ;
+            LogF.i("post_url" ,  "链接拼接异常" ) ;
         }
         Request request;
         //发起request
@@ -248,9 +249,9 @@ public class MyOkHttp {
         try{
             String sing = MD5.encode( para_url.getBytes() ) ;  //获取参数字段的MD5值
             get_url = get + para_url +"&sign=" + sing ;        //最后的链接
-            Log.d("get_url" , get_url ) ;
+            LogF.i(TAG,"get_url = " + get_url ) ;
         }catch (Exception e){
-            Log.d("get_url" ,  "链接拼接异常" ) ;
+            LogF.i(TAG , "get_url链接拼接异常" ) ;
         }
         Request request ;
         //发起request
