@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.hotspr.R;
 import com.hotspr.ui.adapter.SpinnerPopAdapter;
-import com.modulebase.toolkit.CacheHandle;
+import com.hotspr.toolkit.CacheHandle;
 import com.modulebase.toolkit.DisplayUtil;
 
 import java.util.ArrayList;

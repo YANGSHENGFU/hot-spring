@@ -1,4 +1,4 @@
-package com.modulebase.toolkit;
+package com.hotspr.toolkit;
 
 import java.util.ArrayList;
 

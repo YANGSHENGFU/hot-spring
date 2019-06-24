@@ -13,6 +13,7 @@ import com.hotspr.ui.bean.User;
 import com.modulebase.log.LogF;
 import com.modulebase.okhttp.JsonResponseHandler;
 import com.modulebase.okhttp.MyOkHttp;
+import com.modulebase.toolkit.FileUtils;
 import com.modulebase.toolkit.sort.SortTools;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +29,7 @@ public class LoginPresenter implements LogingAPI.Pressente {
     private String TAG = "LoginPresenter" ;
     private Context mContent ;
     private LogingAPI.View mView ;
+    public static User mUser ;
 
     public LoginPresenter(Context context , LogingAPI.View view){
         mContent = context ;
@@ -53,8 +55,10 @@ public class LoginPresenter implements LogingAPI.Pressente {
                     if (res.getString("errCode").equals("200")){
                         User user = new Gson().fromJson(response , User.class);
                         if(user !=null ){
+                            mUser = user ;
                             SharepreFHelp.getInstance(mContent).setUserID(user.getUser_id());
                             SharepreFHelp.getInstance(mContent).setUserKey(user.getKey());
+                            FileUtils.caretCachAndXlogExists();
                             FileHandle.saveUser(user);
                             mView.lodingResult(true , null);
                         } else {

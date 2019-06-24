@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.hotspr.HttpConfig;
 import com.hotspr.R;
+import com.hotspr.business.presenter.LoginPresenter;
 import com.hotspr.toolkit.FileHandle;
 import com.hotspr.toolkit.SharepreFHelp;
 import com.hotspr.ui.bean.Round;
@@ -78,6 +79,9 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
         setContentView(R.layout.activity_ward_round_layout);
         mRound = getIntent().getExtras().getParcelable(round_key);
         mUser = FileHandle.getUser() ;
+        if(mUser==null){
+            mUser = LoginPresenter.mUser ;
+        }
         findViewById();
         chekPermission();
     }

@@ -13,7 +13,7 @@ import java.io.ObjectOutputStream;
 
 public class FileHandle {
 
-    public static String User_Folder="/User";
+    public static String User_Folder="/User/";
     public static String User_File="user.txt";
 
     /**
