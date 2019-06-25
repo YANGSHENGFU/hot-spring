@@ -1,6 +1,7 @@
 package com.hotspr.ui.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -8,15 +9,12 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,7 +28,6 @@ import com.hotspr.toolkit.FileHandle;
 import com.hotspr.toolkit.SharepreFHelp;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.bean.User;
-import com.hotspr.ui.dialog.PermissionPromptDialog;
 import com.modulebase.log.LogF;
 import com.modulebase.okhttp.JsonResponseHandler;
 import com.modulebase.okhttp.MyOkHttp;
@@ -41,9 +38,6 @@ import com.modulebase.ui.activity.BaseActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -59,11 +53,15 @@ import java.util.TreeMap;
 
 public class WardRoundActivity extends BaseActivity implements View.OnClickListener {
 
+    public static final String resrt_round_key = "Round";
+    public static final String resrt_index_key = "resrt_index_key";
     private String TAG = "WardRoundActivity";
 
     private static int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     public static int REQUEST_CAMERA = 7;
     public static String round_key = "round";
+    public static String code_key = "code";
+    public static String index_key = "index";
     private ImageView photoImg;
     private TextView uploadTv;
     private EditText remarksEt;
@@ -72,12 +70,17 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
     private Bitmap bitmap;
     private Round mRound ;
     private User mUser ;
+    private String mUrl ;
+    private int requestCode ;
+    private int index ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ward_round_layout);
         mRound = getIntent().getExtras().getParcelable(round_key);
+        requestCode = getIntent().getExtras().getInt(code_key);
+        index = getIntent().getExtras().getInt(index_key);
         mUser = FileHandle.getUser() ;
         if(mUser==null){
             mUser = LoginPresenter.mUser ;
@@ -87,6 +90,12 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void findViewById() {
+        findViewById(R.id.back_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         photoImg = findViewById(R.id.photo_img);
         uploadTv = findViewById(R.id.uploadphoto_tv);
         remarksEt = findViewById(R.id.remarks_et);
@@ -97,7 +106,7 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
             if(!TextUtils.isEmpty(mRound.getLook_tage()) && mRound.getLook_tage().equals("Y")) {
                 confirmTv.setText("已查房");
                 confirmTv.setClickable(false);
-                uploadTv.setClickable(false);
+                uploadTv.setVisibility(View.GONE);
                 if(TextUtils.isEmpty(mRound.getLook_server_memo())){
                     remarksEt.setHint("");
                 } else {
@@ -278,7 +287,14 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onSuccess(int statusCode, String response) {
                 LogF.i(TAG , "onSuccess statusCode = "+ statusCode + " response = "+ response) ;
-
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if(jsonObject!=null && "200".equals(jsonObject.getString("errCode"))){
+                        mUrl = jsonObject.getString("url");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -318,17 +334,43 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
             public void onSuccess(int statusCode, String response) {
                 LogF.i(TAG , "onSuccess statusCode = "+ statusCode + " response = "+ response) ;
                 if(statusCode == 200){
+                    Toast.makeText(WardRoundActivity.this , "查房成功" , Toast.LENGTH_SHORT).show();
                     try {
                         JSONObject res = new JSONObject(response);
                         if(res.getString("errCode").equals("200")){
-                            Toast.makeText(WardRoundActivity.this , "查房成功" , Toast.LENGTH_SHORT).show();
+                            Round round = null ;
+                            JSONObject object = res.getJSONObject("look");
+                            if(object!=null){
+                                round = new Round();
+                                round.setCLASS(object.getString("CLASS"));
+                                round.setRoom_id(object.getString("room_id"));
+                                round.setROOM(object.getString("ROOM"));
+                                round.setLook_id(object.getString("look_id"));
+                                round.setLook_tage(object.getString("look_tage"));
+                                round.setLook_picture_path(object.getString("look_picture_path"));
+                                round.setLook_server_memo(object.getString("look_server_memo"));
+                                round.setLook_server_name(object.getString("look_server_name"));
+                                round.setLook_time_out(object.getString("look_time_out"));
+                            }
+                            if(round!=null){
+                                if(TextUtils.isEmpty(mUrl)){
+                                    round.setLook_picture_path(mUrl);
+                                }
+                                Intent intent = new Intent();
+                                Bundle bundle = new Bundle();
+                                bundle.putParcelable(resrt_round_key , round);
+                                bundle.putInt(resrt_index_key ,index);
+                                intent.putExtras(bundle);
+                                setResult(requestCode, intent);
+                            }
                             WardRoundActivity.this.finish();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        WardRoundActivity.this.finish();
                     }
                 }else{
-                    Toast.makeText(WardRoundActivity.this , "上传失败" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WardRoundActivity.this , "查房失败，请重试" , Toast.LENGTH_SHORT).show();
                 }
 
             }

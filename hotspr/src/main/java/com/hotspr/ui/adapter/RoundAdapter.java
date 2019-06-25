@@ -125,6 +125,10 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
         return data !=null?data.size():0 ;
     }
 
+    public ArrayList<Round> getData(){
+        return data ;
+    }
+
     public String getRoundID(int index){
 
         if(data!=null && index >=  0 && index < data.size()){
@@ -161,7 +165,7 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
                 public void onClick(View v) {
                     if(checkLisnter!=null){
                         int i = getAdapterPosition()-1 ; //获取点击的位置
-                        checkLisnter.check(data.get(i));
+                        checkLisnter.check(i ,data.get(i));
                     }
                 }
             });
@@ -172,7 +176,7 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
                 public void onClick(View v) {
                     if(checkLisnter!=null){
                         int i = getAdapterPosition()-1 ; //获取点击的位置
-                        checkLisnter.check(data.get(i));
+                        checkLisnter.check(i , data.get(i));
                     }
 //                    int i = getAdapterPosition()-1 ; //获取点击的位置
 //                    System.out.println(i);
@@ -219,7 +223,7 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
         void check(String roundID, ImageView iv_goods);
         void check_out(String roundID, String memo);
         void reRequest();
-        void check(Round round);
+        void check(int i ,Round round);
     }
 
 }

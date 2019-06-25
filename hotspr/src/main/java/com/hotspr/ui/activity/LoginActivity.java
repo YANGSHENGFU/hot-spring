@@ -49,8 +49,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         tv_set = findViewById(R.id.tv_set);
         butLogin.setOnClickListener(this);
         tv_set.setOnClickListener(this);
-        HttpConfig.HOST_NAME = SharepreFHelp.getInstance(LoginActivity.this).getHOSTURL();
-        HttpConfig.PIC_HOST_NAME =  SharepreFHelp.getInstance(LoginActivity.this).getPICHOSTURL();
+//        HttpConfig.HOST_NAME = SharepreFHelp.getInstance(LoginActivity.this).getHOSTURL();
+//        HttpConfig.PIC_HOST_NAME =  SharepreFHelp.getInstance(LoginActivity.this).getPICHOSTURL();
         presenter = new LoginPresenter(this, this);
         initProgressDialog();
         chekPermission();

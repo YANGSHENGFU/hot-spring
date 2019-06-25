@@ -32,5 +32,14 @@
         <item name="indicatorName">LineSpinFadeLoaderIndicator</item>
     </style>
 
+    <style name="login_dialog_style" parent="android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 没有标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
 
 </resources>

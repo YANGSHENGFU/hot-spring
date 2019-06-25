@@ -34,6 +34,7 @@ import com.hotspr.ui.view.SearchView;
 import com.modulebase.toolkit.Compress;
 import com.modulebase.toolkit.FileUtils;
 import com.modulebase.toolkit.NetworkUtils;
+import com.modulebase.ui.dialog.LoadDialog;
 import com.modulebase.ui.fragment.BaseFragment;
 import com.modulebase.view.recyclerview.adapter.LRecyclerViewAdapter;
 import com.modulebase.view.recyclerview.recinterface.OnLoadMoreListener;
@@ -53,6 +54,7 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
 
     private String TAG = "AllRoundFragment";
     public static int REQUEST_CAMERA = 7;
+    private static int REQUEST_CODE = 1001 ;
 
     private View mView;
     private Context mContext;
@@ -68,6 +70,7 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
     private File mFile;
     private String mLookID;
     private ImageView v_iv_goods;
+    private LoadDialog mLoadDialog ;
 
 
     @Nullable
@@ -79,6 +82,7 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
             findView(mView);
             initLRecyclerView();
             initData();
+            initDilaog();
         }
         ViewGroup parent = (ViewGroup) mView.getParent();
         if (parent != null) {
@@ -91,6 +95,12 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
         mSearchView = view.findViewById(R.id.searchView);
         mLRecyclerView = view.findViewById(R.id.lrecyclerview);
         mSearchView.setSearchLisnter(this);
+    }
+
+    private void initDilaog(){
+        mLoadDialog = new LoadDialog(mContext);
+        mLoadDialog.setCanceledOnTouchOutside(true);
+        mLoadDialog.setCancelable(true);
     }
 
     private void initLRecyclerView() {
@@ -114,6 +124,7 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
                     Toast.makeText(mContext, "当前网络不可用,请检查网络设置", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                mAdapter.upData(new ArrayList<Round>()); // 清空数据
                 page = 1;
                 load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
             }
@@ -136,7 +147,6 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
         mPressenter = new WardRoundPressenter(mContext, this);
         mPressenter.isRsh = true;
         load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
-
     }
 
     /**
@@ -145,7 +155,7 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
      * @param rounds
      */
     @Override
-    public void upDatd(int mode, ArrayList<Round> rounds , int pageNumber) {
+    public void upDatd(int mode , ArrayList<Round> rounds , int pageNumber) {
         if (rounds != null) {
             mLRecyclerView.refreshComplete(rounds.size());  // 不调用这句方法就表示没有刷新成功
             if (mode == WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH ||
@@ -159,6 +169,9 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
         }
         if (pageNumber >= 0) {
             TOLTE_PAGE_NUMBER = pageNumber;
+        }
+        if(mLoadDialog!=null && mLoadDialog.isShowing()){
+            mLoadDialog.dismiss();
         }
     }
 
@@ -175,12 +188,14 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
      * @param round
      */
     @Override
-    public void check(Round round) {
+    public void check(int i , Round round) {
         Bundle bundle = new Bundle();
         Intent intent = new Intent(mContext , WardRoundActivity.class);
         bundle.putParcelable(WardRoundActivity.round_key , round);
+        bundle.putInt(WardRoundActivity.code_key , REQUEST_CODE);
+        bundle.putInt(WardRoundActivity.index_key,i);
         intent.putExtras(bundle);
-        startActivity(intent);
+        startActivityForResult(intent , REQUEST_CODE);
     }
 
 
@@ -238,6 +253,16 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
             mPressenter.uploadPhoto(mLookID, FileUtils.imgToBase64(mFile.getAbsolutePath()));
             Bitmap bitmap = getLoacalBitmap(mFile.getAbsolutePath());//显示本地照片
             v_iv_goods.setImageBitmap(bitmap);
+        } else if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+            if(data!=null){
+                Round round = data.getExtras().getParcelable(WardRoundActivity.resrt_round_key);
+                int index = data.getExtras().getParcelable(WardRoundActivity.resrt_index_key);
+                if(round!=null){
+                    mAdapter.getData().remove(index);
+                    mAdapter.getData().add(index , round);
+                    mAdapter.notifyItemChanged(index);
+                }
+            }
         }
     }
 
@@ -274,6 +299,8 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
      */
     @Override
     public void search(String floor , String roomType , String roomNumber) {
+        mAdapter.upData(new ArrayList<Round>()); // 清空数据
+        mLoadDialog.show();
         page = 1  ;
         load(floor , roomType , roomNumber ,WardRoundPressenterAPI.Pressente.LOAD_MODLE_SEARCH , page );
     }
@@ -304,5 +331,6 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
             mPressenter.loadData(lodelModel, page , null);
         }
     }
+
 
 }

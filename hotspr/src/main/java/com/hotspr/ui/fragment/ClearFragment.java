@@ -24,6 +24,7 @@ import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.view.SearchView;
 import com.modulebase.log.LogF;
 import com.modulebase.toolkit.NetworkUtils;
+import com.modulebase.ui.dialog.LoadDialog;
 import com.modulebase.ui.fragment.BaseFragment;
 import com.modulebase.view.recyclerview.adapter.LRecyclerViewAdapter;
 import com.modulebase.view.recyclerview.recinterface.OnLoadMoreListener;
@@ -40,6 +41,7 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
 
 
     private String TAG = "ClearFragment";
+    private static int REQUEST_CODE = 1002 ;
 
     private View mView ;
     private Context mContext ;
@@ -53,6 +55,7 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
     private int TOLTE_PAGE_NUMBER ;
     private File mFile ;
     private String mLookID ;
+    private LoadDialog mLoadDialog ;
 
     @Nullable
     @Override
@@ -63,6 +66,7 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
             findView(mView);
             initLRecyclerView();
             initData();
+            initDilaog();
         }
         ViewGroup parent = (ViewGroup) mView.getParent();
         if (parent != null) {
@@ -75,6 +79,12 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
         mSearchView = view.findViewById(R.id.searchView);
         mLRecyclerView = view.findViewById(R.id.lrecyclerviewclear);
         mSearchView.setSearchLisnter(this);
+    }
+
+    private void initDilaog(){
+        mLoadDialog = new LoadDialog(mContext);
+        mLoadDialog.setCanceledOnTouchOutside(true);
+        mLoadDialog.setCancelable(true);
     }
 
     private void initLRecyclerView() {
@@ -99,6 +109,7 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
                     return;
                 }
                 page = 1;
+                mAdapter.upData(new ArrayList<Round>());
                 load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
             }
         });
@@ -141,6 +152,9 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
         if (pageNumber >= 0) {
             TOLTE_PAGE_NUMBER = pageNumber;
         }
+        if(mLoadDialog!=null&&mLoadDialog.isShowing()){
+            mLoadDialog.dismiss();
+        }
     }
 
     @Override
@@ -171,12 +185,14 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
     }
 
     @Override
-    public void check(Round round) {
+    public void check(int i , Round round) {
         Bundle bundle = new Bundle();
         Intent intent = new Intent(mContext , WardRoundActivity.class);
         bundle.putParcelable(WardRoundActivity.round_key , round);
+        bundle.putInt(WardRoundActivity.code_key , REQUEST_CODE);
+        bundle.putInt(WardRoundActivity.index_key,i);
         intent.putExtras(bundle);
-        startActivity(intent);
+        startActivityForResult(intent , REQUEST_CODE);
     }
 
     /**
@@ -187,10 +203,11 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
      */
     @Override
     public void search(String floor , String roomType , String roomNumber) {
+        mAdapter.upData(new ArrayList<Round>());
         page = 1  ;
+        mLoadDialog.show();
         load(floor , roomType , roomNumber ,WardRoundPressenterAPI.Pressente.LOAD_MODLE_SEARCH , page );
     }
-
 
     /**
      * 加载数据
