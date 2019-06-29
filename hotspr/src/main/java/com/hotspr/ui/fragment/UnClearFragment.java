@@ -31,6 +31,7 @@ import com.hotspr.ui.activity.WardRoundActivity;
 import com.hotspr.ui.adapter.RoundAdapter;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.view.SearchView;
+import com.modulebase.toolkit.Compress;
 import com.modulebase.toolkit.FileUtils;
 import com.modulebase.toolkit.NetworkUtils;
 import com.modulebase.ui.dialog.LoadDialog;
@@ -50,43 +51,43 @@ import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
-public class UnClearFragment extends BaseFragment implements WardRoundPressenterAPI.View , RoundAdapter.CheckLisnter , SearchView.SearchLisnter{
+public class UnClearFragment extends BaseFragment implements WardRoundPressenterAPI.View, RoundAdapter.CheckLisnter, SearchView.SearchLisnter {
 
     private String TAG = "UnClearFragment";
-    public static  int  REQUEST_CAMERA = 7 ;
-    private static int REQUEST_CODE = 1003 ;
+    public static int REQUEST_CAMERA = 7;
+    private static int REQUEST_CODE = 1003;
 
-    private View mView ;
-    private Context mContext ;
+    private View mView;
+    private Context mContext;
     private SearchView mSearchView;
-    private LRecyclerView mLRecyclerView ;
-    private RoundAdapter mAdapter ;
-    private LRecyclerViewAdapter mLRecyclerViewAdapter ;
-    private UnClearPressenter mPressenter ;
+    private LRecyclerView mLRecyclerView;
+    private RoundAdapter mAdapter;
+    private LRecyclerViewAdapter mLRecyclerViewAdapter;
+    private UnClearPressenter mPressenter;
 
-    private int page = 1 ;
-    private int TOLTE_PAGE_NUMBER ;
-    private File mFile ;
-    private String mLookID ;
-    private  ImageView v_iv_goods;
-    private LoadDialog mLoadDialog ;
+    private int page = 1;
+    private int TOLTE_PAGE_NUMBER;
+    private File mFile;
+    private String mLookID;
+    private ImageView v_iv_goods;
+    private LoadDialog mLoadDialog;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContext = getContext() ;
-        if(mView == null ){
-            mView = LayoutInflater.from(mContext).inflate(R.layout.fragment_unclearround_layout , null);
+        mContext = getContext();
+        if (mView == null) {
+            mView = LayoutInflater.from(mContext).inflate(R.layout.fragment_unclearround_layout, null);
             findView(mView);
             initLRecyclerView();
             initData();
             initDilaog();
         }
-        ViewGroup parent = (ViewGroup)  mView.getParent() ;
-        if(parent!=null){
+        ViewGroup parent = (ViewGroup) mView.getParent();
+        if (parent != null) {
             parent.removeView(mView);
         }
-        return mView ;
+        return mView;
     }
 
     private void findView(View view) {
@@ -95,7 +96,7 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
         mSearchView.setSearchLisnter(this);
     }
 
-    private void initDilaog(){
+    private void initDilaog() {
         mLoadDialog = new LoadDialog(mContext);
         mLoadDialog.setCanceledOnTouchOutside(true);
         mLoadDialog.setCancelable(true);
@@ -121,9 +122,9 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
                     Toast.makeText(mContext, "当前网络不可用,请检查网络设置", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                mAdapter.upData( new ArrayList<Round>());
+                mAdapter.upData(new ArrayList<Round>());
                 page = 1;
-                load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
+                load(mSearchView.getFloor(), mSearchView.getRoomType(), mSearchView.getRoomNumber(), WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH, page);
                 //mPressenter.loadData(WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page ,null); // 加载网络数据
             }
         });
@@ -132,7 +133,7 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
             @Override
             public void onLoadMore() {
                 if (page < TOLTE_PAGE_NUMBER) {
-                    load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_MORE , ++page );
+                    load(mSearchView.getFloor(), mSearchView.getRoomType(), mSearchView.getRoomNumber(), WardRoundPressenterAPI.Pressente.LOAD_MODLE_MORE, ++page);
                     //mPressenter.loadData(WardRoundPressenterAPI.Pressente.LOAD_MODLE_MORE , ++page , null); // 加载网络数据
                 } else {
                     mLRecyclerView.setNoMore(true); //没有更多了
@@ -142,8 +143,8 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
     }
 
     private void initData() {
-        mPressenter = new UnClearPressenter( mContext , this);
-        load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
+        mPressenter = new UnClearPressenter(mContext, this);
+        load(mSearchView.getFloor(), mSearchView.getRoomType(), mSearchView.getRoomNumber(), WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH, page);
     }
 
     /**
@@ -153,9 +154,9 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
      */
     @Override
     public void upDatd(int mode, ArrayList<Round> rounds, int pageNumber) {
-        if(rounds!=null){
+        if (rounds != null) {
             mLRecyclerView.refreshComplete(rounds.size());  // 不调用这句方法就表示没有刷新成功
-            if (mode == WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH ) {
+            if (mode == WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH) {
                 mAdapter.upData(rounds);
             } else {
                 mAdapter.addData(rounds);
@@ -166,14 +167,14 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
         if (pageNumber >= 0) {
             TOLTE_PAGE_NUMBER = pageNumber;
         }
-        if(mLoadDialog!=null&&mLoadDialog.isShowing()){
+        if (mLoadDialog != null && mLoadDialog.isShowing()) {
             mLoadDialog.dismiss();
         }
     }
 
     @Override
     public void uploadPhoto(boolean isOK) {
-        if(isOK){
+        if (isOK) {
             mFile.delete(); // 上传成功后，删除照片
         } else {
             // 上传加载框消失
@@ -182,22 +183,23 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
 
     /**
      * 查看按钮
+     *
      * @param lookID
      */
     @Override
     public void check(String lookID, ImageView iv_goods) {
-        mLookID = lookID ;
-        v_iv_goods=iv_goods;
-        Log.d(TAG, "check mLookID = "+ mLookID);
+        mLookID = lookID;
+        v_iv_goods = iv_goods;
+        Log.d(TAG, "check mLookID = " + mLookID);
         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(mContext , "请打开相机权限" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "请打开相机权限", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             mFile = new File(FileUtils.PHOTODIR + mLookID + ".jpg");
             mFile.getParentFile().mkdirs();
             //判断版本
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {   //如果在Android7.0以上,使用FileProvider获取Uri
-                Uri contentUri = FileProvider.getUriForFile(mContext , "ywq.com.fileprovider", mFile );
+                Uri contentUri = FileProvider.getUriForFile(mContext, "ywq.com.fileprovider", mFile);
                 intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
             } else {    //否则使用Uri.fromFile(file)方法获取Uri
@@ -210,23 +212,23 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CAMERA && resultCode == RESULT_OK){
-
-        } else if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
-            if(data!=null){
-                Round round = data.getExtras().getParcelable(WardRoundActivity.resrt_round_key);
-                int index = data.getExtras().getParcelable(WardRoundActivity.resrt_index_key);
-                if(round!=null){
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
+                Bundle bundle = data.getExtras() ;
+                Round round = bundle.getParcelable(WardRoundActivity.resrt_round_key);
+                int index = bundle.getInt(WardRoundActivity.resrt_index_key);
+                if (round != null) {
                     mAdapter.getData().remove(index);
-                    mAdapter.getData().add(index , round);
+                    mAdapter.getData().add(index, round);
                     mAdapter.notifyItemChanged(index);
                 }
             }
         }
-
     }
+
     /**
      * 加载本地图片
+     *
      * @param url
      * @return
      */
@@ -242,7 +244,7 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
     }
 
 
-    public void check_out(String lookID, String memo){
+    public void check_out(String lookID, String memo) {
         //mPressenter.check_out(lookID,memo);
     }
 
@@ -254,35 +256,36 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
     }
 
     @Override
-    public void check(int i , Round round) {
+    public void check(int i, Round round) {
         Bundle bundle = new Bundle();
-        Intent intent = new Intent(mContext , WardRoundActivity.class);
-        bundle.putParcelable(WardRoundActivity.round_key , round);
-        bundle.putInt(WardRoundActivity.code_key , REQUEST_CODE);
-        bundle.putInt(WardRoundActivity.index_key,i);
+        Intent intent = new Intent(mContext, WardRoundActivity.class);
+        bundle.putParcelable(WardRoundActivity.round_key, round);
+        bundle.putInt(WardRoundActivity.code_key, REQUEST_CODE);
+        bundle.putInt(WardRoundActivity.index_key, i);
         intent.putExtras(bundle);
-        startActivityForResult(intent ,REQUEST_CODE);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
 
     @Override
     public void search(String floor, String roomType, String roomNumber) {
-        mAdapter.upData( new ArrayList<Round>());
+        mAdapter.upData(new ArrayList<Round>());
         mLoadDialog.show();
-        page = 1  ;
-        load(floor , roomType , roomNumber ,WardRoundPressenterAPI.Pressente.LOAD_MODLE_SEARCH , page );
+        page = 1;
+        load(floor, roomType, roomNumber, WardRoundPressenterAPI.Pressente.LOAD_MODLE_SEARCH, page);
     }
 
 
     /**
      * 加载数据
+     *
      * @param floor
      * @param roomType
      * @param roomNumber
      * @param lodelModel
      * @param page
      */
-    private void load(String floor , String roomType , String roomNumber , int lodelModel , int page){
+    private void load(String floor, String roomType, String roomNumber, int lodelModel, int page) {
         if (!TextUtils.isEmpty(floor) || !TextUtils.isEmpty(roomType) || !TextUtils.isEmpty(roomNumber)) {
             Map<String, String> searchParamsMap = new HashMap<>();
             if (!TextUtils.isEmpty(floor)) {
@@ -296,7 +299,7 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
             }
             mPressenter.loadData(lodelModel, page, searchParamsMap);
         } else {
-            mPressenter.loadData(lodelModel, page , null);
+            mPressenter.loadData(lodelModel, page, null);
         }
     }
 

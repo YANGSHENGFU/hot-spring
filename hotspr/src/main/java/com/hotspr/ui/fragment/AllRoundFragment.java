@@ -1,6 +1,7 @@
 package com.hotspr.ui.fragment;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -255,12 +256,15 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
             v_iv_goods.setImageBitmap(bitmap);
         } else if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
             if(data!=null){
-                Round round = data.getExtras().getParcelable(WardRoundActivity.resrt_round_key);
-                int index = data.getExtras().getParcelable(WardRoundActivity.resrt_index_key);
-                if(round!=null){
-                    mAdapter.getData().remove(index);
-                    mAdapter.getData().add(index , round);
-                    mAdapter.notifyItemChanged(index);
+                Bundle bundle = data.getExtras() ;
+                if(bundle!=null){
+                    Round round = bundle.getParcelable(WardRoundActivity.resrt_round_key);
+                    int index = bundle.getInt(WardRoundActivity.resrt_index_key);
+                    if(round!=null){
+                        mAdapter.getData().remove(index);
+                        mAdapter.getData().add(index , round);
+                        mAdapter.notifyItemChanged(index);
+                    }
                 }
             }
         }

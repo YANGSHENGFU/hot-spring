@@ -353,7 +353,7 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
                                 round.setLook_time_out(object.getString("look_time_out"));
                             }
                             if(round!=null){
-                                if(TextUtils.isEmpty(mUrl)){
+                                if(!TextUtils.isEmpty(mUrl)){
                                     round.setLook_picture_path(mUrl);
                                 }
                                 Intent intent = new Intent();
@@ -361,7 +361,7 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
                                 bundle.putParcelable(resrt_round_key , round);
                                 bundle.putInt(resrt_index_key ,index);
                                 intent.putExtras(bundle);
-                                setResult(requestCode, intent);
+                                setResult(Activity.RESULT_OK, intent);
                             }
                             WardRoundActivity.this.finish();
                         }
