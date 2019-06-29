@@ -52,6 +52,8 @@ public class Round implements Parcelable {
     private String look_picture_path ;
     private String look_tage ;
 
+    private String cl_state ; // 状态0未完成  1已完成 2已检查
+
     public Round(){
 
     }
@@ -755,20 +757,8 @@ public class Round implements Parcelable {
     public void Setcl_memo1(String cl_memo1) { this.cl_memo1 = cl_memo1; }
 
 
-    /**
-     *状态0未完成  1已完成 2已检查
-     */
-    private String cl_state;
 
-    /**
-     * 取备注
-     * @return
-     */
-    public String Getcl_state() { return cl_state; }
-    /**
-     * 设置备注
-     */
-    public void Setcl_state(String cl_state) { this.cl_state = cl_state; }
+
 
 
     /**
@@ -782,7 +772,13 @@ public class Round implements Parcelable {
     public void Setroom_wh_id(String room_wh_id) { this.room_wh_id = room_wh_id; }
 
 
+    public String getCl_state() {
+        return cl_state;
+    }
 
+    public void setCl_state(String cl_state) {
+        this.cl_state = cl_state;
+    }
 
     @Override
     public int describeContents() {

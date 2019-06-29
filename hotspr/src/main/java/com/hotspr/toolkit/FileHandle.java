@@ -1,6 +1,7 @@
 package com.hotspr.toolkit;
 
 import com.hotspr.ui.bean.User;
+import com.modulebase.log.LogF;
 import com.modulebase.toolkit.FileUtils;
 
 import java.io.File;
@@ -13,30 +14,42 @@ import java.io.ObjectOutputStream;
 
 public class FileHandle {
 
+    private static String TAG = "FileHandle";
+
     public static String User_Folder="/User/";
     public static String User_File="user.txt";
+
+    public static void creatUserExists(){
+        File file = new File(FileUtils.SDCRADIR ,FileUtils.ROOTDIR + User_Folder);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+    }
 
     /**
      * 保存用户信息
      * @param user
      */
     public static void saveUser(User user){
-        if(user == null){
-            return;
+        if( user == null ){
+            return ;
         }
-        ObjectOutputStream fos=null;
+        ObjectOutputStream fos = null ;
         try {
-            File file=new File(FileUtils.SDCRADIR + FileUtils.ROOTDIR + User_Folder + User_File );
-            fos=new ObjectOutputStream(new FileOutputStream(file));
-            fos.writeObject(user);
+            File file = new File(FileUtils.SDCRADIR + FileUtils.ROOTDIR + User_Folder + User_File );
+
+            fos = new ObjectOutputStream(new FileOutputStream(file)) ;
+            fos.writeObject(user) ;
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace() ;
+            LogF.e(TAG , " e = "+e.getMessage()) ;
         }finally{
             try {
                 if (fos!=null) {
-                    fos.close();
+                    fos.close() ;
                 }
             } catch (IOException e) {
+                LogF.e(TAG , " e = "+e.getMessage()) ;
             }
         }
     }

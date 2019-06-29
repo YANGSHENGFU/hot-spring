@@ -22,6 +22,7 @@ import com.hotspr.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.api.LogingAPI;
 import com.hotspr.business.presenter.LoginPresenter;
+import com.hotspr.toolkit.FileHandle;
 import com.hotspr.toolkit.SharepreFHelp;
 import com.hotspr.ui.dialog.PermissionPromptDialog;
 import com.modulebase.toolkit.FileUtils;
@@ -78,6 +79,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
         } else {
             FileUtils.caretCachAndXlogExists();
+            FileHandle.creatUserExists() ;
         }
     }
 

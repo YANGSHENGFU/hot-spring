@@ -13,6 +13,7 @@
        android:layout_weight="1">
 
        <TextView
+           android:id="@+id/text_one"
            android:text="全部房"
            android:textSize="@dimen/text_size_18sp"
            android:textColor="@color/color_666666"
@@ -40,6 +41,7 @@
         android:layout_weight="1">
 
         <TextView
+            android:id="@+id/text_two"
             android:text="已查房"
             android:textSize="@dimen/text_size_18sp"
             android:textColor="@color/color_666666"
@@ -67,6 +69,7 @@
         android:layout_weight="1">
 
         <TextView
+            android:id="@+id/text_three"
             android:text="未查房"
             android:textSize="@dimen/text_size_18sp"
             android:textColor="@color/color_666666"

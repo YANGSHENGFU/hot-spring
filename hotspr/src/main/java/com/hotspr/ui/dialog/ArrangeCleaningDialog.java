@@ -19,6 +19,8 @@ import com.hotspr.R;
 import com.hotspr.ui.adapter.RoomTypeAndCleanAdapter;
 import com.modulebase.toolkit.DisplayUtil;
 
+import java.util.ArrayList;
+
 
 public class ArrangeCleaningDialog extends Dialog implements View.OnClickListener {
 
@@ -132,14 +134,14 @@ public class ArrangeCleaningDialog extends Dialog implements View.OnClickListene
     /**
      * 设置房型的数据原
      */
-    public void setRoomTypeListData(String[] datas){
+    public void setRoomTypeListData(ArrayList<String> datas){
         roomTypeAdapter.setDatas(datas);
     }
 
     /**
      * 设置清洁员数据原
      */
-    public void setCleanerListData(String[] datas){
+    public void setCleanerListData(ArrayList<String> datas){
         cleanAdapter.setDatas(datas);
     }
 

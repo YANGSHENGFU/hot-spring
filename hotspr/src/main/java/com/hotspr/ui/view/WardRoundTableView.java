@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.hotspr.R;
 
@@ -22,6 +23,10 @@ public class WardRoundTableView extends LinearLayout implements View.OnClickList
     private View allLine ;
     private View clearLine ;
     private View unClearLine ;
+
+    private TextView oneText ;
+    private TextView twoText ;
+    private TextView threetext ;
 
     private ArrayList<View> viewLines ;
 
@@ -54,6 +59,10 @@ public class WardRoundTableView extends LinearLayout implements View.OnClickList
         allLine = mView.findViewById(R.id.all_round_line);
         clearLine = mView.findViewById(R.id.clear_round_line);
         unClearLine = mView.findViewById(R.id.unclear_round_line);
+
+        oneText = mView.findViewById(R.id.text_one);
+        twoText = mView.findViewById(R.id.text_two);
+        threetext = mView.findViewById(R.id.text_three);
 
         allRoundLayout.setOnClickListener(this);
         clearRoundLayout.setOnClickListener(this);
@@ -103,6 +112,14 @@ public class WardRoundTableView extends LinearLayout implements View.OnClickList
 
     public void setItemChoiceListeners(ItemChoiceListeners itemChoiceListeners){
         this.itemChoiceListeners = itemChoiceListeners ;
+    }
+
+    public void setTextConctent(String[] s){
+        if(s!=null &&s.length>=3){
+            oneText.setText(s[0]);
+            twoText.setText(s[1]);
+            threetext.setText(s[2]);
+        }
     }
 
 }

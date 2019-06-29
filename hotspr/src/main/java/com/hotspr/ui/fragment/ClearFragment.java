@@ -53,8 +53,6 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
 
     private int page = 1 ;
     private int TOLTE_PAGE_NUMBER ;
-    private File mFile ;
-    private String mLookID ;
     private LoadDialog mLoadDialog ;
 
     @Nullable
@@ -157,32 +155,6 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
         }
     }
 
-    @Override
-    public void uploadPhoto(boolean isOK) {
-        if(isOK){
-            mFile.delete(); // 上传成功后，删除照片
-        } else {
-            // 上传加载框消失
-        }
-    }
-
-
-    @Override
-    public void check(String roundID, ImageView iv_goods) {
-
-    }
-
-    @Override
-    public void check_out(String roundID , String memo) {
-
-    }
-
-    @Override
-    public void reRequest() {
-        mPressenter.isRsh=true;
-        mPressenter.isLodMore=false;
-        mPressenter.loadData(1, 1, null);
-    }
 
     @Override
     public void check(int i , Round round) {

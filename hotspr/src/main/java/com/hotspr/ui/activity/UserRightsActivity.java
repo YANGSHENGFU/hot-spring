@@ -135,7 +135,8 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
      * 安排清洁
      */
     private void goArrangeCleaning(){
-
+        Intent intent = new Intent(this ,  ArrangeCleanListInfoActivity.class);
+        startActivity(intent);
     }
 
 

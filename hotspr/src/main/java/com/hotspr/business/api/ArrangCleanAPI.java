@@ -5,8 +5,7 @@ import com.hotspr.ui.bean.Round;
 import java.util.ArrayList;
 import java.util.Map;
 
-
-public interface WardRoundPressenterAPI {
+public interface ArrangCleanAPI {
 
     interface View {
 
@@ -21,7 +20,5 @@ public interface WardRoundPressenterAPI {
         int LOAD_MODLE_SEARCH = 3;
 
         void loadData(int lodelModel, int page, Map<String, String> params);
-
     }
-
 }

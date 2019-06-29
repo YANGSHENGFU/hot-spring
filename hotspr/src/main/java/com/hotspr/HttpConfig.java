@@ -17,6 +17,8 @@ public class HttpConfig {
     public static String INTERFACE_floorList = "Room/FloorList?";
     public static String INTERFACE_rpriceList = "Room/RpriceList?";
     public static String INTERFACE_GetUserList = "UserInter/GetUserList?";
+    public static String INTERFACE_RoomClAdd = "Room/RoomClAdd?";
+
 
 
     public static class Field{
@@ -42,6 +44,10 @@ public class HttpConfig {
         public static String arrange = "arrange"; //是否安排清洁
         public static String state = "state"; //清洁房间状态
         public static String state2 = "state2"; //清洁房间状态
+        public static String onduty1n = "onduty1n"; // 安排清洁的人名字
+        public static String onduty3n = "onduty3n"; // 被安排清洁的人名字
+        public static String class_new = "class_new" ; // 房间类型
+
 
 
         public static String errCode = "errCode" ;

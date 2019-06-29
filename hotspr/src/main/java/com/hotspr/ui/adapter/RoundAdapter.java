@@ -1,9 +1,6 @@
 package com.hotspr.ui.adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -12,15 +9,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.hotspr.R;
 import com.hotspr.ui.bean.Round;
-
 import java.util.ArrayList;
 
 
@@ -178,37 +172,6 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
                         int i = getAdapterPosition()-1 ; //获取点击的位置
                         checkLisnter.check(i , data.get(i));
                     }
-//                    int i = getAdapterPosition()-1 ; //获取点击的位置
-//                    System.out.println(i);
-//                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
-//                    alertDialog.setTitle("查房结果");
-//                    if (TextUtils.isEmpty(data.get(i).getLook_tage()) || data.get(i).getLook_tage().equals("")){
-//                        alertDialog.setMessage("还未查房");
-//                    }else if(!TextUtils.isEmpty(data.get(i).getLook_tage()) && data.get(i).getLook_tage().equals("Y")){
-//                        if (!TextUtils.isEmpty(data.get(i).getLook_picture_path())){
-//                            alertDialog.setMessage("已查房，遗留物品:");
-//                            view2 = View.inflate(v.getContext(), R.layout.look_ward_result, null);
-//                            MyImageView iv_goods_show = view2.findViewById(R.id.iv_goods_show);
-//                            TextView tv_ward_content_show = view2.findViewById(R.id.tv_ward_content_show);
-//
-//                            final String url = Http.HOST +data.get(i).getLook_picture_path();
-//                            iv_goods_show.setImageURL(url);
-//
-//                            iv_goods_show.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    Message message = new Message();
-//                                    message.obj = url;
-//                                    handler.sendMessage(message);
-//                                }
-//                            });
-//                            tv_ward_content_show.setText(data.get(i).getLook_server_memo());
-//                            alertDialog.setView(view2);
-//                        }else{
-//                            alertDialog.setMessage("已查房，无遗留物品");
-//                        }
-//                    }
-//                    alertDialog.show();
                 }
             });
         }
@@ -220,9 +183,6 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
     }
 
     public interface CheckLisnter{
-        void check(String roundID, ImageView iv_goods);
-        void check_out(String roundID, String memo);
-        void reRequest();
         void check(int i ,Round round);
     }
 

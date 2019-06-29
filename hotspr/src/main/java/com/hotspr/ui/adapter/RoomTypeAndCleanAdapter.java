@@ -8,10 +8,13 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.hotspr.R;
+import com.modulebase.view.A;
+
+import java.util.ArrayList;
 
 
 public class RoomTypeAndCleanAdapter extends BaseAdapter {
-    private String[] datas ;
+    private ArrayList<String> datas ;
     private Context context ;
     private LayoutInflater mInflater ;
 
@@ -24,12 +27,12 @@ public class RoomTypeAndCleanAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return datas == null ? 0 : datas.length;
+        return datas == null ? 0 : datas.size();
     }
 
     @Override
     public String getItem(int position) {
-        return datas[position];
+        return datas.get(position);
     }
 
     @Override
@@ -48,7 +51,7 @@ public class RoomTypeAndCleanAdapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        String spinnerText = datas[position];
+        String spinnerText = datas.get(position);
         viewHolder.tv_spinner.setText(spinnerText);
         return convertView;
     }
@@ -56,21 +59,21 @@ public class RoomTypeAndCleanAdapter extends BaseAdapter {
         TextView tv_spinner ;
     }
 
-    public String[] getDatas() {
+    public ArrayList<String> getDatas() {
         return datas;
     }
 
-    public void setDatas(String[] datas) {
+    public void setDatas(ArrayList<String> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }
 
     public String getContent(int position){
-        if(datas == null || position<0 || position>datas.length){
+        if(datas == null || position<0 || position>datas.size()){
             return "" ;
         }
 
-        return datas[position];
+        return datas.get(position);
 
     }
 

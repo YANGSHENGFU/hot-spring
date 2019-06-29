@@ -47,12 +47,23 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
 
+        <!--安排列表清洁-->
+        <activity
+            android:name=".ui.activity.ArrangeCleanListInfoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+
         <!--查房-->
         <activity
             android:name=".ui.activity.WardRoundActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
 
+        <!--安排清洁-->
+        <activity
+            android:name=".ui.activity.ArrangeCleaningActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
 
 
     </application>
