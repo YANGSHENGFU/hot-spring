@@ -71,6 +71,14 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
 
+        <!--不合格界面-->
+        <activity
+            android:name=".ui.activity.UnqualifiedActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+
+
+
 
     </application>
 

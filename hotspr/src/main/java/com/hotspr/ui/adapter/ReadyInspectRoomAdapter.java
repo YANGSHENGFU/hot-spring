@@ -122,19 +122,7 @@ public class ReadyInspectRoomAdapter extends RecyclerView.Adapter<ReadyInspectRo
                 @Override
                 public void onClick(View v) {
                     if (checkLisnter!=null){
-                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
-                        alertDialog
-                                .setTitle("确定清洁合格吗？")
-                                .setNegativeButton("取消",null)
-                                .setPositiveButton("确定",new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        checkLisnter.check_pass(getRoundID(getAdapterPosition()-1));
-                                        checkLisnter.reRequest();
-                                    }
-                                })
-                                .create();
-                        AlertDialog show = alertDialog.show();
+                        checkLisnter.qualified("" );
                     }
                 }
             });
@@ -145,77 +133,10 @@ public class ReadyInspectRoomAdapter extends RecyclerView.Adapter<ReadyInspectRo
                 @Override
                 public void onClick(View v) {
                     if(checkLisnter!=null){
-
-//                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
-//                        view1 = View.inflate(v.getContext(), R.layout.click_unpass_round, null);
-//                        iv_goods = view1.findViewById(R.id.iv_goods);
-//                        Button btn_upload_pic = view1.findViewById(R.id.btn_upload_pic);//上传图片按钮
-//                        et_ward_content = view1.findViewById(R.id.et_ward_content);//备注
-//
-//                        TextView tv_ward_leave = view1.findViewById(R.id.tv_ward_leave); //重新清理
-//
-//                        alertDialog
-//                                .setTitle("重新清洁")
-//                                .setView(view1)
-//                                .setNegativeButton("取消",null)
-//                                .setPositiveButton("重新清洁",new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int which) {
-//                                        String memo = et_ward_content.getText().toString();
-//                                        checkLisnter.check_out(getRoundID(getAdapterPosition()-1), memo);
-//                                        checkLisnter.reRequest();
-//                                    }
-//                                })
-//                                .create();
-//                        final AlertDialog show = alertDialog.show();
-//                        btn_upload_pic.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                checkLisnter.uploadPic(getRoundID(getAdapterPosition()-1),(ImageView) iv_goods );
-//                            }
-//                        });
-
-//                        tv_ward_leave.setOnClickListener(new View.OnClickListener(){
-//                            @Override
-//                            public void onClick(View v) {
-//                                String memo = et_ward_content.getText().toString();
-//                                checkLisnter.check_out(getRoundID(getAdapterPosition()-1), memo);
-//                                checkLisnter.reRequest();
-//                                show.dismiss();
-//                            }
-//                        });
+                        checkLisnter.unqualiFied("" , "");
                     }
                 }
             });
-
-//点击整个方块触发事件
-//            roundLayout.setOnClickListener(new View.OnClickListener(){
-//
-//                @Override
-//                public void onClick(View v) {
-//                    int i = getAdapterPosition()-1 ; //获取点击的位置
-//                    System.out.println(i);
-//                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
-//                    alertDialog.setTitle("查房结果");
-//                    if (TextUtils.isEmpty(data.get(i).getLook_tage()) || data.get(i).getLook_tage().equals("")){
-//                        alertDialog.setMessage("还未查房");
-//                    }else if(!TextUtils.isEmpty(data.get(i).getLook_tage()) && data.get(i).getLook_tage().equals("Y")){
-//                        if (!TextUtils.isEmpty(data.get(i).getLook_picture_path())){
-//                            alertDialog.setMessage("已查房，遗留物品:");
-//                            view2 = View.inflate(v.getContext(), R.layout.look_ward_result, null);
-//                            MyImageView iv_goods_show = view2.findViewById(R.id.iv_goods_show);
-//                            TextView tv_ward_content_show = view2.findViewById(R.id.tv_ward_content_show);
-//
-//                            tv_ward_content_show.setText(data.get(i).getLook_server_memo());
-//                            alertDialog.setView(view2);
-//                        }else{
-//                            alertDialog.setMessage("已查房，无遗留物品");
-//                        }
-//                    }
-//                    alertDialog.show();
-//                }
-//            });
-
         }
     }
 
@@ -226,10 +147,7 @@ public class ReadyInspectRoomAdapter extends RecyclerView.Adapter<ReadyInspectRo
     }
 
     public interface CheckLisnter{
-        void check_pass(String roundID);
-        void uploadPic(String roundID, ImageView iv_goods);
-        void check_out(String roundID, String memo);
-        void reRequest();
+        void qualified(String roundID); // 合格
+        void unqualiFied(String roundID, String memo); // 不合格
     }
-
 }

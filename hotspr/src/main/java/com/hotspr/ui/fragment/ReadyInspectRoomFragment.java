@@ -1,5 +1,6 @@
 package com.hotspr.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.hotspr.business.api.ArrangCleanAPI;
 import com.hotspr.business.api.WardRoundPressenterAPI;
 
 import com.hotspr.business.presenter.ReadyInspectRoomPressenter;
+import com.hotspr.ui.activity.UnqualifiedActivity;
 import com.hotspr.ui.adapter.ReadyInspectRoomAdapter;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.fragment.base.ArrangCleanBaseFragment;
@@ -155,22 +157,14 @@ public class ReadyInspectRoomFragment extends ArrangCleanBaseFragment implements
 
 
     @Override
-    public void check_pass(String roundID) {
-
+    public void qualified(String roundID) {
+        mPressenter.qualified();
     }
 
-    @Override
-    public void uploadPic(String roundID, ImageView iv_goods) {
-
-    }
 
     @Override
-    public void check_out(String roundID, String memo) {
-
-    }
-
-    @Override
-    public void reRequest() {
-
+    public void unqualiFied(String roundID, String memo) {
+        Intent intent = new Intent(mContext , UnqualifiedActivity.class);
+        startActivity(intent);
     }
 }

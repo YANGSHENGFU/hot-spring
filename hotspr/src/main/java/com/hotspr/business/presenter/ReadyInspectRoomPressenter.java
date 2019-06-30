@@ -90,5 +90,21 @@ public class ReadyInspectRoomPressenter implements ArrangCleanAPI.Pressente {
             }
         });
     }
+
+    /**
+     * 合格 逻辑处理
+     */
+    public void qualified(){
+
+    }
+
+    /**
+     * 不合格 逻辑处理
+     */
+    public void unQualified(){
+
+    }
+
+
 }
 
