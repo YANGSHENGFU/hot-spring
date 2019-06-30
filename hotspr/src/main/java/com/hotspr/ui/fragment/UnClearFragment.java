@@ -103,7 +103,7 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
                     Toast.makeText(mContext, "当前网络不可用,请检查网络设置", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                mAdapter.upData(new ArrayList<Round>());
+                //mAdapter.upData(new ArrayList<Round>());
                 page = 1;
                 load(mSearchView.getFloor(), mSearchView.getRoomType(), mSearchView.getRoomNumber(), WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH, page);
                 //mPressenter.loadData(WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page ,null); // 加载网络数据
@@ -143,6 +143,10 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
                 mAdapter.addData(rounds);
             }
         } else {
+            if (mode == WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH ||
+                    mode == WardRoundPressenterAPI.Pressente.LOAD_MODLE_SEARCH) {
+                mAdapter.upData(new ArrayList<Round>());
+            }
             mLRecyclerView.refreshComplete(0);  // 不调用这句方法就表示没有刷新成功
         }
         if (pageNumber >= 0) {

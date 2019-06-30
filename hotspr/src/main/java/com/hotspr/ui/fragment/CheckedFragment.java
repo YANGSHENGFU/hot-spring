@@ -13,7 +13,6 @@ import com.hotspr.business.api.WardRoundPressenterAPI;
 import com.hotspr.business.presenter.CheckedRoundPressenter;
 import com.hotspr.ui.activity.WardRoundActivity;
 import com.hotspr.ui.adapter.CleanedRoundAdapter;
-import com.hotspr.ui.adapter.RoundAdapter;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.fragment.base.CleanRoundBaseFragment;
 import com.modulebase.log.LogF;
@@ -60,7 +59,7 @@ public class CheckedFragment extends CleanRoundBaseFragment implements CleanRoun
                     Toast.makeText(mContext, "当前网络不可用,请检查网络设置", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                mAdapter.upData(new ArrayList<Round>()); // 清空数据
+                //mAdapter.upData(new ArrayList<Round>()); // 清空数据
                 page = 1;
                 load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
             }
@@ -99,6 +98,10 @@ public class CheckedFragment extends CleanRoundBaseFragment implements CleanRoun
                 mAdapter.addData(rounds);
             }
         }else{
+            if (mode == WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH ||
+                    mode == WardRoundPressenterAPI.Pressente.LOAD_MODLE_SEARCH) {
+                mAdapter.upData(new ArrayList<Round>());
+            }
             mLRecyclerView.refreshComplete(0);  // 不调用这句方法就表示没有刷新成功
         }
         if (pageNumber >= 0) {

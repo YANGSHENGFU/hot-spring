@@ -107,7 +107,7 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
                     return;
                 }
                 page = 1;
-                mAdapter.upData(new ArrayList<Round>());
+                //mAdapter.upData(new ArrayList<Round>());
                 load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
             }
         });
@@ -145,6 +145,10 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
                 mAdapter.addData(rounds);
             }
         } else {
+            if (mode == WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH ||
+                    mode == WardRoundPressenterAPI.Pressente.LOAD_MODLE_SEARCH) {
+                mAdapter.upData(new ArrayList<Round>());
+            }
             mLRecyclerView.refreshComplete(0);  // 不调用这句方法就表示没有刷新成功
         }
         if (pageNumber >= 0) {
