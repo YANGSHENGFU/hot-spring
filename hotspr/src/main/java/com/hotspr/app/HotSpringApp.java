@@ -11,6 +11,8 @@ public class HotSpringApp extends Application {
     public void onCreate() {
         super.onCreate();
         CrashHandler.getInstance().init(getApplicationContext());
+
+
 //        XLogHelper.initXlog(getApplicationContext());
     }
 }
