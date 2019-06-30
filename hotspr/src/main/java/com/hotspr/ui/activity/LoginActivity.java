@@ -50,8 +50,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         tv_set = findViewById(R.id.tv_set);
         butLogin.setOnClickListener(this);
         tv_set.setOnClickListener(this);
-//        HttpConfig.HOST_NAME = SharepreFHelp.getInstance(LoginActivity.this).getHOSTURL();
-//        HttpConfig.PIC_HOST_NAME =  SharepreFHelp.getInstance(LoginActivity.this).getPICHOSTURL();
+        HttpConfig.HOST_NAME = SharepreFHelp.getInstance(LoginActivity.this).getHOSTURL();
+        HttpConfig.PIC_HOST_NAME =  SharepreFHelp.getInstance(LoginActivity.this).getPICHOSTURL();
+        HttpConfig.CURRENT_HOST = HttpConfig.HOST_NAME ;
         presenter = new LoginPresenter(this, this);
         initProgressDialog();
         chekPermission();
@@ -158,6 +159,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 HttpConfig.HOST_NAME = iniurl.getText().toString().trim();
+                HttpConfig.CURRENT_HOST = HttpConfig.HOST_NAME ;
                 HttpConfig.PIC_HOST_NAME = imgurl.getText().toString().trim();
                 SharepreFHelp.getInstance(LoginActivity.this).setHOSTURL( HttpConfig.HOST_NAME);
                 SharepreFHelp.getInstance(LoginActivity.this).setPICHOSTURL(HttpConfig.PIC_HOST_NAME);

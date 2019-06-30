@@ -19,7 +19,6 @@ import com.hotspr.business.api.WardRoundPressenterAPI;
 import com.hotspr.business.presenter.ReadyCleanRoomPressenter;
 import com.hotspr.toolkit.CacheHandle;
 import com.hotspr.ui.activity.ArrangeCleaningActivity;
-import com.hotspr.ui.activity.WardRoundActivity;
 import com.hotspr.ui.adapter.ReadyCleanRoomAdapter;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.dialog.ArrangeCleaningDialog;
