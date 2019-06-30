@@ -128,6 +128,8 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
      * 清洁房间
      */
     private void goCleanRoom(){
+        Intent intent = new Intent(this , CleanRoomListIfnoActivity.class);
+        startActivity(intent);
 
     }
 

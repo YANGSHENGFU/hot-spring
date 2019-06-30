@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_ffffff">
+
+    <include layout="@layout/include_title_layout" />
+
+    <com.hotspr.ui.view.WardRoundTableView
+        android:id="@+id/table_view"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+    </com.hotspr.ui.view.WardRoundTableView>
+
+    <com.hotspr.ui.view.WardRoundViewpager
+        android:id="@+id/viewpager"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+    </com.hotspr.ui.view.WardRoundViewpager>
+
+</LinearLayout>
