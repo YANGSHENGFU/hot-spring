@@ -56,6 +56,12 @@ public class ClearRoundPressenter implements WardRoundPressenterAPI.Pressente {
         paer.put(HttpConfig.Field.page, String.valueOf(page));
         paer.put(HttpConfig.Field.rows, rows);
         paer.put(HttpConfig.Field.tage,"Y");
+        // 额外的条件
+        if ( paramse!=null && !paramse.isEmpty() ){
+            for (Map.Entry<String, String> entry : paramse.entrySet()){
+                paer.put( entry.getKey() , entry.getValue());
+            }
+        }
         paer.put(HttpConfig.Field.timestamp, String.valueOf(System.currentTimeMillis() / 1000));
 
         Set<String> keySet = paer.keySet();  //获取set集合
