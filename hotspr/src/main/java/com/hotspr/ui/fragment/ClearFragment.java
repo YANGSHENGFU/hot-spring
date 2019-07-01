@@ -63,8 +63,8 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
             mView = LayoutInflater.from(mContext).inflate(R.layout.fragment_clearround_layout , null);
             findView(mView);
             initLRecyclerView();
-            initData();
-            initDilaog();
+           initData();
+          initDilaog();
         }
         ViewGroup parent = (ViewGroup) mView.getParent();
         if (parent != null) {
@@ -99,6 +99,7 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
         mLRecyclerView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
+
                 LogF.d(TAG, "onRefresh");
                 if (!NetworkUtils.isNetworkConnected(mContext)) {
                     mLRecyclerView.refreshComplete(0);  //不调用这句就表示没有刷新成功(不会回上去)
@@ -179,6 +180,8 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
      */
     @Override
     public void search(String floor , String roomType , String roomNumber) {
+        LogF.i("xiahongfind", roomNumber);
+        LogF.i("xiahongfind", "roomNumber");
         mAdapter.upData(new ArrayList<Round>());
         page = 1  ;
         mLoadDialog.show();
@@ -195,6 +198,7 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
      */
     private void load(String floor , String roomType , String roomNumber , int lodelModel , int page){
         if (!TextUtils.isEmpty(floor) || !TextUtils.isEmpty(roomType) || !TextUtils.isEmpty(roomNumber)) {
+
             Map<String, String> searchParamsMap = new HashMap<>();
             if (!TextUtils.isEmpty(floor)) {
                 searchParamsMap.put(HttpConfig.Field.floor, floor);
@@ -205,9 +209,9 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
             if (!TextUtils.isEmpty(roomNumber)) {
                 searchParamsMap.put(HttpConfig.Field.room, roomNumber);
             }
-            mPressenter.loadData(lodelModel, page, searchParamsMap);
+           mPressenter.loadData(lodelModel, page, searchParamsMap);
         } else {
-            mPressenter.loadData(lodelModel, page , null);
+             mPressenter.loadData(lodelModel, page , null);
         }
     }
 }
