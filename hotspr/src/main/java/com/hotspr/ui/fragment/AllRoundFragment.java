@@ -105,7 +105,13 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
                 }
                 //mAdapter.upData(new ArrayList<Round>()); // 清空数据
                 page = 1;
+                initLRecyclerView();
+                initData();
+
+                /*
+                page = 1;
                 load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
+                */
             }
         });
         // 加载更多
