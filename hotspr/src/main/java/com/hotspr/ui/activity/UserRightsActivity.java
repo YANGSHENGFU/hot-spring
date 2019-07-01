@@ -230,6 +230,7 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                     JSONObject resObj = new JSONObject(response);
                     if (resObj.getString("errCode").equals("200")) {
                         JSONArray resDataList = resObj.getJSONArray("DataList");
+                        CacheHandle.buildingNumberCach.add("");
                         for (int i = 0; i < resDataList.length(); i++) {
                             JSONObject res = (JSONObject) resDataList.get(i);
                             CacheHandle.buildingNumberCach.add(res.getString("FLOOR"));
@@ -259,6 +260,7 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                     JSONObject resObj = new JSONObject(response);
                     if (resObj.getString("errCode").equals("200")) {
                         JSONArray resDataList = resObj.getJSONArray("DataList");
+                        CacheHandle.roomTypeCach.add("");
                         for (int i = 0; i < resDataList.length(); i++) {
                             JSONObject res = (JSONObject) resDataList.get(i);
                             CacheHandle.roomTypeCach.add(res.getString("CLASS"));
@@ -291,6 +293,7 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                     JSONObject resObj = new JSONObject(response);
                     if (resObj.getString("errCode").equals("200")) {
                         JSONArray resDataList = resObj.getJSONArray("DataList");
+                        CacheHandle.cleanerCach.add("");
                         for (int i = 0; i < resDataList.length(); i++) {
                             JSONObject res = (JSONObject) resDataList.get(i);
                             CacheHandle.cleanerCach.add(res.getString("U_NAME"));
