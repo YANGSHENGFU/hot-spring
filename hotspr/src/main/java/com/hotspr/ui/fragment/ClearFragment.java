@@ -180,8 +180,6 @@ public class ClearFragment extends BaseFragment implements WardRoundPressenterAP
      */
     @Override
     public void search(String floor , String roomType , String roomNumber) {
-        LogF.i("xiahongfind", roomNumber);
-        LogF.i("xiahongfind", "roomNumber");
         mAdapter.upData(new ArrayList<Round>());
         page = 1  ;
         mLoadDialog.show();
