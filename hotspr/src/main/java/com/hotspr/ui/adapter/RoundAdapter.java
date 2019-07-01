@@ -58,6 +58,7 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
 
     viewHolder.roundNumberTv.setText("房号：" + data.get(i).getROOM());
     viewHolder.roundTypeTv.setText("房型：" + data.get(i).getCLASS());
+    viewHolder.roundlloor.setText("楼号：" + data.get(i).getFLOOR());
     viewHolder.roundLookServerName.setText("查房人：" + data.get(i).getLook_server_name());
     viewHolder.roundLookTimeOut.setText("时间：" + data.get(i).getLook_time_out());
     if (!TextUtils.isEmpty(data.get(i).getLook_tage()) && data.get(i).getLook_tage().equals("Y")) {
@@ -141,6 +142,7 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
         TextView roundLookServerName;
         TextView roundLookTimeOut;
         TextView roundCheckTv ;
+        TextView roundlloor ;//楼号
         View view1; //查房按钮的弹窗布局
         View view2; //查看查房结果的弹窗布局
         ImageView iv_goods ; //弹窗图片
@@ -154,6 +156,7 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.ViewHolder> 
             roundLookServerName = itemView.findViewById(R.id.round_look_server_name);
             roundLookTimeOut = itemView.findViewById(R.id.round_look_time_out);
             roundCheckTv = itemView.findViewById(R.id.check_tv);
+            roundlloor = itemView.findViewById(R.id.round_floor);
             roundCheckTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
