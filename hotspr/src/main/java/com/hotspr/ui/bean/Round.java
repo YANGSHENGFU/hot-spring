@@ -838,6 +838,8 @@ public class Round implements Parcelable {
         dest.writeString(cl_date2);
         dest.writeString(cl_time2);
         dest.writeString(cl_onduty3n);
+        dest.writeString(cl_time3);
+        dest.writeString(cl_date3);
         dest.writeString(cl_class_new);
         dest.writeString(cl_class_n_new);
         dest.writeString(cl_date3);

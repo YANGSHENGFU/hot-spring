@@ -9,7 +9,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:id="@+id/item_ready_clean_room_layout"
-        android:layout_height="80dip"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:padding="6dp"
         android:orientation="vertical"
@@ -48,6 +48,47 @@
             android:textColor="@color/color_666666"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_clean_room_type_tv_old"
+            android:text="修改房型：AB"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_666666"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_clean_room_onduty1n"
+            android:text="安排人：AB"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_666666"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_clean_room_onduty3n"
+            android:text="清洁人：AB"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_666666"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_clean_room_time3"
+            android:text="清洁时间：AB"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_666666"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_clean_room_check_er"
+            android:text="检查人：AB"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_666666"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:background="@drawable/search_tv_background"
@@ -60,6 +101,49 @@
             android:text="安排清洁">
 
         </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/item_ready_clean_room_li_yesno"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="2dp"
+                android:id="@+id/item_ready_inspect_room_pass_tv"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_14sp"
+                android:textColor="@color/color_ffffff"
+                android:text="合格"
+                android:gravity="center"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/search_tv_background">
+            </TextView>
+
+            <TextView
+                android:layout_width="@dimen/dp_3"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="2dp"
+                android:id="@+id/item_ready_inspect_room_unpass_tv"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_14sp"
+                android:textColor="@color/color_ffffff"
+                android:text="不合格"
+                android:gravity="center"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/search_tv_background">
+            </TextView>
+        </LinearLayout>
 
     </LinearLayout>
 

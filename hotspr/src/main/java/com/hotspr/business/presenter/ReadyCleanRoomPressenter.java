@@ -50,6 +50,12 @@ public class ReadyCleanRoomPressenter implements ArrangCleanAPI.Pressente {
         paer.put(HttpConfig.Field.key, userkey);
         paer.put(HttpConfig.Field.page, String.valueOf(page));
         paer.put(HttpConfig.Field.rows, rows);
+        // 额外的条件
+        if ( params!=null && !params.isEmpty() ){
+            for (Map.Entry<String, String> entry : params.entrySet()){
+                paer.put( entry.getKey() , entry.getValue());
+            }
+        }
         paer.put(HttpConfig.Field.timestamp, String.valueOf(System.currentTimeMillis() / 1000));
         Set<String> keySet = paer.keySet();  //获取set集合
         List<String> sortKey = SortTools.listSort(keySet);
@@ -81,6 +87,9 @@ public class ReadyCleanRoomPressenter implements ArrangCleanAPI.Pressente {
                             round.Setcl_time1(res.getString("cl_time1")); //安排时间
                             round.Setcl_onduty3n(res.getString("cl_onduty3n")); //清洁员
                             round.setCl_state(res.getString("cl_state")); //状态0未完成  1已完成 2已检查
+                            round.Setcl_class_new(res.getString("cl_class_new")); //状态0未完成  1已完成 2已检查
+                            round.Setcl_time3(res.getString("cl_time3")); //安排时间
+                            round.Setcl_check_er(res.getString("cl_check_er")); //安排时间
                             datas.add(round);
                         }
                     }
