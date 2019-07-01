@@ -13,6 +13,8 @@ public class HotSpringApp extends Application {
         CrashHandler.getInstance().init(getApplicationContext());
 
 
+
+
 //        XLogHelper.initXlog(getApplicationContext());
     }
 }
