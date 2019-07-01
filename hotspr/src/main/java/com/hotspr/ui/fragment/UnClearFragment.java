@@ -160,15 +160,23 @@ public class UnClearFragment extends BaseFragment implements WardRoundPressenter
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            if (data != null) {
+        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+            if(data!=null){
                 Bundle bundle = data.getExtras() ;
-                Round round = bundle.getParcelable(WardRoundActivity.resrt_round_key);
-                int index = bundle.getInt(WardRoundActivity.resrt_index_key);
-                if (round != null) {
-                    mAdapter.getData().remove(index);
-                    mAdapter.getData().add(index, round);
-                    mAdapter.notifyItemChanged(index);
+
+                if(bundle!=null){
+                    Round round = bundle.getParcelable(WardRoundActivity.resrt_round_key);
+
+                    page = 1;
+                    initLRecyclerView();
+                    initData();
+//                    int index = bundle.getInt(WardRoundActivity.resrt_index_key);
+//                    if(round!=null){
+//
+//                        mAdapter.getData().remove(index);
+//                        mAdapter.getData().add(index , round);
+//                        mAdapter.notifyItemChanged(index);
+//                    }
                 }
             }
         }
