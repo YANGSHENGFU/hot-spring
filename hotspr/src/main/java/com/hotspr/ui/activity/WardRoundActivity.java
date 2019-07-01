@@ -15,6 +15,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -77,6 +78,7 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_ward_round_layout);
         mRound = getIntent().getExtras().getParcelable(round_key);
         requestCode = getIntent().getExtras().getInt(code_key);
@@ -203,6 +205,7 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Log.d("xiahong", "onClick");
         int id = v.getId();
         if (id == R.id.uploadphoto_tv) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -231,7 +234,7 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CAMERA && resultCode == RESULT_OK) {//
             //先压缩图片，自动判断是否要压缩
             Compress.compress(mFile.getAbsolutePath(), 500, 0, mFile.getAbsolutePath());

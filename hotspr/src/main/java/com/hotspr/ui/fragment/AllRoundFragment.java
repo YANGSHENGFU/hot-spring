@@ -174,19 +174,28 @@ public class AllRoundFragment extends BaseFragment implements WardRoundPressente
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "into onActivityResult");
+
+
         super.onActivityResult(requestCode, resultCode, data);
+
+
         if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
             if(data!=null){
                 Bundle bundle = data.getExtras() ;
+
                 if(bundle!=null){
                     Round round = bundle.getParcelable(WardRoundActivity.resrt_round_key);
-                    int index = bundle.getInt(WardRoundActivity.resrt_index_key);
-                    if(round!=null){
-                        mAdapter.getData().remove(index);
-                        mAdapter.getData().add(index , round);
-                        mAdapter.notifyItemChanged(index);
-                    }
+
+                    page = 1;
+                    initLRecyclerView();
+                    initData();
+//                    int index = bundle.getInt(WardRoundActivity.resrt_index_key);
+//                    if(round!=null){
+//
+//                        mAdapter.getData().remove(index);
+//                        mAdapter.getData().add(index , round);
+//                        mAdapter.notifyItemChanged(index);
+//                    }
                 }
             }
         }
