@@ -92,6 +92,7 @@ public class ClearRoundPressenter implements WardRoundPressenterAPI.Pressente {
                             round.setLook_server_memo(res.getString("look_server_memo"));
                             round.setLook_server_name(res.getString("look_server_name"));
                             round.setLook_time_out(res.getString("look_time_out"));
+                            round.setFLOOR(res.getString("FLOOR"));
                             datas.add(round);
                         }
                     }

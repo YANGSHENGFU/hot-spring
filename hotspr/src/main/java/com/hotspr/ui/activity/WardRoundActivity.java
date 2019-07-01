@@ -205,7 +205,7 @@ public class WardRoundActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-   
+
         int id = v.getId();
         if (id == R.id.uploadphoto_tv) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
