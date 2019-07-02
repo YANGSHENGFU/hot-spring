@@ -45,19 +45,26 @@ public class ReadyInspectRoomPressenter implements ArrangCleanAPI.Pressente {
         String userid = SharepreFHelp.getInstance(mContext).getUserID();
         String userkey = SharepreFHelp.getInstance(mContext).getUserKey();
         Map<String, String> paer = new HashMap<>();
-        paer.put(HttpConfig.Field.arrange, "Y");
+        paer.put(HttpConfig.Field.state, "1");
         paer.put(HttpConfig.Field.mid, userid);
         paer.put(HttpConfig.Field.key, userkey);
         paer.put(HttpConfig.Field.page, String.valueOf(page));
-        paer.put(HttpConfig.Field.rows, rows);
+
+        // 额外的条件
+        if ( params!=null && !params.isEmpty() ){
+            for (Map.Entry<String, String> entry : params.entrySet()){
+                paer.put( entry.getKey() , entry.getValue());
+            }
+        }
         paer.put(HttpConfig.Field.timestamp, String.valueOf(System.currentTimeMillis() / 1000));
         Set<String> keySet = paer.keySet();  //获取set集合
         List<String> sortKey = SortTools.listSort(keySet);
         TreeMap<String, String> parameter = SortTools.getSortMap(sortKey, paer);
+
         MyOkHttp.get().get(mContext, url, parameter, new JsonResponseHandler() {
             @Override
             public void onSuccess(int statusCode, String response) {
-                LogF.i(TAG , "success statusCode = "+ statusCode + "response = "+ response);
+                LogF.i(TAG , "onSuccess statusCode = "+ statusCode + " statusCode = "+ response);
                 ArrayList<Round> datas = new ArrayList<>();
                 String page = "0";
                 try {
@@ -69,10 +76,21 @@ public class ReadyInspectRoomPressenter implements ArrangCleanAPI.Pressente {
                         for (int i = 0; i < resDataList.length(); i++) {
                             JSONObject res = (JSONObject) resDataList.get(i);
                             Round round = new Round();
-                            round.setROOM(res.getString("ROOM"));
-                            round.setCLASS(res.getString("CLASS"));
+                            round.setCLASS(res.getString("CLASS")); //房型
                             round.setRoom_id(res.getString("room_id"));
-                            round.setLook_id(res.getString("look_id"));
+                            round.setSTATE2(res.getString("STATE2"));//T：停用    D：脏房  L：锁房  R：净房  M：维修S：清扫
+                            round.setRoom_wh_id(res.getString("room_wh_id"));
+                            round.setROOM(res.getString("ROOM")); //房间号
+                            round.Setcl_onduty1n(res.getString("cl_onduty1n")); //安排人
+                            round.Setcl_onduty2n(res.getString("cl_onduty2n")); //服务员
+                            round.Setcl_date1(res.getString("cl_date1")); //安排日期
+                            round.Setcl_time1(res.getString("cl_time1")); //安排时间
+                            round.Setcl_onduty3n(res.getString("cl_onduty3n")); //清洁员
+                            round.setcl_state(res.getString("cl_state")); //状态0未完成  1已完成 2已检查
+                            round.Setcl_class_new(res.getString("cl_class_new")); //状态0未完成  1已完成 2已检查
+                            round.Setcl_time3(res.getString("cl_time3")); //安排时间
+                            round.Setcl_check_er(res.getString("cl_check_er")); //安排时间
+                            round.setcl_memo1(res.getString("cl_memo1")); //安排时间
                             datas.add(round);
                         }
                     }
@@ -80,9 +98,10 @@ public class ReadyInspectRoomPressenter implements ArrangCleanAPI.Pressente {
                     e.printStackTrace();
                     page = "0";
                 } finally {
-                    mView.upDatd(lodelModel , datas , Integer.valueOf(page));
+                    mView.upDatd(lodelModel, datas, Integer.valueOf(page));
                 }
             }
+
             @Override
             public void onFailure(int statusCode, String error_msg) {
                 Log.i(TAG, "onFailure statusCode = " + statusCode + " error_msg = " + error_msg);
