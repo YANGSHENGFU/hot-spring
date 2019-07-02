@@ -115,11 +115,7 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
 
 
         if (mRound != null ) {
-            Log.i("xiahong11",mRound.getCl_state().toString());
-            if(mRound.getSTATE5()!=null){
-                mRound.setCl_state(mRound.getSTATE5().toString());
-            }
-            if (mRound.getCl_state().equals("2")||mRound.getCl_state().equals("0")) {
+           if (mRound.getCl_state().equals("2")||mRound.getCl_state().equals("0")) {
               if(mRound.getCl_state().equals("0"))  {
                   confirmTv.setText("清洁中");
               }else{
