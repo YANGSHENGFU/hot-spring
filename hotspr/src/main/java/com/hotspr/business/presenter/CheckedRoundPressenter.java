@@ -62,7 +62,12 @@ public class CheckedRoundPressenter implements CleanRoundAPI.Pressente {
         }
         paer.put(HttpConfig.Field.page, String.valueOf(page));
 
-        paer.put(HttpConfig.Field.rows, rows);
+        // 额外的条件
+        if ( params!=null && !params.isEmpty() ){
+            for (Map.Entry<String, String> entry : params.entrySet()){
+                paer.put( entry.getKey() , entry.getValue());
+            }
+        }
         paer.put(HttpConfig.Field.timestamp, String.valueOf(System.currentTimeMillis() / 1000));
         Set<String> keySet = paer.keySet();  //获取set集合
         List<String> sortKey = SortTools.listSort(keySet);

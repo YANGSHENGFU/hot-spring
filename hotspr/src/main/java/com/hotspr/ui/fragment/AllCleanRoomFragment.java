@@ -12,6 +12,7 @@ import com.hotspr.business.api.WardRoundPressenterAPI;
 import com.hotspr.business.presenter.AllCleanRoomPressente;
 import com.hotspr.ui.activity.UnqualifiedActivity;
 import com.hotspr.ui.activity.WardRoundActivity;
+import com.hotspr.ui.adapter.AllCleanRoomRoundAdapter;
 import com.hotspr.ui.adapter.CleanedRoundAdapter;
 import com.hotspr.ui.adapter.RoundAdapter;
 import com.hotspr.ui.bean.Round;
@@ -27,11 +28,11 @@ import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
-public class AllCleanRoomFragment extends CleanRoundBaseFragment implements CleanRoundAPI.View , CleanedRoundAdapter.CheckLisnter{
+public class AllCleanRoomFragment extends CleanRoundBaseFragment implements CleanRoundAPI.View , AllCleanRoomRoundAdapter.CheckLisnter{
 
     private String TAG = "AllCleanRoomFragment" ;
     private static int REQUEST_CODE = 19990 ;
-    private CleanedRoundAdapter mAdapter ;
+    private AllCleanRoomRoundAdapter mAdapter ;
     private LRecyclerViewAdapter mLRecyclerViewAdapter ;
     private AllCleanRoomPressente mPressenter ;
 
@@ -41,7 +42,7 @@ public class AllCleanRoomFragment extends CleanRoundBaseFragment implements Clea
     @Override
     protected void initLRecyclerView() {
         mLRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3)); // 不设会不显示
-        mAdapter = new CleanedRoundAdapter(mContext);
+        mAdapter = new AllCleanRoomRoundAdapter(mContext);
         mAdapter.setCheckLisnter(this);
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mAdapter);
         mLRecyclerView.setAdapter(mLRecyclerViewAdapter);
