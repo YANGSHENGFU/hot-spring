@@ -1,5 +1,7 @@
 package com.hotspr.ui.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -7,6 +9,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 import com.hotspr.HttpConfig;
 import com.hotspr.R;
+import com.hotspr.business.api.ArrangCleanAPI;
 import com.hotspr.business.api.CleanRoundAPI;
 import com.hotspr.business.api.WardRoundPressenterAPI;
 import com.hotspr.business.presenter.UncleanedRoundPressenter;
@@ -14,7 +17,9 @@ import com.hotspr.ui.activity.WardRoundActivity;
 import com.hotspr.ui.adapter.CleanedRoundAdapter;
 import com.hotspr.ui.adapter.RoundAdapter;
 import com.hotspr.ui.bean.Round;
+import com.hotspr.ui.fragment.base.ArrangCleanBaseFragment;
 import com.hotspr.ui.fragment.base.CleanRoundBaseFragment;
+import com.modulebase.log.Log;
 import com.modulebase.log.LogF;
 import com.modulebase.toolkit.NetworkUtils;
 import com.modulebase.view.recyclerview.adapter.LRecyclerViewAdapter;
@@ -27,7 +32,7 @@ import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
-public class UncleanedFragment extends CleanRoundBaseFragment implements CleanRoundAPI.View , CleanedRoundAdapter.CheckLisnter{
+public class UncleanedFragment extends CleanRoundBaseFragment implements  CleanRoundAPI.View , CleanedRoundAdapter.CheckLisnter{
 
     private String TAG = "UncleanedFragment" ;
     private static int REQUEST_CODE = 19992 ;
@@ -83,7 +88,19 @@ public class UncleanedFragment extends CleanRoundBaseFragment implements CleanRo
     @Override
     protected void initData(){
         mPressenter = new UncleanedRoundPressenter(mContext, this);
+
         load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
+    }
+
+    /**
+     * 更新单行数据
+     * @param i 行号
+     * @param round 数据源
+     */
+    public  void  upDataInfo(int i,Round round ){
+        Log.i("xiahoongchk","upDataInfo");
+        Log.i("xiahoongstate",round.getCl_state());
+
     }
 
 
@@ -119,14 +136,40 @@ public class UncleanedFragment extends CleanRoundBaseFragment implements CleanRo
      * @param round
      */
     @Override
-    public void check(int i, Round round) {
-        Bundle bundle = new Bundle();
-        Intent intent = new Intent(mContext , WardRoundActivity.class);
-        bundle.putParcelable(WardRoundActivity.round_key , round);
-        bundle.putInt(WardRoundActivity.code_key , REQUEST_CODE);
-        bundle.putInt(WardRoundActivity.index_key,i);
-        intent.putExtras(bundle);
-        startActivityForResult(intent , REQUEST_CODE);
+    public void check(int i, final Round round) {
+        Log.i("xiahoongchk","check");
+        Log.i("xiahoongchk",round.getCLASS().toString());
+         final int index=i;
+
+        new AlertDialog.Builder(this.mContext)
+                .setTitle("信息确定")
+                .setMessage("已经清洁干净，请您点击确定！")
+                .setCancelable(false)//点击弹框以外部分是否退出
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPressenter.CleanRoom(index,round);
+                        round.setCl_state("1");
+                      UncleanedFragment.this.upDataInfo(index,round);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+
+       // AlertDialog.Builder mBuilder = new AlertDialog.Builder(this.mContext);
+
+     //   LogF.d("xiahoongchk", "check");
+//        Bundle bundle = new Bundle();
+//        Intent intent = new Intent(mContext , WardRoundActivity.class);
+//        bundle.putParcelable(WardRoundActivity.round_key , round);
+//        bundle.putInt(WardRoundActivity.code_key , REQUEST_CODE);
+//        bundle.putInt(WardRoundActivity.index_key,i);
+//        intent.putExtras(bundle);
+//        startActivityForResult(intent , REQUEST_CODE);
     }
 
     /**

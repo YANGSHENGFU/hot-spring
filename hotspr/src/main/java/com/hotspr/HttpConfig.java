@@ -13,6 +13,7 @@ public class HttpConfig {
     public static String INTERFACE_uploadPhoto  = "Room/RoomLookUpImg?";
     public static String INTERFACE_checkOut = "Room/RoomLookUp?";
     public static String INTERFACE_roomClList = "Room/RoomClList?";
+    public static String INTERFACE_roomClUp = "Room/RoomClUp?";
     public static String INTERFACE_arrangeCleanRoom = "Room/RoomClAdd?";
     public static String INTERFACE_floorList = "Room/FloorList?";
     public static String INTERFACE_rpriceList = "Room/RpriceList?";

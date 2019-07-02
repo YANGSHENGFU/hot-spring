@@ -52,27 +52,58 @@
             android:textSize="@dimen/text_size_14sp">
 
         </TextView>
-
-
         <TextView
-            android:id="@+id/round_look_server_name"
+            android:id="@+id/round_floor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="查房人: 丁志忠"
+            android:text="楼号：K"
             android:textColor="@color/color_666666"
             android:textSize="@dimen/text_size_14sp">
 
         </TextView>
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_clean_room_type_tv_old"
+            android:text="修改房型：AB"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_666666"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_clean_room_onduty1n"
+            android:text="安排人：AB"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_666666"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/round_look_time_out"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="时间: 13:58:10"
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_clean_room_onduty3n"
+            android:text="清洁人：AB"
+            android:textSize="@dimen/text_size_14sp"
             android:textColor="@color/color_666666"
-            android:textSize="@dimen/text_size_14sp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_clean_room_time3"
+            android:text="清洁时间：AB"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_666666"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_clean_room_check_er"
+            android:text="检查人：AB"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColor="@color/color_666666"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        </TextView>
+
 
         <TextView
             android:id="@+id/check_tv"
@@ -84,7 +115,7 @@
             android:gravity="center"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
-            android:text="查 房"
+            android:text="完成清洁"
             android:textColor="@color/color_ffffff"
             android:textSize="@dimen/text_size_14sp">
 

@@ -5,8 +5,8 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.hotspr.HttpConfig;
+import com.hotspr.business.api.ArrangCleanAPI;
 import com.hotspr.business.api.CleanRoundAPI;
-import com.hotspr.toolkit.FileHandle;
 import com.hotspr.toolkit.SharepreFHelp;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.bean.User;
@@ -26,25 +26,20 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class UncleanedRoundPressenter implements CleanRoundAPI.Pressente {
+public class UncleanedRoundPressenter  implements CleanRoundAPI.Pressente {
 
-    private String TAG = "UncleanedRoundPressenter" ;
+    private String TAG = "UncleanedRoundPressenter";
 
-    private Context mContext ;
-    private CleanRoundAPI.View mView ;
-
+    private Context mContext;
+    private CleanRoundAPI.View mView;
     public String rows;
     private static int STOP_LOAD = 70001;
     private User mUser ;
 
-    public UncleanedRoundPressenter(Context context , CleanRoundAPI.View view ){
-        mContext = context ;
-        mView = view ;
-        rows = String.valueOf(15) ;
-        mUser = FileHandle.getUser() ;
-        if(mUser == null ){
-            mUser = LoginPresenter.mUser ;
-        }
+    public UncleanedRoundPressenter (Context context, CleanRoundAPI.View view){
+        mContext = context;
+        mView = view;
+        rows = String.valueOf(30);
     }
 
     @Override
@@ -63,6 +58,12 @@ public class UncleanedRoundPressenter implements CleanRoundAPI.Pressente {
         paer.put(HttpConfig.Field.page, String.valueOf(page));
 
         paer.put(HttpConfig.Field.rows, rows);
+        // 额外的条件
+        if ( params!=null && !params.isEmpty() ){
+            for (Map.Entry<String, String> entry : params.entrySet()){
+                paer.put( entry.getKey() , entry.getValue());
+            }
+        }
         paer.put(HttpConfig.Field.timestamp, String.valueOf(System.currentTimeMillis() / 1000));
         Set<String> keySet = paer.keySet();  //获取set集合
         List<String> sortKey = SortTools.listSort(keySet);
@@ -94,6 +95,10 @@ public class UncleanedRoundPressenter implements CleanRoundAPI.Pressente {
                             round.Setcl_time1(res.getString("cl_time1")); //安排时间
                             round.Setcl_onduty3n(res.getString("cl_onduty3n")); //清洁员
                             round.setCl_state(res.getString("cl_state")); //状态0未完成  1已完成 2已检查
+                            round.Setcl_class_new(res.getString("cl_class_new")); //状态0未完成  1已完成 2已检查
+                            round.Setcl_time3(res.getString("cl_time3")); //安排时间
+                            round.Setcl_check_er(res.getString("cl_check_er")); //安排时间
+                            round.setFLOOR(res.getString("FLOOR")); //楼号
                             datas.add(round);
                         }
                     }
@@ -104,7 +109,6 @@ public class UncleanedRoundPressenter implements CleanRoundAPI.Pressente {
                     mView.upDatd(lodelModel, datas , Integer.valueOf(page));
                 }
             }
-
             @Override
             public void onFailure(int statusCode, String error_msg) {
                 Log.i(TAG, "onFailure statusCode = " + statusCode + " error_msg = " + error_msg);
@@ -112,4 +116,63 @@ public class UncleanedRoundPressenter implements CleanRoundAPI.Pressente {
             }
         });
     }
+
+
+
+    /**
+     * 清洁房间
+     * @param i 数据序号
+     * @param round 数据内容
+     */
+
+    public void CleanRoom(int i , final Round round){
+        final int index =i;
+        com.modulebase.log.Log.i("xiahoongchk","CleanRoom");
+        String url = HttpConfig.HOST_NAME + HttpConfig.INTERFACE_roomClUp;
+        //handler.sendEmptyMessageDelayed(STOP_LOAD, 15 * 1000); // 每次请求数据最多给15s的时间，15s过当作放弃
+        String userid = SharepreFHelp.getInstance(mContext).getUserID();
+        String userkey = SharepreFHelp.getInstance(mContext).getUserKey();
+        Map<String, String> paer = new HashMap<>();
+        paer.put(HttpConfig.Field.mid, userid);
+        paer.put(HttpConfig.Field.key, userkey);
+        paer.put("room_wh_id", round.getRoom_wh_id().toString());
+        paer.put("end", "Y");
+        paer.put("state", "1");
+        paer.put(HttpConfig.Field.timestamp, String.valueOf(System.currentTimeMillis() / 1000));
+        Set<String> keySet = paer.keySet();  //获取set集合
+        List<String> sortKey = SortTools.listSort(keySet);
+        TreeMap<String, String> parameter = SortTools.getSortMap(sortKey, paer);
+
+        MyOkHttp.get().get(mContext, url, parameter, new JsonResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, String response) {
+                LogF.i(TAG , "CleanRoom statusCode = "+ statusCode + " statusCode = "+ response);
+                try {
+                    JSONObject resObj = new JSONObject(response);
+                    if (resObj.getString("errCode").equals("200")) {
+                        //正确业务
+                        round.setCl_state("1");
+                        mView.upDataInfo(index,round);
+                    }else{
+                        //失败业务
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                 } finally {
+                  //  mView.upDatd(lodelModel, datas , Integer.valueOf(page));
+                }
+            }
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                Log.i(TAG, "onFailure statusCode = " + statusCode + " error_msg = " + error_msg);
+               // mView.upDatd(lodelModel, new ArrayList<Round>(), -1);
+            }
+        });
+
+    }
+
+
+
+
 }
+

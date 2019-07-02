@@ -112,4 +112,7 @@ public class AllCleanRoomPressente implements CleanRoundAPI.Pressente {
             }
         });
     }
+    public  void loadDataInfo(int i, Round round){
+
+    }
 }

@@ -59,23 +59,53 @@ public class CleanedRoundAdapter extends RecyclerView.Adapter<CleanedRoundAdapte
 
         viewHolder.roundNumberTv.setText("房号：" + data.get(i).getROOM());
         viewHolder.roundTypeTv.setText("房型：" + data.get(i).getCLASS());
-        viewHolder.roundLookServerName.setText("查房人：" + data.get(i).getLook_server_name());
-        viewHolder.roundLookTimeOut.setText("时间：" + data.get(i).getLook_time_out());
-        if (!TextUtils.isEmpty(data.get(i).getLook_tage()) && data.get(i).getLook_tage().equals("Y")) {
-            viewHolder.roundCheckTv.setVisibility(View.INVISIBLE);
-        } else {
+        viewHolder. item_ready_clean_room_type_tv_old.setText("修改房型："+data.get(i).Getcl_class_new());;//修改房型
+        viewHolder. item_ready_clean_room_onduty1n.setText("安排人："+data.get(i).Getcl_onduty1n());;//安排人
+        viewHolder. item_ready_clean_room_onduty3n.setText("清洁人："+data.get(i).Getcl_onduty3n());;//清洁人
+        viewHolder. item_ready_clean_room_time3.setText("清洁时间："+data.get(i).Getcl_time3());;//清洁时间
+        viewHolder. item_ready_clean_room_check_er.setText("检查人："+data.get(i).Getcl_check_er());;//检查人
+        viewHolder. round_floor.setText("楼号："+data.get(i).getFLOOR());;//检查人
+
+        if (data.get(i).getCl_state().equals("0") ){
             viewHolder.roundCheckTv.setVisibility(View.VISIBLE);
+        }else {
+            viewHolder.roundCheckTv.setVisibility(View.INVISIBLE);
         }
 
-        if (TextUtils.isEmpty(data.get(i).getLook_tage()) || data.get(i).getLook_tage().equals("")) {
-            viewHolder.roundLight.setBackgroundResource(R.drawable.check_round_light_unclear);
-        } else if (!TextUtils.isEmpty(data.get(i).getLook_tage()) || data.get(i).getLook_tage().equals("Y")) {
-            if (TextUtils.isEmpty(data.get(i).getLook_picture_path()) || data.get(i).getLook_picture_path().equals("")) {
-                viewHolder.roundLight.setBackgroundResource(R.drawable.check_round_light_clear);
-            } else {
-                viewHolder.roundLight.setBackgroundResource(R.drawable.check_round_light_leave);
-            }
+
+        //房间房态
+        if(data.get(i).getSTATE2().equals("D")){
+            viewHolder.roundLight.setBackgroundResource(R.drawable.round_room_state_d);
+        } else if(data.get(i).getSTATE2().equals("T")){
+            viewHolder.roundLight.setBackgroundResource(R.drawable.round_room_state_t);
+        } else if(data.get(i).getSTATE2().equals("L")){
+            viewHolder.roundLight.setBackgroundResource(R.drawable.round_room_state_l);
+        } else if(data.get(i).getSTATE2().equals("R")){
+            viewHolder.roundLight.setBackgroundResource(R.drawable.round_room_state_r);
+        } else if(data.get(i).getSTATE2().equals("M")){
+            viewHolder.roundLight.setBackgroundResource(R.drawable.round_room_state_m);
+        } else if(data.get(i).getSTATE2().equals("S")){
+            viewHolder.roundLight.setBackgroundResource(R.drawable.round_room_state_s);
         }
+        //房间房态结束
+
+//        viewHolder.roundLookServerName.setText("查房人：" + data.get(i).getLook_server_name());
+//        viewHolder.roundLookTimeOut.setText("时间：" + data.get(i).getLook_time_out());
+//        if (!TextUtils.isEmpty(data.get(i).getLook_tage()) && data.get(i).getLook_tage().equals("Y")) {
+//            viewHolder.roundCheckTv.setVisibility(View.INVISIBLE);
+//        } else {
+//            viewHolder.roundCheckTv.setVisibility(View.VISIBLE);
+//        }
+//
+//        if (TextUtils.isEmpty(data.get(i).getLook_tage()) || data.get(i).getLook_tage().equals("")) {
+//            viewHolder.roundLight.setBackgroundResource(R.drawable.check_round_light_unclear);
+//        } else if (!TextUtils.isEmpty(data.get(i).getLook_tage()) || data.get(i).getLook_tage().equals("Y")) {
+//            if (TextUtils.isEmpty(data.get(i).getLook_picture_path()) || data.get(i).getLook_picture_path().equals("")) {
+//                viewHolder.roundLight.setBackgroundResource(R.drawable.check_round_light_clear);
+//            } else {
+//                viewHolder.roundLight.setBackgroundResource(R.drawable.check_round_light_leave);
+//            }
+//        }
 
     }
 
@@ -146,6 +176,12 @@ public class CleanedRoundAdapter extends RecyclerView.Adapter<CleanedRoundAdapte
         View view2; //查看查房结果的弹窗布局
         ImageView iv_goods ; //弹窗图片
         EditText et_ward_content; //弹窗备注
+        TextView item_ready_clean_room_type_tv_old;//修改房型
+        TextView item_ready_clean_room_onduty1n;//安排人
+        TextView item_ready_clean_room_onduty3n;//清洁人
+        TextView item_ready_clean_room_time3;//清洁时间
+        TextView item_ready_clean_room_check_er;//检查人
+        TextView round_floor;//楼号
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             roundLayout = itemView.findViewById(R.id.round_layout);
@@ -155,6 +191,12 @@ public class CleanedRoundAdapter extends RecyclerView.Adapter<CleanedRoundAdapte
             roundLookServerName = itemView.findViewById(R.id.round_look_server_name);
             roundLookTimeOut = itemView.findViewById(R.id.round_look_time_out);
             roundCheckTv = itemView.findViewById(R.id.check_tv);
+            item_ready_clean_room_type_tv_old=itemView.findViewById(R.id.item_ready_clean_room_type_tv_old);
+            item_ready_clean_room_onduty1n=itemView.findViewById(R.id.item_ready_clean_room_onduty1n);
+            item_ready_clean_room_onduty3n=itemView.findViewById(R.id.item_ready_clean_room_onduty3n);
+            item_ready_clean_room_time3=itemView.findViewById(R.id.item_ready_clean_room_time3);
+            item_ready_clean_room_check_er=itemView.findViewById(R.id.item_ready_clean_room_check_er);
+            round_floor=itemView.findViewById(R.id.round_floor);
             roundCheckTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -165,16 +207,16 @@ public class CleanedRoundAdapter extends RecyclerView.Adapter<CleanedRoundAdapte
                 }
             });
 
-            roundLayout.setOnClickListener(new View.OnClickListener(){
-
-                @Override
-                public void onClick(View v) {
-                    if(checkLisnter!=null){
-                        int i = getAdapterPosition()-1 ; //获取点击的位置
-                        checkLisnter.check(i , data.get(i));
-                    }
-                }
-            });
+//            roundLayout.setOnClickListener(new View.OnClickListener(){
+//
+//                @Override
+//                public void onClick(View v) {
+//                    if(checkLisnter!=null){
+//                        int i = getAdapterPosition()-1 ; //获取点击的位置
+//                        checkLisnter.check(i , data.get(i));
+//                    }
+//                }
+//            });
         }
     }
 

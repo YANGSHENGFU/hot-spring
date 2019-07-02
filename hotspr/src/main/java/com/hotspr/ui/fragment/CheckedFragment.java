@@ -86,7 +86,10 @@ public class CheckedFragment extends CleanRoundBaseFragment implements CleanRoun
         load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
     }
 
+    @Override
+    public void upDataInfo(int i, Round round) {
 
+    }
     @Override
     public void upDatd(int mode, ArrayList<Round> rounds, int pageNumber) {
         if (rounds != null) {

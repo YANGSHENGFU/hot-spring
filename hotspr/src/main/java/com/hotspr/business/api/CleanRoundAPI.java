@@ -10,7 +10,10 @@ public class CleanRoundAPI {
     public interface View {
 
         void upDatd(int mode, ArrayList<Round> rounds, int pageNumber);
-
+        /**
+         *更新单条数据
+         */
+        void upDataInfo(int i, Round round);
     }
 
     public interface Pressente {
@@ -20,5 +23,6 @@ public class CleanRoundAPI {
         int LOAD_MODLE_SEARCH = 3;
 
         void loadData(int lodelModel, int page, Map<String, String> params);
+
     }
 }

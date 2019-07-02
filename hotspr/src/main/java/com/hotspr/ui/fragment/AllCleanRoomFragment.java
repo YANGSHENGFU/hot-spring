@@ -87,6 +87,11 @@ public class AllCleanRoomFragment extends CleanRoundBaseFragment implements Clea
 
 
     @Override
+    public void upDataInfo(int i, Round round) {
+
+    }
+
+    @Override
     public void upDatd(int mode, ArrayList<Round> rounds, int pageNumber) {
         if (rounds != null) {
             mLRecyclerView.refreshComplete(rounds.size());  // 不调用这句方法就表示没有刷新成功
