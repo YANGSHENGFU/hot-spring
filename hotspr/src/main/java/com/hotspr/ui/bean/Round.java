@@ -5,6 +5,10 @@ import android.os.Parcelable;
 
 public class Round implements Parcelable {
 
+    public Round(){
+
+    }
+
     private String rownum ;
     private String room_id ;
     private String ROOM ;
@@ -55,87 +59,101 @@ public class Round implements Parcelable {
     private String cl_state ; // 状态0未完成  1已完成 2已检查
     private String picture_path ;
 
-    public Round(){
+    /**
+     *原房类型编号
+     */
+    private String cl_class_old;
 
-    }
+    private String cl_class_n_old;
 
+    /**
+     *房间号
+     */
+    private String cl_room;
 
-    protected Round(Parcel in) {
-        rownum = in.readString();
-        room_id = in.readString();
-        ROOM = in.readString();
-        CLASS = in.readString();
-        STATE1 = in.readString();
-        RESE = in.readString();
-        FLOOR = in.readString();
-        LHMC = in.readString();
-        NAME = in.readString();
-        HKP = in.readString();
-        DIRE = in.readString();
-        DIR1 = in.readString();
-        STANNUM = in.readString();
-        STATE2 = in.readString();
-        STATE3 = in.readString();
-        RENT1 = in.readString();
-        STATE4 = in.readString();
-        STATE5 = in.readString();
-        CONF = in.readString();
-        in_date = in.readString();
-        in_time = in.readString();
-        out_date = in.readString();
-        days = in.readString();
-        zcp = in.readString();
-        room_s = in.readString();
-        room_n = in.readString();
-        look_id = in.readString();
-        room_wh_id = in.readString();
-        wx_id = in.readString();
-        tage = in.readString();
-        look_cash_name = in.readString();
-        look_date_call = in.readString();
-        look_hotel_name = in.readString();
-        look_time_call = in.readString();
-        look_time_answer = in.readString();
-        look_server_name = in.readString();
-        look_time_out = in.readString();
-        look_server_memo = in.readString();
-        look_picture_path = in.readString();
-        look_tage = in.readString();
-        cl_class_old = in.readString();
-        cl_class_n_old = in.readString();
-        cl_room = in.readString();
-        cl_onduty1n = in.readString();
-        cl_onduty2n = in.readString();
-        cl_date1 = in.readString();
-        cl_time1 = in.readString();
-        cl_onduty4n = in.readString();
-        cl_date2 = in.readString();
-        cl_time2 = in.readString();
-        cl_onduty3n = in.readString();
-        cl_class_new = in.readString();
-        cl_class_n_new = in.readString();
-        cl_date3 = in.readString();
-        cl_time3 = in.readString();
-        cl_check_er = in.readString();
-        cl_check_time = in.readString();
-        cl_picture_path = in.readString();
-        cl_vido_path = in.readString();
-        cl_memo1 = in.readString();
-        cl_state = in.readString();
-        picture_path=in.readString();
-    }
+    /**
+     *安排人
+     */
+    private String cl_onduty1n;
 
-    public static final Creator<Round> CREATOR = new Creator<Round>() {
-        @Override
-        public Round createFromParcel(Parcel in) {
-            return new Round(in);
-        }
+    /**
+     *服务员
+     */
+    private String cl_onduty2n;
 
-        @Override
-        public Round[] newArray(int size) {
-            return new Round[size];
-        }
-    };
+    /**
+     *安排日期
+     */
+    private String cl_date1;
+
+    /**
+     *安排时间
+     */
+    private String cl_time1;
+
+    /**
+     *房型修改人
+     */
+    private String cl_onduty4n;
+
+    /**
+     *修改日期
+     */
+    private String cl_date2;
+
+    /**
+     *修改时间
+     */
+    private String cl_time2;
+
+    /**
+     *清洁员
+     */
+    private String cl_onduty3n;
+
+    /**
+     *变换类型
+     */
+    private String cl_class_new;
+
+    /**
+     *变换后类型名称
+     */
+    private String cl_class_n_new;
+
+    /**
+     *完成日期
+     */
+    private String cl_date3;
+
+    /**
+     *完成时间
+     */
+    private String cl_time3;
+
+    /**
+     *房间检查人
+     */
+    private String cl_check_er;
+    /**
+     *检查时间
+     */
+    private String cl_check_time;
+
+    /**
+     *图片路径
+     */
+    private String cl_picture_path;
+
+    /**
+     *视频路径
+     */
+    private String cl_vido_path;
+
+    /**
+     *备注
+     */
+    private String cl_memo1;
 
     public String getRownum() {
         return rownum;
@@ -456,311 +474,263 @@ public class Round implements Parcelable {
     public void setLook_tage(String look_tage) {
         this.look_tage = look_tage;
     }
-    public String getcl_state() { return cl_state;}
 
-    public void setcl_state(String cl_state) {
+    public String getCl_state() {
+        return cl_state;
+    }
+
+    public void setCl_state(String cl_state) {
         this.cl_state = cl_state;
     }
 
-
-    public String getpicture_path() {
+    public String getPicture_path() {
         return picture_path;
     }
 
-    public void setpicture_pathe(String _picture_path) {
-        this.picture_path = _picture_path;
+    public void setPicture_path(String picture_path) {
+        this.picture_path = picture_path;
     }
 
-    /**
-     *原房类型编号
-     */
-    private String cl_class_old;
+    public String getCl_class_old() {
+        return cl_class_old;
+    }
 
-    /**
-     * 取原房类型编号
-     * @return
-     */
-    public String Getcl_class_old() { return cl_class_old; }
-    /**
-     * 设置原房类型编号
-     */
-    public void Setcl_class_old(String cl_class_old) { this.cl_class_old = cl_class_old; }
-    /**
-     *原房类型名称
-     */
-    private String cl_class_n_old;
+    public void setCl_class_old(String cl_class_old) {
+        this.cl_class_old = cl_class_old;
+    }
 
-    /**
-     * 取原房类型名称
-     * @return
-     */
-    public String Getcl_class_n_old() { return cl_class_n_old; }
-    /**
-     * 设置原房类型名称
-     */
-    public void Setcl_class_n_old(String cl_class_n_old) { this.cl_class_n_old = cl_class_n_old; }
+    public String getCl_class_n_old() {
+        return cl_class_n_old;
+    }
 
-    /**
-     *房间号
-     */
-    private String cl_room;
+    public void setCl_class_n_old(String cl_class_n_old) {
+        this.cl_class_n_old = cl_class_n_old;
+    }
 
-    /**
-     * 取房间号
-     * @return
-     */
-    public String Getcl_room() { return cl_room; }
-    /**
-     * 设置房间号
-     */
-    public void Setcl_room(String cl_room) { this.cl_room = cl_room; }
+    public String getCl_room() {
+        return cl_room;
+    }
 
-    /**
-     *安排人
-     */
-    private String cl_onduty1n;
+    public void setCl_room(String cl_room) {
+        this.cl_room = cl_room;
+    }
 
-    /**
-     * 取安排人
-     * @return
-     */
-    public String Getcl_onduty1n() { return cl_onduty1n; }
-    /**
-     * 设置安排人
-     */
-    public void Setcl_onduty1n(String cl_onduty1n) { this.cl_onduty1n = cl_onduty1n; }
+    public String getCl_onduty1n() {
+        return cl_onduty1n;
+    }
 
+    public void setCl_onduty1n(String cl_onduty1n) {
+        this.cl_onduty1n = cl_onduty1n;
+    }
 
+    public String getCl_onduty2n() {
+        return cl_onduty2n;
+    }
 
-    /**
-     *服务员
-     */
-    private String cl_onduty2n;
+    public void setCl_onduty2n(String cl_onduty2n) {
+        this.cl_onduty2n = cl_onduty2n;
+    }
 
-    /**
-     * 取服务员
-     * @return
-     */
-    public String Getcl_onduty2n() { return cl_onduty2n; }
-    /**
-     * 设置服务员
-     */
-    public void Setcl_onduty2n(String cl_onduty2n) { this.cl_onduty2n = cl_onduty2n; }
+    public String getCl_date1() {
+        return cl_date1;
+    }
 
-    /**
-     *安排日期
-     */
-    private String cl_date1;
+    public void setCl_date1(String cl_date1) {
+        this.cl_date1 = cl_date1;
+    }
 
-    /**
-     * 取安排日期
-     * @return
-     */
-    public String Getcl_date1() { return cl_date1; }
-    /**
-     * 设置安排日期
-     */
-    public void Setcl_date1(String cl_date1) { this.cl_date1 = cl_date1; }
+    public String getCl_time1() {
+        return cl_time1;
+    }
 
-    /**
-     *安排时间
-     */
-    private String cl_time1;
+    public void setCl_time1(String cl_time1) {
+        this.cl_time1 = cl_time1;
+    }
 
-    /**
-     * 取原安排时间
-     * @return
-     */
-    public String Getcl_time1() { return cl_time1; }
-    /**
-     * 设置安排时间
-     */
-    public void Setcl_time1(String cl_time1) { this.cl_time1 = cl_time1; }
+    public String getCl_onduty4n() {
+        return cl_onduty4n;
+    }
 
+    public void setCl_onduty4n(String cl_onduty4n) {
+        this.cl_onduty4n = cl_onduty4n;
+    }
 
-    /**
-     *房型修改人
-     */
-    private String cl_onduty4n;
+    public String getCl_date2() {
+        return cl_date2;
+    }
 
-    /**
-     * 取房型修改人
-     * @return
-     */
-    public String Getcl_onduty4n() { return cl_onduty4n; }
-    /**
-     * 设置房型修改人
-     */
-    public void Setcl_onduty4n(String cl_onduty4n) { this.cl_onduty4n = cl_onduty4n; }
+    public void setCl_date2(String cl_date2) {
+        this.cl_date2 = cl_date2;
+    }
 
-    /**
-     *修改日期
-     */
-    private String cl_date2;
+    public String getCl_time2() {
+        return cl_time2;
+    }
 
-    /**
-     * 取修改日期
-     * @return
-     */
-    public String Getcl_date2() { return cl_date2; }
-    /**
-     * 设置修改日期
-     */
-    public void Setcl_date2(String cl_date2) { this.cl_date2 = cl_date2; }
+    public void setCl_time2(String cl_time2) {
+        this.cl_time2 = cl_time2;
+    }
 
-    /**
-     *修改时间
-     */
-    private String cl_time2;
+    public String getCl_onduty3n() {
+        return cl_onduty3n;
+    }
 
-    /**
-     * 取修改时间
-     * @return
-     */
-    public String Getcl_time2() { return cl_time2; }
-    /**
-     * 设置修改时间
-     */
-    public void Setcl_time2(String cl_time2) { this.cl_time2 = cl_time2; }
-    /**
-     *清洁员
-     */
-    private String cl_onduty3n;
+    public void setCl_onduty3n(String cl_onduty3n) {
+        this.cl_onduty3n = cl_onduty3n;
+    }
 
-    /**
-     * 取清洁员
-     * @return
-     */
-    public String Getcl_onduty3n() { return cl_onduty3n; }
-    /**
-     * 设置清洁员
-     */
-    public void Setcl_onduty3n(String cl_onduty3n) { this.cl_onduty3n = cl_onduty3n; }
+    public String getCl_class_new() {
+        return cl_class_new;
+    }
 
-    /**
-     *变换类型
-     */
-    private String cl_class_new;
+    public void setCl_class_new(String cl_class_new) {
+        this.cl_class_new = cl_class_new;
+    }
 
-    /**
-     * 取变换类型
-     * @return
-     */
-    public String Getcl_class_new() { return cl_class_new; }
-    /**
-     * 设置变换类型
-     */
-    public void Setcl_class_new(String cl_class_new) { this.cl_class_new = cl_class_new; }
+    public String getCl_class_n_new() {
+        return cl_class_n_new;
+    }
 
-    /**
-     *变换后类型名称
-     */
-    private String cl_class_n_new;
+    public void setCl_class_n_new(String cl_class_n_new) {
+        this.cl_class_n_new = cl_class_n_new;
+    }
 
-    /**
-     * 取变换后类型名称
-     * @return
-     */
-    public String Getcl_class_n_new() { return cl_class_n_new; }
-    /**
-     * 设置变换后类型名称
-     */
-    public void Setcl_class_n_new(String cl_class_n_new) { this.cl_class_n_new = cl_class_n_new; }
+    public String getCl_date3() {
+        return cl_date3;
+    }
 
-    /**
-     *完成日期
-     */
-    private String cl_date3;
+    public void setCl_date3(String cl_date3) {
+        this.cl_date3 = cl_date3;
+    }
 
-    /**
-     * 取完成日期
-     * @return
-     */
-    public String Getcl_date3() { return cl_date3; }
-    /**
-     * 设置完成日期
-     */
-    public void Setcl_date3(String cl_date3) { this.cl_date3 = cl_date3; }
+    public String getCl_time3() {
+        return cl_time3;
+    }
 
-    /**
-     *完成时间
-     */
-    private String cl_time3;
+    public void setCl_time3(String cl_time3) {
+        this.cl_time3 = cl_time3;
+    }
 
-    /**
-     * 取完成时间
-     * @return
-     */
-    public String Getcl_time3() { return cl_time3; }
-    /**
-     * 设置完成时间
-     */
-    public void Setcl_time3(String cl_time3) { this.cl_time3 = cl_time3; }
+    public String getCl_check_er() {
+        return cl_check_er;
+    }
 
-    /**
-     *房间检查人
-     */
-    private String cl_check_er;
+    public void setCl_check_er(String cl_check_er) {
+        this.cl_check_er = cl_check_er;
+    }
 
-    /**
-     * 取房间检查人
-     * @return
-     */
-    public String Getcl_check_er() { return cl_check_er; }
-    /**
-     * 设置房间检查人
-     */
-    public void Setcl_check_er(String cl_check_er) { this.cl_check_er = cl_check_er; }
+    public String getCl_check_time() {
+        return cl_check_time;
+    }
 
-    /**
-     *检查时间
-     */
-    private String cl_check_time;
+    public void setCl_check_time(String cl_check_time) {
+        this.cl_check_time = cl_check_time;
+    }
 
-    /**
-     * 取检查时间
-     * @return
-     */
-    public String Getcl_check_time() { return cl_check_time; }
-    /**
-     * 设置检查时间
-     */
-    public void Setcl_check_time(String cl_check_time) { this.cl_check_time = cl_check_time; }
+    public String getCl_picture_path() {
+        return cl_picture_path;
+    }
 
-    /**
-     *图片路径
-     */
-    private String cl_picture_path;
+    public void setCl_picture_path(String cl_picture_path) {
+        this.cl_picture_path = cl_picture_path;
+    }
 
-    /**
-     * 取图片路径
-     * @return
-     */
-    public String Getcl_picture_path() { return cl_picture_path; }
-    /**
-     * 设置图片路径
-     */
-    public void Setcl_picture_path(String cl_picture_path) { this.cl_picture_path = cl_picture_path; }
+    public String getCl_vido_path() {
+        return cl_vido_path;
+    }
 
-    /**
-     *视频路径
-     */
-    private String cl_vido_path;
+    public void setCl_vido_path(String cl_vido_path) {
+        this.cl_vido_path = cl_vido_path;
+    }
 
-    /**
-     * 取视频路径
-     * @return
-     */
-    public String Getcl_vido_path() { return cl_vido_path; }
-    /**
-     * 设置视频路径
-     */
-    public void Setcl_vido_path(String cl_vido_path) { this.cl_vido_path = cl_vido_path; }
+    public String getCl_memo1() {
+        return cl_memo1;
+    }
 
-    /**
-     *备注
-     */
-    private String cl_memo1;
+    public void setCl_memo1(String cl_memo1) {
+        this.cl_memo1 = cl_memo1;
+    }
+
+    public static Creator<Round> getCREATOR() {
+        return CREATOR;
+    }
+
+    protected Round(Parcel in) {
+        rownum = in.readString();
+        room_id = in.readString();
+        ROOM = in.readString();
+        CLASS = in.readString();
+        STATE1 = in.readString();
+        RESE = in.readString();
+        FLOOR = in.readString();
+        LHMC = in.readString();
+        NAME = in.readString();
+        HKP = in.readString();
+        DIRE = in.readString();
+        DIR1 = in.readString();
+        STANNUM = in.readString();
+        STATE2 = in.readString();
+        STATE3 = in.readString();
+        RENT1 = in.readString();
+        STATE4 = in.readString();
+        STATE5 = in.readString();
+        CONF = in.readString();
+        in_date = in.readString();
+        in_time = in.readString();
+        out_date = in.readString();
+        days = in.readString();
+        zcp = in.readString();
+        room_s = in.readString();
+        room_n = in.readString();
+        look_id = in.readString();
+        room_wh_id = in.readString();
+        wx_id = in.readString();
+        tage = in.readString();
+        look_cash_name = in.readString();
+        look_date_call = in.readString();
+        look_hotel_name = in.readString();
+        look_time_call = in.readString();
+        look_time_answer = in.readString();
+        look_server_name = in.readString();
+        look_time_out = in.readString();
+        look_server_memo = in.readString();
+        look_picture_path = in.readString();
+        look_tage = in.readString();
+        cl_state = in.readString();
+        picture_path = in.readString();
+        cl_class_old = in.readString();
+        cl_class_n_old = in.readString();
+        cl_room = in.readString();
+        cl_onduty1n = in.readString();
+        cl_onduty2n = in.readString();
+        cl_date1 = in.readString();
+        cl_time1 = in.readString();
+        cl_onduty4n = in.readString();
+        cl_date2 = in.readString();
+        cl_time2 = in.readString();
+        cl_onduty3n = in.readString();
+        cl_class_new = in.readString();
+        cl_class_n_new = in.readString();
+        cl_date3 = in.readString();
+        cl_time3 = in.readString();
+        cl_check_er = in.readString();
+        cl_check_time = in.readString();
+        cl_picture_path = in.readString();
+        cl_vido_path = in.readString();
+        cl_memo1 = in.readString();
+    }
+
+    public static final Creator<Round> CREATOR = new Creator<Round>() {
+        @Override
+        public Round createFromParcel(Parcel in) {
+            return new Round(in);
+        }
+
+        @Override
+        public Round[] newArray(int size) {
+            return new Round[size];
+        }
+    };
 
     /**
      * 取备注
@@ -771,15 +741,6 @@ public class Round implements Parcelable {
      * 设置备注
      */
     public void setcl_memo1(String cl_memo1) { this.cl_memo1 = cl_memo1; }
-
-
-
-
-
-
-
-
-
 
 
     @Override
@@ -829,6 +790,8 @@ public class Round implements Parcelable {
         dest.writeString(look_server_memo);
         dest.writeString(look_picture_path);
         dest.writeString(look_tage);
+        dest.writeString(cl_state);
+        dest.writeString(picture_path);
         dest.writeString(cl_class_old);
         dest.writeString(cl_class_n_old);
         dest.writeString(cl_room);
@@ -840,8 +803,6 @@ public class Round implements Parcelable {
         dest.writeString(cl_date2);
         dest.writeString(cl_time2);
         dest.writeString(cl_onduty3n);
-        dest.writeString(cl_time3);
-        dest.writeString(cl_date3);
         dest.writeString(cl_class_new);
         dest.writeString(cl_class_n_new);
         dest.writeString(cl_date3);
@@ -851,6 +812,5 @@ public class Round implements Parcelable {
         dest.writeString(cl_picture_path);
         dest.writeString(cl_vido_path);
         dest.writeString(cl_memo1);
-        dest.writeString(cl_state);
     }
 }
