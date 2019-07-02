@@ -13,9 +13,11 @@ import com.hotspr.business.api.ArrangCleanAPI;
 import com.hotspr.business.api.CleanRoundAPI;
 import com.hotspr.business.api.WardRoundPressenterAPI;
 import com.hotspr.business.presenter.UncleanedRoundPressenter;
+import com.hotspr.ui.activity.UnqualifiedActivity;
 import com.hotspr.ui.activity.WardRoundActivity;
 import com.hotspr.ui.adapter.CleanedRoundAdapter;
 import com.hotspr.ui.adapter.RoundAdapter;
+import com.hotspr.ui.adapter.UncleanedRoundAdapter;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.fragment.base.ArrangCleanBaseFragment;
 import com.hotspr.ui.fragment.base.CleanRoundBaseFragment;
@@ -32,11 +34,11 @@ import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
-public class UncleanedFragment extends CleanRoundBaseFragment implements  CleanRoundAPI.View , CleanedRoundAdapter.CheckLisnter{
+public class UncleanedFragment extends CleanRoundBaseFragment implements  CleanRoundAPI.View , UncleanedRoundAdapter.CheckLisnter{
 
     private String TAG = "UncleanedFragment" ;
     private static int REQUEST_CODE = 19992 ;
-    private CleanedRoundAdapter mAdapter ;
+    private UncleanedRoundAdapter mAdapter ;
     private LRecyclerViewAdapter mLRecyclerViewAdapter ;
     private UncleanedRoundPressenter mPressenter ;
 
@@ -46,7 +48,7 @@ public class UncleanedFragment extends CleanRoundBaseFragment implements  CleanR
     @Override
     protected void initLRecyclerView() {
         mLRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3)); // 不设会不显示
-        mAdapter = new CleanedRoundAdapter(mContext);
+        mAdapter = new UncleanedRoundAdapter(mContext);
         mAdapter.setCheckLisnter(this);
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mAdapter);
         mLRecyclerView.setAdapter(mLRecyclerViewAdapter);
@@ -98,8 +100,7 @@ public class UncleanedFragment extends CleanRoundBaseFragment implements  CleanR
      * @param round 数据源
      */
     public  void  upDataInfo(int i,Round round ){
-        Log.i("xiahoongchk","upDataInfo");
-        Log.i("xiahoongstate",round.getCl_state());
+
 
     }
 
@@ -137,8 +138,7 @@ public class UncleanedFragment extends CleanRoundBaseFragment implements  CleanR
      */
     @Override
     public void check(int i, final Round round) {
-        Log.i("xiahoongchk","check");
-        Log.i("xiahoongchk",round.getCLASS().toString());
+
          final int index=i;
 
         new AlertDialog.Builder(this.mContext)
@@ -149,8 +149,8 @@ public class UncleanedFragment extends CleanRoundBaseFragment implements  CleanR
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mPressenter.CleanRoom(index,round);
-                        round.setCl_state("1");
-                      UncleanedFragment.this.upDataInfo(index,round);
+                        initLRecyclerView();
+                        initData();
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -170,6 +170,25 @@ public class UncleanedFragment extends CleanRoundBaseFragment implements  CleanR
 //        bundle.putInt(WardRoundActivity.index_key,i);
 //        intent.putExtras(bundle);
 //        startActivityForResult(intent , REQUEST_CODE);
+    }
+    /**
+     * 不合格事件
+     * @param round 数据
+     * @param p 数据的序号
+     */
+    @Override
+    public void unqualiFied(Round round , int p) {
+
+        round.setSTATE5(round.getCl_state().toString());
+        Bundle bundle = new Bundle();
+        Intent intent = new Intent(mContext , UnqualifiedActivity.class);
+        bundle.putParcelable(UnqualifiedActivity.round_key , round);
+        bundle.putInt(UnqualifiedActivity.code_key , REQUEST_CODE);
+        bundle.putInt(UnqualifiedActivity.index_key,p);
+        intent.putExtras(bundle);
+        startActivityForResult(intent , REQUEST_CODE);
+
+
     }
 
     /**

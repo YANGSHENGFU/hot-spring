@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import com.hotspr.ui.bean.Round;
 
 import java.util.ArrayList;
 
-public class CleanedRoundAdapter extends RecyclerView.Adapter<CleanedRoundAdapter.ViewHolder> {
+public class UncleanedRoundAdapter extends RecyclerView.Adapter<UncleanedRoundAdapter.ViewHolder> {
 
     private ArrayList<Round> data ;
     private Context mContext ;
@@ -42,20 +41,20 @@ public class CleanedRoundAdapter extends RecyclerView.Adapter<CleanedRoundAdapte
         }
     };
 
-    public CleanedRoundAdapter(Context context){
+    public UncleanedRoundAdapter(Context context){
         mContext = context ;
         data = new ArrayList<>();
     }
 
     @NonNull
     @Override
-    public CleanedRoundAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public UncleanedRoundAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_recyc_cleaned_round_layout , null );
-        return new CleanedRoundAdapter.ViewHolder(view);
+        return new UncleanedRoundAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CleanedRoundAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull UncleanedRoundAdapter.ViewHolder viewHolder, int i) {
 
         viewHolder.roundNumberTv.setText("房号：" + data.get(i).getROOM());
         viewHolder.roundTypeTv.setText("房型：" + data.get(i).getCLASS());
@@ -189,27 +188,33 @@ public class CleanedRoundAdapter extends RecyclerView.Adapter<CleanedRoundAdapte
                     }
                 }
             });
+            roundLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(checkLisnter!=null){
+                        int p = getAdapterPosition()-1 ;
+                        checkLisnter.unqualiFied(  data.get(p) ,p );
+                    }
+                }
+            });
 
-//            roundLayout.setOnClickListener(new View.OnClickListener(){
-//
-//                @Override
-//                public void onClick(View v) {
-//                    if(checkLisnter!=null){
-//                        int i = getAdapterPosition()-1 ; //获取点击的位置
-//                        checkLisnter.check(i , data.get(i));
-//                    }
-//                }
-//            });
+
         }
     }
 
-    public CleanedRoundAdapter.CheckLisnter checkLisnter ;
-    public void setCheckLisnter(CleanedRoundAdapter.CheckLisnter checkLisnter) {
+    public UncleanedRoundAdapter.CheckLisnter checkLisnter ;
+    public void setCheckLisnter(UncleanedRoundAdapter.CheckLisnter checkLisnter) {
         this.checkLisnter = checkLisnter;
     }
 
     public interface CheckLisnter{
-        void check(int i ,Round round);
+        void check(int i, Round round);
+        /**
+         * 设置不合格
+         * @param round 数据
+         * @param p 数据的序号
+         */
+        void unqualiFied(Round round , int p); // 不合格
     }
 
 }
