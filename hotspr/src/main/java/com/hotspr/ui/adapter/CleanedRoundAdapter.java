@@ -66,7 +66,7 @@ public class CleanedRoundAdapter extends RecyclerView.Adapter<CleanedRoundAdapte
         viewHolder. item_ready_clean_room_check_er.setText("检查人："+data.get(i).Getcl_check_er());;//检查人
         viewHolder. round_floor.setText("楼号："+data.get(i).getFLOOR());;//检查人
 
-        if (data.get(i).getCl_state().equals("0") ){
+        if (data.get(i).getcl_state().equals("0") ){
             viewHolder.roundCheckTv.setVisibility(View.VISIBLE);
         }else {
             viewHolder.roundCheckTv.setVisibility(View.INVISIBLE);

@@ -99,7 +99,7 @@ public class UncleanedFragment extends CleanRoundBaseFragment implements  CleanR
      */
     public  void  upDataInfo(int i,Round round ){
         Log.i("xiahoongchk","upDataInfo");
-        Log.i("xiahoongstate",round.getCl_state());
+        Log.i("xiahoongstate",round.getcl_state());
 
     }
 
@@ -149,7 +149,7 @@ public class UncleanedFragment extends CleanRoundBaseFragment implements  CleanR
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mPressenter.CleanRoom(index,round);
-                        round.setCl_state("1");
+                        round.setcl_state("1");
                       UncleanedFragment.this.upDataInfo(index,round);
                     }
                 })

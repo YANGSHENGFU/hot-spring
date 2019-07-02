@@ -53,6 +53,7 @@ public class Round implements Parcelable {
     private String look_tage ;
 
     private String cl_state ; // 状态0未完成  1已完成 2已检查
+    private String picture_path ;
 
     public Round(){
 
@@ -121,6 +122,7 @@ public class Round implements Parcelable {
         cl_vido_path = in.readString();
         cl_memo1 = in.readString();
         cl_state = in.readString();
+        picture_path=in.readString();
     }
 
     public static final Creator<Round> CREATOR = new Creator<Round>() {
@@ -454,6 +456,20 @@ public class Round implements Parcelable {
     public void setLook_tage(String look_tage) {
         this.look_tage = look_tage;
     }
+    public String getcl_state() { return cl_state;}
+
+    public void setcl_state(String cl_state) {
+        this.cl_state = cl_state;
+    }
+
+
+    public String getpicture_path() {
+        return picture_path;
+    }
+
+    public void setpicture_pathe(String _picture_path) {
+        this.picture_path = _picture_path;
+    }
 
     /**
      *原房类型编号
@@ -750,35 +766,21 @@ public class Round implements Parcelable {
      * 取备注
      * @return
      */
-    public String Getcl_memo1() { return cl_memo1; }
+    public String getcl_memo1() { return cl_memo1; }
     /**
      * 设置备注
      */
-    public void Setcl_memo1(String cl_memo1) { this.cl_memo1 = cl_memo1; }
+    public void setcl_memo1(String cl_memo1) { this.cl_memo1 = cl_memo1; }
 
 
 
 
 
 
-    /**
-     * 取清洁房间ID
-     * @return
-     */
-    public String Getroom_wh_id() { return room_wh_id; }
-    /**
-     * 设置清洁房间ID
-     */
-    public void Setroom_wh_id(String room_wh_id) { this.room_wh_id = room_wh_id; }
 
 
-    public String getCl_state() {
-        return cl_state;
-    }
 
-    public void setCl_state(String cl_state) {
-        this.cl_state = cl_state;
-    }
+
 
     @Override
     public int describeContents() {

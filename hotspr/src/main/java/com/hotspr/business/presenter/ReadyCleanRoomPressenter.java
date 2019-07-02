@@ -35,7 +35,7 @@ public class ReadyCleanRoomPressenter implements ArrangCleanAPI.Pressente {
     public ReadyCleanRoomPressenter(Context context, ArrangCleanAPI.View view){
         mContext = context;
         mView = view;
-        rows = String.valueOf(5000);
+
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ReadyCleanRoomPressenter implements ArrangCleanAPI.Pressente {
         paer.put(HttpConfig.Field.mid, userid);
         paer.put(HttpConfig.Field.key, userkey);
         paer.put(HttpConfig.Field.page, String.valueOf(page));
-        paer.put(HttpConfig.Field.rows, rows);
+
         // 额外的条件
         if ( params!=null && !params.isEmpty() ){
             for (Map.Entry<String, String> entry : params.entrySet()){
@@ -79,17 +79,18 @@ public class ReadyCleanRoomPressenter implements ArrangCleanAPI.Pressente {
                             round.setCLASS(res.getString("CLASS")); //房型
                             round.setRoom_id(res.getString("room_id"));
                             round.setSTATE2(res.getString("STATE2"));//T：停用    D：脏房  L：锁房  R：净房  M：维修S：清扫
-                            round.Setroom_wh_id(res.getString("room_wh_id"));
+                            round.setRoom_wh_id(res.getString("room_wh_id"));
                             round.setROOM(res.getString("ROOM")); //房间号
                             round.Setcl_onduty1n(res.getString("cl_onduty1n")); //安排人
                             round.Setcl_onduty2n(res.getString("cl_onduty2n")); //服务员
                             round.Setcl_date1(res.getString("cl_date1")); //安排日期
                             round.Setcl_time1(res.getString("cl_time1")); //安排时间
                             round.Setcl_onduty3n(res.getString("cl_onduty3n")); //清洁员
-                            round.setCl_state(res.getString("cl_state")); //状态0未完成  1已完成 2已检查
+                            round.setcl_state(res.getString("cl_state")); //状态0未完成  1已完成 2已检查
                             round.Setcl_class_new(res.getString("cl_class_new")); //状态0未完成  1已完成 2已检查
                             round.Setcl_time3(res.getString("cl_time3")); //安排时间
                             round.Setcl_check_er(res.getString("cl_check_er")); //安排时间
+                            round.setcl_memo1(res.getString("cl_memo1")); //安排时间
                             datas.add(round);
                         }
                     }

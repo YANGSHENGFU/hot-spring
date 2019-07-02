@@ -239,14 +239,14 @@ public class ArrangeCleaningActivity extends BaseActivity implements View.OnClic
                         round.setCLASS(res.getString("CLASS")); //房型
                         round.setRoom_id(res.getString("room_id"));
                         round.setSTATE2(res.getString("STATE2"));//T：停用    D：脏房  L：锁房  R：净房  M：维修S：清扫
-                        round.Setroom_wh_id(res.getString("room_wh_id"));
+                        round.setRoom_wh_id(res.getString("room_wh_id"));
                         round.setROOM(res.getString("ROOM")); //房间号
                         round.Setcl_onduty1n(res.getString("cl_onduty1n")); //安排人
                         round.Setcl_onduty2n(res.getString("cl_onduty2n")); //服务员
                         round.Setcl_date1(res.getString("cl_date1")); //安排日期
                         round.Setcl_time1(res.getString("cl_time1")); //安排时间
                         round.Setcl_onduty3n(res.getString("cl_onduty3n")); //清洁员
-                        round.setCl_state(res.getString("cl_state")); //状态0未完成  1已完成 2已检查
+                        round.setcl_state(res.getString("cl_state")); //状态0未完成  1已完成 2已检查
                         Intent intent = new Intent();
                         Bundle bundle = new Bundle();
                         bundle.putParcelable(Room_Key, round);

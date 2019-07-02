@@ -91,59 +91,26 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:background="@drawable/search_tv_background"
             android:layout_marginTop="5dp"
-            android:gravity="center"
             android:id="@+id/item_ready_clean_room_arrange_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_ffffff"
-            android:text="安排清洁">
+            android:text="安排清洁"
+            style="@style/bt_red">
 
         </TextView>
-        <LinearLayout
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/item_ready_inspect_room_unpass_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/item_ready_clean_room_li_yesno"
-            android:layout_marginTop="5dp">
-            <TextView
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="2dp"
-                android:id="@+id/item_ready_inspect_room_pass_tv"
-                android:layout_width="@dimen/dp_0"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_14sp"
-                android:textColor="@color/color_ffffff"
-                android:text="合格"
-                android:gravity="center"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
-                android:layout_weight="1"
-                android:background="@drawable/search_tv_background">
-            </TextView>
+           android:text="检查房间"
+            style="@style/bt_red">
 
-            <TextView
-                android:layout_width="@dimen/dp_3"
-                android:layout_height="wrap_content" />
+        </TextView>
 
 
-            <TextView
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="2dp"
-                android:id="@+id/item_ready_inspect_room_unpass_tv"
-                android:layout_width="@dimen/dp_0"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_14sp"
-                android:textColor="@color/color_ffffff"
-                android:text="不合格"
-                android:gravity="center"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
-                android:layout_weight="1"
-                android:background="@drawable/search_tv_background">
-            </TextView>
-        </LinearLayout>
 
     </LinearLayout>
 

@@ -19,10 +19,12 @@ import com.hotspr.business.api.WardRoundPressenterAPI;
 import com.hotspr.business.presenter.ReadyCleanRoomPressenter;
 import com.hotspr.toolkit.CacheHandle;
 import com.hotspr.ui.activity.ArrangeCleaningActivity;
+import com.hotspr.ui.activity.UnqualifiedActivity;
 import com.hotspr.ui.adapter.ReadyCleanRoomAdapter;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.dialog.ArrangeCleaningDialog;
 import com.hotspr.ui.fragment.base.ArrangCleanBaseFragment;
+import com.modulebase.log.Log;
 import com.modulebase.toolkit.NetworkUtils;
 import com.modulebase.view.recyclerview.adapter.LRecyclerViewAdapter;
 import com.modulebase.view.recyclerview.recinterface.OnLoadMoreListener;
@@ -195,24 +197,49 @@ public class ReadyCleanRoomFragment extends ArrangCleanBaseFragment implements R
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        page = 1;
         initLRecyclerView();
         initData();
-        /*
-        if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
-            if(data!=null){
-                Bundle bundle = data.getExtras() ;
-                if(bundle!=null){
+     /*
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                Bundle bundle = data.getExtras();
+                if (bundle != null) {
                     Round round = bundle.getParcelable(ArrangeCleaningActivity.Room_Key);
                     int index = bundle.getInt(ArrangeCleaningActivity.index_key);
-                    if(round!=null){
-                        mAdapter.getData().remove(index);
-                        mAdapter.getData().add(index , round);
-                        mAdapter.notifyItemChanged(index);
+                    if (round != null) {
+
+                       mAdapter.getData().remove(index);
+                        mAdapter.getData().add(index, round);
+                       mAdapter.notifyItemChanged(index);
                     }
                 }
             }
         }
         */
+    }
+
+
+
+
+    /**
+     * 不合格事件
+     * @param round 数据
+     * @param p 数据的序号
+     */
+    @Override
+    public void unqualiFied(Round round , int p) {
+
+              Log.i("xiahongfil",round.getcl_memo1().toString());
+        Log.i("xiahongfil",round.getcl_state().toString());
+        round.setSTATE5(round.getcl_state().toString());
+        Bundle bundle = new Bundle();
+        Intent intent = new Intent(mContext , UnqualifiedActivity.class);
+        bundle.putParcelable(UnqualifiedActivity.round_key , round);
+        bundle.putInt(UnqualifiedActivity.code_key , REQUEST_CODE);
+        bundle.putInt(UnqualifiedActivity.index_key,p);
+        intent.putExtras(bundle);
+        startActivityForResult(intent , REQUEST_CODE);
+
+
     }
 }
