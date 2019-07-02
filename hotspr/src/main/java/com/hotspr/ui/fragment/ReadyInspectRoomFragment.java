@@ -210,8 +210,8 @@ public class ReadyInspectRoomFragment extends ArrangCleanBaseFragment implements
     public void unqualiFied(Round round , int p) {
 
         Log.i("xiahongfil",round.getcl_memo1().toString());
-        Log.i("xiahongfil",round.getcl_state().toString());
-        round.setSTATE5(round.getcl_state().toString());
+        Log.i("xiahongfil",round.getCl_state().toString());
+        round.setSTATE5(round.getCl_state().toString());
         Bundle bundle = new Bundle();
         Intent intent = new Intent(mContext , UnqualifiedActivity.class);
         bundle.putParcelable(UnqualifiedActivity.round_key , round);

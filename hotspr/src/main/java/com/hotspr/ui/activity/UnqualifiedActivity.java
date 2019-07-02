@@ -115,12 +115,12 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
 
 
         if (mRound != null ) {
-           // Log.i("xiahong11",mRound.getcl_state().toString());
+            Log.i("xiahong11",mRound.getCl_state().toString());
             if(mRound.getSTATE5()!=null){
-                mRound.setcl_state(mRound.getSTATE5().toString());
+                mRound.setCl_state(mRound.getSTATE5().toString());
             }
-            if (mRound.getcl_state().equals("2")||mRound.getcl_state().equals("0")) {
-              if(mRound.getcl_state().equals("0"))  {
+            if (mRound.getCl_state().equals("2")||mRound.getCl_state().equals("0")) {
+              if(mRound.getCl_state().equals("0"))  {
                   confirmTv.setText("清洁中");
               }else{
                   confirmTv.setText("已清洁");
@@ -136,8 +136,8 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
                 }
                 remarksEt.setFocusable(false);
                 remarksEt.setClickable(false);
-                if (!TextUtils.isEmpty(mRound.getpicture_path())) {
-                    getPhoto(mRound.getpicture_path());
+                if (!TextUtils.isEmpty(mRound.getCl_picture_path())) {
+                    getPhoto(mRound.getCl_picture_path());
                 }
             }
 
@@ -379,15 +379,15 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
                                 round.setSTATE2(object.getString("STATE2"));//T：停用    D：脏房  L：锁房  R：净房  M：维修S：清扫
                                 round.setRoom_wh_id(object.getString("room_wh_id"));
                                 round.setROOM(object.getString("ROOM")); //房间号
-                                round.Setcl_onduty1n(object.getString("cl_onduty1n")); //安排人
-                                round.Setcl_onduty2n(object.getString("cl_onduty2n")); //服务员
-                                round.Setcl_date1(object.getString("cl_date1")); //安排日期
-                                round.Setcl_time1(object.getString("cl_time1")); //安排时间
-                                round.Setcl_onduty3n(object.getString("cl_onduty3n")); //清洁员
-                                round.setcl_state(object.getString("cl_state")); //状态0未完成  1已完成 2已检查
-                                round.Setcl_class_new(object.getString("cl_class_new")); //状态0未完成  1已完成 2已检查
-                                round.Setcl_time3(object.getString("cl_time3")); //安排时间
-                                round.Setcl_check_er(object.getString("cl_check_er")); //安排时间
+                                round.setCl_onduty1n(object.getString("cl_onduty1n")); //安排人
+                                round.setCl_onduty2n(object.getString("cl_onduty2n")); //服务员
+                                round.setCl_date1(object.getString("cl_date1")); //安排日期
+                                round.setCl_time1(object.getString("cl_time1")); //安排时间
+                                round.setCl_onduty3n(object.getString("cl_onduty3n")); //清洁员
+                                round.setCl_state(object.getString("cl_state")); //状态0未完成  1已完成 2已检查
+                                round.setCl_class_new(object.getString("cl_class_new")); //状态0未完成  1已完成 2已检查
+                                round.setCl_time3(object.getString("cl_time3")); //安排时间
+                                round.setCl_check_er(object.getString("cl_check_er")); //安排时间
                                 round.setLook_picture_path(object.getString("look_picture_path"));//图片
 
 

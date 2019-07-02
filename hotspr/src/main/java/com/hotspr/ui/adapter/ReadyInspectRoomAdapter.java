@@ -44,11 +44,11 @@ public class ReadyInspectRoomAdapter extends RecyclerView.Adapter<ReadyInspectRo
         viewHolder.roundNumberTv.setText("房号："+data.get(i).getROOM());
         viewHolder.roundTypeTv.setText("房型："+data.get(i).getCLASS());
 
-        viewHolder. item_ready_clean_room_type_tv_old.setText("修改房型："+data.get(i).Getcl_class_new());;//修改房型
-        viewHolder. item_ready_clean_room_onduty1n.setText("安排人："+data.get(i).Getcl_onduty1n());;//安排人
-        viewHolder. item_ready_clean_room_onduty3n.setText("清洁人："+data.get(i).Getcl_onduty3n());;//清洁人
-        viewHolder. item_ready_clean_room_time3.setText("时间："+data.get(i).Getcl_time3());;//清洁时间
-        viewHolder. item_ready_clean_room_check_er.setText("检查人："+data.get(i).Getcl_check_er());;//检查人
+        viewHolder. item_ready_clean_room_type_tv_old.setText("修改房型："+data.get(i).getCl_class_new());;//修改房型
+        viewHolder. item_ready_clean_room_onduty1n.setText("安排人："+data.get(i).getCl_onduty1n());;//安排人
+        viewHolder. item_ready_clean_room_onduty3n.setText("清洁人："+data.get(i).getCl_onduty3n());;//清洁人
+        viewHolder. item_ready_clean_room_time3.setText("时间："+data.get(i).getCl_time3());;//清洁时间
+        viewHolder. item_ready_clean_room_check_er.setText("检查人："+data.get(i).getCl_check_er());;//检查人
 
 
 
@@ -56,7 +56,7 @@ public class ReadyInspectRoomAdapter extends RecyclerView.Adapter<ReadyInspectRo
 
         if (data.get(i).getSTATE2().equals("D") ){
             viewHolder.roundArrangeTv.setVisibility(View.VISIBLE);
-            if(data.get(i).getcl_state().equals("0")){
+            if(data.get(i).getCl_state().equals("0")){
                 viewHolder.roundArrangeTv.setText("重新安排");
             } else {
                 viewHolder.roundArrangeTv.setText("安排清洁");
@@ -64,7 +64,7 @@ public class ReadyInspectRoomAdapter extends RecyclerView.Adapter<ReadyInspectRo
         }else {
             viewHolder.roundArrangeTv.setVisibility(View.INVISIBLE);
         }
-        if (data.get(i).getcl_state().equals("1") ){
+        if (data.get(i).getCl_state().equals("1") ){
             viewHolder.item_ready_inspect_room_unpass_tv.setVisibility(View.VISIBLE);
         }else {
             viewHolder.item_ready_inspect_room_unpass_tv.setVisibility(View.INVISIBLE);
