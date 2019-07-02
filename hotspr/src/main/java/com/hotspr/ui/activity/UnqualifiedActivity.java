@@ -115,11 +115,14 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
 
 
         if (mRound != null ) {
-           if (mRound.getCl_state().equals("2")||mRound.getCl_state().equals("0")) {
+           if (mRound.getCl_state().equals("2")||mRound.getCl_state().equals("0")||mRound.getSTATE2().equals("R")) {
               if(mRound.getCl_state().equals("0"))  {
                   confirmTv.setText("清洁中");
               }else{
                   confirmTv.setText("已清洁");
+              }
+              if(mRound.getSTATE2().equals("R")){
+                  confirmTv.setText("已是干净房间");
               }
 
                 confirmTv.setClickable(false);
@@ -316,6 +319,7 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject != null && "200".equals(jsonObject.getString("errCode"))) {
                         mUrl = jsonObject.getString("url");
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -391,18 +395,21 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
 
 
                             }
+
                             if (round != null) {
-                                if (!TextUtils.isEmpty(mUrl)) {
-                                    round.setLook_picture_path(mUrl);
-                                }
-                                Intent intent = new Intent();
-                                Bundle bundle = new Bundle();
-                                bundle.putParcelable(resrt_round_key, round);
-                                bundle.putInt(resrt_index_key, index);
-                                intent.putExtras(bundle);
-                                setResult(Activity.RESULT_OK, intent);
+
+//                                if (!TextUtils.isEmpty(mUrl)) {
+//                                    round.setCl_picture_path(mUrl);
+//                                }
+//                                Intent intent = new Intent();
+//                                Bundle bundle = new Bundle();
+//                                bundle.putParcelable(resrt_round_key, round);
+//                                bundle.putInt(resrt_index_key, index);
+//                                intent.putExtras(bundle);
+//                                setResult(Activity.RESULT_OK, intent);
                             }
                             UnqualifiedActivity.this.finish();
+                            Toast.makeText(UnqualifiedActivity.this, "检查完成1", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

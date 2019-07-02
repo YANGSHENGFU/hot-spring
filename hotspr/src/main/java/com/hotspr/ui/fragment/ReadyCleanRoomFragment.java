@@ -229,8 +229,6 @@ public class ReadyCleanRoomFragment extends ArrangCleanBaseFragment implements R
     @Override
     public void unqualiFied(Round round , int p) {
 
-              Log.i("xiahongfil",round.getcl_memo1().toString());
-        Log.i("xiahongfil",round.getCl_state().toString());
         round.setSTATE5(round.getCl_state().toString());
         Bundle bundle = new Bundle();
         Intent intent = new Intent(mContext , UnqualifiedActivity.class);
