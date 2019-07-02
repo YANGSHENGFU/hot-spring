@@ -91,6 +91,7 @@ public class ReadyCleanRoomPressenter implements ArrangCleanAPI.Pressente {
                             round.setCl_time3(res.getString("cl_time3")); //安排时间
                             round.setCl_check_er(res.getString("cl_check_er")); //安排时间
                             round.setcl_memo1(res.getString("cl_memo1")); //安排时间
+                            round.setCl_picture_path(res.getString("cl_picture_path")); //安排时间
                             datas.add(round);
                         }
                     }

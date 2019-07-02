@@ -11,6 +11,7 @@ import com.hotspr.R;
 import com.hotspr.business.api.CleanRoundAPI;
 import com.hotspr.business.api.WardRoundPressenterAPI;
 import com.hotspr.business.presenter.CheckedRoundPressenter;
+import com.hotspr.ui.activity.UnqualifiedActivity;
 import com.hotspr.ui.activity.WardRoundActivity;
 import com.hotspr.ui.adapter.CleanedRoundAdapter;
 import com.hotspr.ui.bean.Round;
@@ -130,6 +131,25 @@ public class CheckedFragment extends CleanRoundBaseFragment implements CleanRoun
         bundle.putInt(WardRoundActivity.index_key,i);
         intent.putExtras(bundle);
         startActivityForResult(intent , REQUEST_CODE);
+    }
+    /**
+     * 不合格事件
+     * @param round 数据
+     * @param p 数据的序号
+     */
+    @Override
+    public void unqualiFied(Round round , int p) {
+
+        round.setSTATE5(round.getCl_state().toString());
+        Bundle bundle = new Bundle();
+        Intent intent = new Intent(mContext , UnqualifiedActivity.class);
+        bundle.putParcelable(UnqualifiedActivity.round_key , round);
+        bundle.putInt(UnqualifiedActivity.code_key , REQUEST_CODE);
+        bundle.putInt(UnqualifiedActivity.index_key,p);
+        intent.putExtras(bundle);
+        startActivityForResult(intent , REQUEST_CODE);
+
+
     }
 
     /**

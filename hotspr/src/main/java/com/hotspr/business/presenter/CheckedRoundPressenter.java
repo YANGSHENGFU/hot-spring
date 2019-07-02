@@ -94,6 +94,12 @@ public class CheckedRoundPressenter implements CleanRoundAPI.Pressente {
                             round.setCl_time1(res.getString("cl_time1")); //安排时间
                             round.setCl_onduty3n(res.getString("cl_onduty3n")); //清洁员
                             round.setCl_state(res.getString("cl_state")); //状态0未完成  1已完成 2已检查
+                            round.setCl_class_new(res.getString("cl_class_new")); //状态0未完成  1已完成 2已检查
+                            round.setCl_time3(res.getString("cl_time3")); //安排时间
+                            round.setCl_check_er(res.getString("cl_check_er")); //安排时间
+                            round.setcl_memo1(res.getString("cl_memo1")); //安排时间
+                            round.setFLOOR(res.getString("FLOOR"));
+                            round.setCl_picture_path(res.getString("cl_picture_path")); //安排时间
                             datas.add(round);
                         }
                     }

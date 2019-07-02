@@ -189,6 +189,15 @@ public class CleanedRoundAdapter extends RecyclerView.Adapter<CleanedRoundAdapte
                     }
                 }
             });
+            roundLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(checkLisnter!=null){
+                        int p = getAdapterPosition()-1 ;
+                        checkLisnter.unqualiFied(  data.get(p) ,p );
+                    }
+                }
+            });
 
 //            roundLayout.setOnClickListener(new View.OnClickListener(){
 //
@@ -210,6 +219,13 @@ public class CleanedRoundAdapter extends RecyclerView.Adapter<CleanedRoundAdapte
 
     public interface CheckLisnter{
         void check(int i ,Round round);
+
+        /**
+         * 设置不合格
+         * @param round 数据
+         * @param p 数据的序号
+         */
+        void unqualiFied(Round round , int p); // 不合格
     }
 
 }
