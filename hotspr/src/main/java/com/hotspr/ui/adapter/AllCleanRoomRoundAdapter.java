@@ -61,7 +61,7 @@ public class AllCleanRoomRoundAdapter extends RecyclerView.Adapter<AllCleanRoomR
         viewHolder. item_ready_clean_room_type_tv_old.setText("修改房型："+data.get(i).getCl_class_new());;//修改房型
         viewHolder. item_ready_clean_room_onduty1n.setText("安排人："+data.get(i).getCl_onduty1n());;//安排人
         viewHolder. item_ready_clean_room_onduty3n.setText("清洁人："+data.get(i).getCl_onduty3n());;//清洁人
-        viewHolder. item_ready_clean_room_time3.setText("清洁时间："+data.get(i).getCl_time3());;//清洁时间
+        viewHolder. item_ready_clean_room_time3.setText("时间："+data.get(i).getCl_time3());;//清洁时间
         viewHolder. item_ready_clean_room_check_er.setText("检查人："+data.get(i).getCl_check_er());;//检查人
         viewHolder. round_floor.setText("楼号："+data.get(i).getFLOOR());;//检查人
 
