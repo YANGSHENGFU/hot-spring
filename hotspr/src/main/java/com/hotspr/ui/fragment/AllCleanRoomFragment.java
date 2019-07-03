@@ -1,5 +1,7 @@
 package com.hotspr.ui.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -125,14 +127,28 @@ public class AllCleanRoomFragment extends CleanRoundBaseFragment implements Clea
      * @param round
      */
     @Override
-    public void check(int i, Round round) {
-        Bundle bundle = new Bundle();
-        Intent intent = new Intent(mContext , WardRoundActivity.class);
-        bundle.putParcelable(WardRoundActivity.round_key , round);
-        bundle.putInt(WardRoundActivity.code_key , REQUEST_CODE);
-        bundle.putInt(WardRoundActivity.index_key,i);
-        intent.putExtras(bundle);
-        startActivityForResult(intent , REQUEST_CODE);
+    public void check(int i,final Round round) {
+        final int index=i;
+
+
+        new AlertDialog.Builder(this.mContext)
+                .setTitle("信息确定")
+                .setMessage("已经清洁干净，请您点击确定！")
+                .setCancelable(false)//点击弹框以外部分是否退出
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPressenter.CleanRoom(index,round);
+                        initLRecyclerView();
+                        initData();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
     }
     /**
      * 不合格事件

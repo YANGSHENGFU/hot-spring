@@ -126,6 +126,57 @@ public class CheckedRoundPressenter implements CleanRoundAPI.Pressente {
     public  void loadDataInfo(int i, Round round){
 
     }
+    /**
+     * 清洁房间
+     * @param i 数据序号
+     * @param round 数据内容
+     */
+
+    public void CleanRoom(int i , final Round round){
+        final int index =i;
+        com.modulebase.log.Log.i("xiahoongchk","CleanRoom");
+        String url = HttpConfig.HOST_NAME + HttpConfig.INTERFACE_roomClUp;
+        //handler.sendEmptyMessageDelayed(STOP_LOAD, 15 * 1000); // 每次请求数据最多给15s的时间，15s过当作放弃
+        String userid = SharepreFHelp.getInstance(mContext).getUserID();
+        String userkey = SharepreFHelp.getInstance(mContext).getUserKey();
+        Map<String, String> paer = new HashMap<>();
+        paer.put(HttpConfig.Field.mid, userid);
+        paer.put(HttpConfig.Field.key, userkey);
+        paer.put("room_wh_id", round.getRoom_wh_id().toString());
+        paer.put("end", "Y");
+        paer.put("state", "1");
+        paer.put(HttpConfig.Field.timestamp, String.valueOf(System.currentTimeMillis() / 1000));
+        Set<String> keySet = paer.keySet();  //获取set集合
+        List<String> sortKey = SortTools.listSort(keySet);
+        TreeMap<String, String> parameter = SortTools.getSortMap(sortKey, paer);
+
+        MyOkHttp.get().get(mContext, url, parameter, new JsonResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, String response) {
+                LogF.i(TAG , "CleanRoom statusCode = "+ statusCode + " statusCode = "+ response);
+                try {
+                    JSONObject resObj = new JSONObject(response);
+                    if (resObj.getString("errCode").equals("200")) {
+                        //正确业务
+                        round.setCl_state("1");
+                        mView.upDataInfo(index,round);
+                    }else{
+                        //失败业务
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+                    //  mView.upDatd(lodelModel, datas , Integer.valueOf(page));
+                }
+            }
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                Log.i(TAG, "onFailure statusCode = " + statusCode + " error_msg = " + error_msg);
+                // mView.upDatd(lodelModel, new ArrayList<Round>(), -1);
+            }
+        });
+
+    }
 
 
 }
