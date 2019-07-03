@@ -91,7 +91,7 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                 menu.title = "查看房间";
                 menus.add(menu);
             }
-            if(user.getC_NAME().equals("员工")){
+            if(user.getC_NAME().equals("客房保洁")){
                 Menu menu = new Menu();
                 menu.rid = R.drawable.d_cleaning ;
                 menu.title = "清洁房间";
