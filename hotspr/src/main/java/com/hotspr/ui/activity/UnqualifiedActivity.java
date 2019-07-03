@@ -366,7 +366,6 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
                @Override
                public void onSuccess(int statusCode, String response) {
                    LogF.i(TAG, "onSuccess statusCode = " + statusCode + " response = " + response);
-                   LogF.i("xiahongyy",  response);
                    if (statusCode == 200) {
                        Toast.makeText(UnqualifiedActivity.this, "检查完成", Toast.LENGTH_SHORT).show();
                        try {

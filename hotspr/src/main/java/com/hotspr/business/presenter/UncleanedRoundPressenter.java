@@ -7,6 +7,7 @@ import android.util.Log;
 import com.hotspr.HttpConfig;
 import com.hotspr.business.api.ArrangCleanAPI;
 import com.hotspr.business.api.CleanRoundAPI;
+import com.hotspr.toolkit.FileHandle;
 import com.hotspr.toolkit.SharepreFHelp;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.bean.User;
@@ -40,6 +41,10 @@ public class UncleanedRoundPressenter  implements CleanRoundAPI.Pressente {
         mContext = context;
         mView = view;
         rows = String.valueOf(30);
+        mUser = FileHandle.getUser() ;
+        if(mUser == null ){
+            mUser = LoginPresenter.mUser ;
+        }
     }
 
     @Override
