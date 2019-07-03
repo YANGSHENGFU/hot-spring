@@ -277,7 +277,7 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
 
         //清洁人员开始
         url = HttpConfig.HOST_NAME + HttpConfig.INTERFACE_GetUserList;
-        paer.put("authcode", "HOTEL");
+       // paer.put("authcode", "HOTEL");
         paer.put("staff", "Y");
         keySet = paer.keySet();  //获取set集合
         sortKey = SortTools.listSort(keySet);
