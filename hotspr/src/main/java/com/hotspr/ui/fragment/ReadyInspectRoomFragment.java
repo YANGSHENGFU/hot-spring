@@ -1,5 +1,6 @@
 package com.hotspr.ui.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -194,9 +195,9 @@ public class ReadyInspectRoomFragment extends ArrangCleanBaseFragment implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        initLRecyclerView();
-        initData();
-     /*
+//        initLRecyclerView();
+//        initData();
+
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 Bundle bundle = data.getExtras();
@@ -212,7 +213,7 @@ public class ReadyInspectRoomFragment extends ArrangCleanBaseFragment implements
                 }
             }
         }
-        */
+
     }
 
 
