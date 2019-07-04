@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReadyCleanRoomFragment extends ArrangCleanBaseFragment implements ReadyCleanRoomAdapter.CleanLisnter , ArrangCleanAPI.View , ArrangeCleaningDialog.AgainCleanLisnter {
+public class ReadyCleanRoomFragment extends ArrangCleanBaseFragment implements ReadyCleanRoomAdapter.CleanLisnter , ArrangCleanAPI.View  {
 
     private String TAG = "ReadyCleanRoomFragment" ;
     private static int REQUEST_CODE = 9999 ;
@@ -56,12 +56,12 @@ public class ReadyCleanRoomFragment extends ArrangCleanBaseFragment implements R
     }
 
     private void inidDialog(){
-        mDiloag = new ArrangeCleaningDialog(mContext);
-        mDiloag.setCanceledOnTouchOutside(true);
-        mDiloag.setCancelable(true);
-        mDiloag.setRoomTypeListData(CacheHandle.buildingNumberCach);
-        mDiloag.setCleanerListData(CacheHandle.cleanerCach);
-        mDiloag.setAgainCleanLisnter(this);
+//        mDiloag = new ArrangeCleaningDialog(mContext);
+//        mDiloag.setCanceledOnTouchOutside(true);
+//        mDiloag.setCancelable(true);
+//        mDiloag.setRoomTypeListData(CacheHandle.buildingNumberCach);
+//        mDiloag.setCleanerListData(CacheHandle.cleanerCach);
+//        mDiloag.setAgainCleanLisnter(this);
     }
 
     @Override
@@ -108,7 +108,11 @@ public class ReadyCleanRoomFragment extends ArrangCleanBaseFragment implements R
      */
     @Override
     protected void initData(){
-        mPressenter = new ReadyCleanRoomPressenter(mContext, this);
+        Map<String, String> MapData =new HashMap<>();
+        MapData.put("state2","D");
+        MapData.put("sidx","a.look_id");
+        MapData.put("sord","DESC");
+        mPressenter = new ReadyCleanRoomPressenter(mContext, MapData,this);
         load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
     }
 
@@ -178,11 +182,6 @@ public class ReadyCleanRoomFragment extends ArrangCleanBaseFragment implements R
         }
     }
 
-
-    @Override
-    public void againClean() {
-
-    }
 
     @Override
     public void clean(Round round , int i) {

@@ -14,20 +14,12 @@ import com.hotspr.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.api.ArrangCleanAPI;
 import com.hotspr.business.api.WardRoundPressenterAPI;
-import com.hotspr.business.presenter.AllArrangCleanPressenter;
 import com.hotspr.business.presenter.ReadyCleanRoomPressenter;
-import com.hotspr.business.presenter.WardRoundPressenter;
-import com.hotspr.toolkit.CacheHandle;
 import com.hotspr.ui.activity.ArrangeCleaningActivity;
 import com.hotspr.ui.activity.UnqualifiedActivity;
-import com.hotspr.ui.activity.WardRoundActivity;
-import com.hotspr.ui.adapter.AllArrangCleanAdapter;
 import com.hotspr.ui.adapter.ReadyCleanRoomAdapter;
-import com.hotspr.ui.adapter.RoundAdapter;
 import com.hotspr.ui.bean.Round;
-import com.hotspr.ui.dialog.ArrangeCleaningDialog;
 import com.hotspr.ui.fragment.base.ArrangCleanBaseFragment;
-import com.modulebase.log.LogF;
 import com.modulebase.toolkit.NetworkUtils;
 import com.modulebase.view.recyclerview.adapter.LRecyclerViewAdapter;
 import com.modulebase.view.recyclerview.recinterface.OnLoadMoreListener;
@@ -36,18 +28,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.app.Activity.RESULT_OK;
+public class AllArrangCleanFragment  extends ArrangCleanBaseFragment implements ReadyCleanRoomAdapter.CleanLisnter , ArrangCleanAPI.View  {
 
-public class AllArrangCleanFragment extends  ArrangCleanBaseFragment implements AllArrangCleanAdapter.CleanLisnter , ArrangCleanAPI.View , ArrangeCleaningDialog.AgainCleanLisnter {
-
-    private String TAG = "ReadyCleanRoomFragment" ;
+    private String TAG = "ReadyInspectRoomFragment" ;
     private static int REQUEST_CODE = 9999 ;
-    private AllArrangCleanAdapter mAdapter ;
+    private ReadyCleanRoomAdapter mAdapter ;
     private LRecyclerViewAdapter mLRecyclerViewAdapter ;
-    private AllArrangCleanPressenter mPressenter ;
+    private ReadyCleanRoomPressenter mPressenter ;
     private int page = 1;
     private int TOLTE_PAGE_NUMBER ;
-    private ArrangeCleaningDialog mDiloag ;
 
     @Nullable
     @Override
@@ -60,18 +49,18 @@ public class AllArrangCleanFragment extends  ArrangCleanBaseFragment implements 
     }
 
     private void inidDialog(){
-        mDiloag = new ArrangeCleaningDialog(mContext);
-        mDiloag.setCanceledOnTouchOutside(true);
-        mDiloag.setCancelable(true);
-        mDiloag.setRoomTypeListData(CacheHandle.buildingNumberCach);
-        mDiloag.setCleanerListData(CacheHandle.cleanerCach);
-        mDiloag.setAgainCleanLisnter(this);
+//        mDiloag = new ArrangeCleaningDialog(mContext);
+//        mDiloag.setCanceledOnTouchOutside(true);
+//        mDiloag.setCancelable(true);
+//        mDiloag.setRoomTypeListData(CacheHandle.buildingNumberCach);
+//        mDiloag.setCleanerListData(CacheHandle.cleanerCach);
+//        mDiloag.setAgainCleanLisnter(this);
     }
 
     @Override
     protected void initLRecyclerView() {
         mLRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3)); // 不设会不显示
-        mAdapter = new AllArrangCleanAdapter(mContext);
+        mAdapter = new ReadyCleanRoomAdapter(mContext);
         mAdapter.setmCleanLisnter(this);
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mAdapter);
         mLRecyclerView.setAdapter(mLRecyclerViewAdapter);
@@ -112,7 +101,11 @@ public class AllArrangCleanFragment extends  ArrangCleanBaseFragment implements 
      */
     @Override
     protected void initData(){
-        mPressenter = new AllArrangCleanPressenter(mContext, this);
+
+        Map<String, String> MapData =new HashMap<>();
+        MapData.put("sidx","a.room_wh_id");
+        MapData.put("sord","DESC");
+        mPressenter = new ReadyCleanRoomPressenter(mContext,MapData, this);
         load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
     }
 
@@ -182,11 +175,6 @@ public class AllArrangCleanFragment extends  ArrangCleanBaseFragment implements 
         }
     }
 
-
-    @Override
-    public void againClean() {
-
-    }
 
     @Override
     public void clean(Round round , int i) {

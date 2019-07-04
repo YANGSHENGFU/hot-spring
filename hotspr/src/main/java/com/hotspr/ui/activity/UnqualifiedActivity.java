@@ -115,11 +115,15 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
 
 
         if (mRound != null ) {
-           if (mRound.getCl_state().equals("2")||mRound.getCl_state().equals("0")||mRound.getSTATE2().equals("R")) {
+           if (mRound.getCl_state().equals("2")||mRound.getCl_state().equals("0")||TextUtils.isEmpty(mRound.getCl_state())||mRound.getSTATE2().equals("R")) {
               if(mRound.getCl_state().equals("0"))  {
                   confirmTv.setText("清洁中");
-              }else{
+              }else if (mRound.getCl_state().equals("1")){
                   confirmTv.setText("已清洁");
+              }else if (mRound.getCl_state().equals("2")){
+                  confirmTv.setText("已检查");
+              }else if (TextUtils.isEmpty(mRound.getCl_state())){
+                  confirmTv.setText("退房中");
               }
               if(mRound.getSTATE2().equals("R")){
                   confirmTv.setText("已是干净房间");
@@ -335,66 +339,66 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
      * @param memo 备注
      */
     public void checkOut(String room_wh_id,String StateStr ,String memo) {
-       // UnqualifiedActivity.this.finish();
-       if(1==1) {
-           String url = HttpConfig.HOST_NAME + HttpConfig.INTERFACE_roomClUp;
-           String userid = SharepreFHelp.getInstance(this).getUserID();
-           String userkey = SharepreFHelp.getInstance(this).getUserKey();
-           String server_memo = "";
-           Map<String, String> paer = new HashMap<>();
-           if (memo != null && memo != "" && !memo.isEmpty()) {
-               paer.put("memo1", memo);
-           }
-           paer.put(HttpConfig.Field.mid, userid);
-           paer.put(HttpConfig.Field.key, userkey);
-           paer.put("room_wh_id", room_wh_id);
-           paer.put("check_er", mUser.getU_NAME());
-           paer.put("check_time", "Y");
-           paer.put("state", StateStr);
-           paer.put(HttpConfig.Field.timestamp, String.valueOf(System.currentTimeMillis() / 1000));
-           Set<String> keySet = paer.keySet();  //获取set集合
-           List<String> sortKey = SortTools.listSort(keySet);
-           TreeMap<String, String> parameter = SortTools.getSortMap(sortKey, paer);
-           MyOkHttp.get().get(this, url, parameter, new JsonResponseHandler() {
-               @Override
-               public void onFailure(int statusCode, String error_msg) {
-                   LogF.i(TAG, "onFailure statusCode = " + statusCode + " error_msg = " + error_msg);
-                   Toast.makeText(UnqualifiedActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
+        // UnqualifiedActivity.this.finish();
 
-               }
+        String url = HttpConfig.HOST_NAME + HttpConfig.INTERFACE_roomClUp;
+        String userid = SharepreFHelp.getInstance(this).getUserID();
+        String userkey = SharepreFHelp.getInstance(this).getUserKey();
+        String server_memo = "";
+        Map<String, String> paer = new HashMap<>();
+        if (memo != null && memo != "" && !memo.isEmpty()) {
+            paer.put("memo1", memo);
+        }
+        paer.put(HttpConfig.Field.mid, userid);
+        paer.put(HttpConfig.Field.key, userkey);
+        paer.put("room_wh_id", room_wh_id);
+        paer.put("check_er", mUser.getU_NAME());
+        paer.put("check_time", "Y");
+        paer.put("state", StateStr);
+        paer.put(HttpConfig.Field.timestamp, String.valueOf(System.currentTimeMillis() / 1000));
+        Set<String> keySet = paer.keySet();  //获取set集合
+        List<String> sortKey = SortTools.listSort(keySet);
+        TreeMap<String, String> parameter = SortTools.getSortMap(sortKey, paer);
+        MyOkHttp.get().get(this, url, parameter, new JsonResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                LogF.i(TAG, "onFailure statusCode = " + statusCode + " error_msg = " + error_msg);
+                Toast.makeText(UnqualifiedActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
 
-               @Override
-               public void onSuccess(int statusCode, String response) {
-                   LogF.i(TAG, "onSuccess statusCode = " + statusCode + " response = " + response);
-                   if (statusCode == 200) {
-                       Toast.makeText(UnqualifiedActivity.this, "检查完成", Toast.LENGTH_SHORT).show();
-                       try {
-                           JSONObject res = new JSONObject(response);
-                           if (res.getString("errCode").equals("200")) {
-                               Round round = null;
-                               JSONObject object = res.getJSONObject("Data");
-                               if (object != null) {
-                                   round = new Round();
-                                   round.setCLASS(object.getString("CLASS")); //房型
-                                   round.setRoom_id(object.getString("room_id"));
-                                   round.setSTATE2(object.getString("STATE2"));//T：停用    D：脏房  L：锁房  R：净房  M：维修S：清扫
-                                   round.setRoom_wh_id(object.getString("room_wh_id"));
-                                   round.setROOM(object.getString("ROOM")); //房间号
-                                   round.setCl_onduty1n(object.getString("cl_onduty1n")); //安排人
-                                   round.setCl_onduty2n(object.getString("cl_onduty2n")); //服务员
-                                   round.setCl_date1(object.getString("cl_date1")); //安排日期
-                                   round.setCl_time1(object.getString("cl_time1")); //安排时间
-                                   round.setCl_onduty3n(object.getString("cl_onduty3n")); //清洁员
-                                   round.setCl_state(object.getString("cl_state")); //状态0未完成  1已完成 2已检查
-                                   round.setCl_class_new(object.getString("cl_class_new")); //状态0未完成  1已完成 2已检查
-                                   round.setCl_time3(object.getString("cl_time3")); //安排时间
-                                   round.setCl_check_er(object.getString("cl_check_er")); //安排时间
-                                   round.setCl_picture_path(object.getString("cl_picture_path"));//图片
+            }
+
+            @Override
+            public void onSuccess(int statusCode, String response) {
+                LogF.i(TAG, "onSuccess statusCode = " + statusCode + " response = " + response);
+                if (statusCode == 200) {
+                    Toast.makeText(UnqualifiedActivity.this, "检查完成", Toast.LENGTH_SHORT).show();
+                    try {
+                        JSONObject res = new JSONObject(response);
+                        if (res.getString("errCode").equals("200")) {
+                            Round round = null;
+                            JSONObject object = res.getJSONObject("Data");
+                            if (object != null) {
+                                round = new Round();
+                                round.setCLASS(object.getString("CLASS")); //房型
+                                round.setRoom_id(object.getString("room_id"));
+                                round.setSTATE2(object.getString("STATE2"));//T：停用    D：脏房  L：锁房  R：净房  M：维修S：清扫
+                                round.setRoom_wh_id(object.getString("room_wh_id"));
+                                round.setROOM(object.getString("ROOM")); //房间号
+                                round.setCl_onduty1n(object.getString("cl_onduty1n")); //安排人
+                                round.setCl_onduty2n(object.getString("cl_onduty2n")); //服务员
+                                round.setCl_date1(object.getString("cl_date1")); //安排日期
+                                round.setCl_time1(object.getString("cl_time1")); //安排时间
+                                round.setCl_onduty3n(object.getString("cl_onduty3n")); //清洁员
+                                round.setCl_state(object.getString("cl_state")); //状态0未完成  1已完成 2已检查
+                                round.setCl_class_new(object.getString("cl_class_new")); //状态0未完成  1已完成 2已检查
+                                round.setCl_time3(object.getString("cl_time3")); //安排时间
+                                round.setCl_check_er(object.getString("cl_check_er")); //安排时间
+                                round.setCl_picture_path(object.getString("cl_picture_path"));//图片
 
 
-                               }
+                            }
 
-                               if (round != null) {
+                            if (round != null) {
 
                                 if (!TextUtils.isEmpty(mUrl)) {
                                     round.setCl_picture_path(mUrl);
@@ -405,21 +409,20 @@ public class UnqualifiedActivity extends BaseActivity implements View.OnClickLis
                                 bundle.putInt(resrt_index_key, index);
                                 intent.putExtras(bundle);
                                 setResult(Activity.RESULT_OK, intent);
-                               }
-                               UnqualifiedActivity.this.finish();
+                            }
+                            UnqualifiedActivity.this.finish();
 
-                           }
-                       } catch (JSONException e) {
-                           e.printStackTrace();
-                           UnqualifiedActivity.this.finish();
-                       }
-                   } else {
-                       Toast.makeText(UnqualifiedActivity.this, "查房失败，请重试", Toast.LENGTH_SHORT).show();
-                   }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        UnqualifiedActivity.this.finish();
+                    }
+                } else {
+                    Toast.makeText(UnqualifiedActivity.this, "查房失败，请重试", Toast.LENGTH_SHORT).show();
+                }
 
-               }
-           });
-       }
+            }
+        });
     }
 
 

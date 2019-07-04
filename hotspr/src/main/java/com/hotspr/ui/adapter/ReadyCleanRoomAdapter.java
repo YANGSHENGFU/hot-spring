@@ -61,7 +61,7 @@ public class ReadyCleanRoomAdapter extends RecyclerView.Adapter<ReadyCleanRoomAd
         }else {
             viewHolder.roundArrangeTv.setVisibility(View.INVISIBLE);
         }
-        if (data.get(i).getCl_state().equals("1") ){
+        if (data.get(i).getCl_state().equals("1") && data.get(i).getSTATE2().equals("D")){
             viewHolder.item_ready_inspect_room_unpass_tv.setVisibility(View.VISIBLE);
         }else {
             viewHolder.item_ready_inspect_room_unpass_tv.setVisibility(View.INVISIBLE);

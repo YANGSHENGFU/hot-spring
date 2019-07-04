@@ -9,21 +9,19 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 import com.hotspr.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.api.ArrangCleanAPI;
 import com.hotspr.business.api.WardRoundPressenterAPI;
 
-import com.hotspr.business.presenter.ReadyInspectRoomPressenter;
+import com.hotspr.business.presenter.ReadyCleanRoomPressenter;
 import com.hotspr.ui.activity.ArrangeCleaningActivity;
 import com.hotspr.ui.activity.UnqualifiedActivity;
 import com.hotspr.ui.adapter.ReadyCleanRoomAdapter;
-import com.hotspr.ui.adapter.ReadyInspectRoomAdapter;
 import com.hotspr.ui.bean.Round;
+import com.hotspr.ui.dialog.ArrangeCleaningDialog;
 import com.hotspr.ui.fragment.base.ArrangCleanBaseFragment;
-import com.modulebase.log.Log;
 import com.modulebase.toolkit.NetworkUtils;
 import com.modulebase.view.recyclerview.adapter.LRecyclerViewAdapter;
 import com.modulebase.view.recyclerview.recinterface.OnLoadMoreListener;
@@ -33,26 +31,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReadyInspectRoomFragment extends ArrangCleanBaseFragment implements ReadyCleanRoomAdapter.CleanLisnter, ArrangCleanAPI.View , ReadyInspectRoomAdapter.CheckLisnter {
+public class ReadyInspectRoomFragment extends ArrangCleanBaseFragment implements ReadyCleanRoomAdapter.CleanLisnter , ArrangCleanAPI.View  {
 
-    private String TAG = "ReadyInspectRoomFragment";
-    private int page = 1 ;
-    private int TOLTE_PAGE_NUMBER ;
-    private ReadyInspectRoomAdapter mAdapter ;
-    private LRecyclerViewAdapter mLRecyclerViewAdapter ;
-    private ReadyInspectRoomPressenter mPressenter ;
+    private String TAG = "ReadyInspectRoomFragment" ;
     private static int REQUEST_CODE = 9999 ;
+    private ReadyCleanRoomAdapter mAdapter ;
+    private LRecyclerViewAdapter mLRecyclerViewAdapter ;
+    private ReadyCleanRoomPressenter mPressenter ;
+    private int page = 1;
+    private int TOLTE_PAGE_NUMBER ;
+    private ArrangeCleaningDialog mDiloag ;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(mView==null){
+            mContext = getContext() ;
+            inidDialog();
+        }
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    private void inidDialog(){
+//        mDiloag = new ArrangeCleaningDialog(mContext);
+//        mDiloag.setCanceledOnTouchOutside(true);
+//        mDiloag.setCancelable(true);
+//        mDiloag.setRoomTypeListData(CacheHandle.buildingNumberCach);
+//        mDiloag.setCleanerListData(CacheHandle.cleanerCach);
+//        mDiloag.setAgainCleanLisnter(this);
     }
 
     @Override
     protected void initLRecyclerView() {
         mLRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3)); // 不设会不显示
-        mAdapter = new ReadyInspectRoomAdapter(mContext);
-        mAdapter.setCheckLisnter(this);
+        mAdapter = new ReadyCleanRoomAdapter(mContext);
+        mAdapter.setmCleanLisnter(this);
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mAdapter);
         mLRecyclerView.setAdapter(mLRecyclerViewAdapter);
         mLRecyclerView.setHeaderViewColor(R.color.colorAccent, R.color.color_5e5656, android.R.color.white); //设置头部加载颜色
@@ -92,7 +105,12 @@ public class ReadyInspectRoomFragment extends ArrangCleanBaseFragment implements
      */
     @Override
     protected void initData(){
-        mPressenter = new ReadyInspectRoomPressenter(mContext, this);
+
+        Map<String, String> MapData =new HashMap<>();
+        MapData.put("state","1");
+        MapData.put("sidx","a.room_wh_id");
+        MapData.put("sord","DESC");
+        mPressenter = new ReadyCleanRoomPressenter(mContext,MapData, this);
         load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
     }
 
@@ -163,7 +181,6 @@ public class ReadyInspectRoomFragment extends ArrangCleanBaseFragment implements
     }
 
 
-
     @Override
     public void clean(Round round , int i) {
         Intent intent = new Intent(mContext , ArrangeCleaningActivity.class);
@@ -209,8 +226,6 @@ public class ReadyInspectRoomFragment extends ArrangCleanBaseFragment implements
     @Override
     public void unqualiFied(Round round , int p) {
 
-        Log.i("xiahongfil",round.getcl_memo1().toString());
-        Log.i("xiahongfil",round.getCl_state().toString());
         round.setSTATE5(round.getCl_state().toString());
         Bundle bundle = new Bundle();
         Intent intent = new Intent(mContext , UnqualifiedActivity.class);

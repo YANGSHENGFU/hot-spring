@@ -31,11 +31,18 @@ public class ReadyCleanRoomPressenter implements ArrangCleanAPI.Pressente {
     private Context mContext;
     private ArrangCleanAPI.View mView;
     public String rows;
+    public    Map<String, String> mMapData;
 
-    public ReadyCleanRoomPressenter(Context context, ArrangCleanAPI.View view){
+    /**
+     *
+     * @param context 上下文
+     * @param MapData 其它参数比如固定的查询条件
+     * @param view 接口view
+     */
+    public ReadyCleanRoomPressenter(Context context,Map<String, String> MapData, ArrangCleanAPI.View view ){
         mContext = context;
         mView = view;
-
+        mMapData=MapData;
     }
 
     @Override
@@ -45,7 +52,17 @@ public class ReadyCleanRoomPressenter implements ArrangCleanAPI.Pressente {
         String userid = SharepreFHelp.getInstance(mContext).getUserID();
         String userkey = SharepreFHelp.getInstance(mContext).getUserKey();
         Map<String, String> paer = new HashMap<>();
-        paer.put(HttpConfig.Field.state2, "D");//测试
+       // paer.put(HttpConfig.Field.state2, "D");//测试
+        if(mMapData.containsKey("state")){
+          paer.put("state", mMapData.get("state"));
+        }
+        if(mMapData.containsKey("state2")){
+            paer.put("state2", mMapData.get("state2"));
+        }
+        if(mMapData.containsKey("sidx")&&mMapData.containsKey("sord")){
+            paer.put("sidx", mMapData.get("sidx"));
+            paer.put("sord", mMapData.get("sord"));
+        }
         paer.put(HttpConfig.Field.mid, userid);
         paer.put(HttpConfig.Field.key, userkey);
         paer.put(HttpConfig.Field.page, String.valueOf(page));
