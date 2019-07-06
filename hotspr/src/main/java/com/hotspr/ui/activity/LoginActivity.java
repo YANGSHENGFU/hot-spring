@@ -27,6 +27,7 @@ import com.hotspr.toolkit.SharepreFHelp;
 import com.hotspr.ui.dialog.PermissionPromptDialog;
 import com.modulebase.toolkit.FileUtils;
 import com.modulebase.ui.activity.BaseActivity;
+import com.sunmi.utils.AidlUtil;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, LogingAPI.View {
@@ -36,6 +37,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private TextView tv_set;
     private Button butLogin;
     private ProgressDialog progressDialog;
+    private Button daying_but;
 
     private static int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private LoginPresenter presenter;
@@ -50,6 +52,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         tv_set = findViewById(R.id.tv_set);
         butLogin.setOnClickListener(this);
         tv_set.setOnClickListener(this);
+        daying_but = findViewById(R.id.daying_but);
+        daying_but.setOnClickListener(this);
         HttpConfig.HOST_NAME = SharepreFHelp.getInstance(LoginActivity.this).getHOSTURL();
         HttpConfig.PIC_HOST_NAME =  SharepreFHelp.getInstance(LoginActivity.this).getPICHOSTURL();
         HttpConfig.CURRENT_HOST = HttpConfig.HOST_NAME ;
@@ -182,6 +186,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             loging();
         } else if (id == R.id.tv_set) {
             Load_Set();
+        } else if(id == R.id.daying_but){
+            AidlUtil.getInstance().printQr("御温泉", 8 , 3 );
         }
     }
 

@@ -100,4 +100,19 @@
 
     </RelativeLayout>
 
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/daying_but"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_circle_shape"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:textSize="@dimen/text_size_22sp"
+        android:textColor="@color/color_ffffff"
+        android:layout_gravity="center"
+        android:text="打印" />
+
 </RelativeLayout>
