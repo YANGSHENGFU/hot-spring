@@ -115,4 +115,8 @@
     <!--table explain-->
     <string name="table_instruction">specifications: Bluetooth printing table could only provide examples and printing test. Specific methods could refer to Epson instruction set.  </string>
 
+    <string name="reserva_name">寄&#160;&#160;存&#160;&#160;人：</string>
+
+
+
 </resources>

@@ -20,7 +20,8 @@ public class HttpConfig {
     public static String INTERFACE_rpriceList = "Room/RpriceList?";
     public static String INTERFACE_GetUserList = "UserInter/GetUserList?";
     public static String INTERFACE_RoomClAdd = "Room/RoomClAdd?";
-
+    public static String INTERFACE_BAGGAGE = "Luggage/Add?" ;
+    public static String  INTERFACE_BAGGAGE_UPLOADPHOTO ="Luggage/UpImg?";
 
 
     public static class Field{
@@ -49,6 +50,15 @@ public class HttpConfig {
         public static String onduty1n = "onduty1n"; // 安排清洁的人名字
         public static String onduty3n = "onduty3n"; // 被安排清洁的人名字
         public static String class_new = "class_new" ; // 房间类型
+
+        public static String name = "name" ;
+        public static String tel = "tel" ;
+        public static String order_no = "order_no" ;
+        public static String memo1 = "memo1" ;
+        public static String xl_id = "xl_id" ;
+
+
+
 
 
 

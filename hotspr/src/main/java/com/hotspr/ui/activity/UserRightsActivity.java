@@ -69,6 +69,10 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                         goCleanRoom() ;
                     } else if(menu.title.equals("安排清洁")){
                         goArrangeCleaning() ;
+                    } else if(menu.title.equals("行李登记")){
+                        goBaggageRegistra() ;
+                    } else if(menu.title.equals("行李查寻")){
+
                     }
                 }
             }
@@ -90,6 +94,16 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                 menu.rid = R.drawable.d_ward_round ;
                 menu.title = "查看房间";
                 menus.add(menu);
+
+                Menu m1 = new Menu();
+                m1.rid = R.drawable.d_ward_round ;
+                m1.title = "行李登记";
+                menus.add(m1);
+//
+                Menu m2 = new Menu();
+                m2.rid = R.drawable.d_ward_round ;
+                m2.title = "行李查寻";
+                menus.add(m2);
             }
             if(user.getC_NAME().equals("客房保洁")){
                 Menu menu = new Menu();
@@ -141,12 +155,22 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
         startActivity(intent);
     }
 
+    /**
+     * 行李登记
+     */
+    private void goBaggageRegistra(){
+        Intent intent = new Intent(this ,  BaggageRegistrationActivity.class);
+        startActivity(intent);
+    }
 
 
-
+    /**
+     * 适配器类
+     */
     class MenuAdapter extends BaseAdapter{
 
         private Context context ;
+
 
         public MenuAdapter(Context context){
             this.context = context ;

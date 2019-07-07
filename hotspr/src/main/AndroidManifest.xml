@@ -28,7 +28,8 @@
         <!--登录界面-->
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"></action>
                 <category android:name="android.intent.category.LAUNCHER"></category>
@@ -38,45 +39,65 @@
         <!--用户选择权限管理界面-->
         <activity
             android:name=".ui.activity.UserRightsActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
 
         <!--查房列表界面-->
         <activity
             android:name=".ui.activity.WardRoundListInfoActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
 
         <!--安排列表清洁-->
         <activity
             android:name=".ui.activity.ArrangeCleanListInfoActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
 
         <!--查房-->
         <activity
             android:name=".ui.activity.WardRoundActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
 
         <!--安排清洁-->
         <activity
             android:name=".ui.activity.ArrangeCleaningActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
 
         <!--清洁房间-->
         <activity
             android:name=".ui.activity.CleanRoomListIfnoActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
 
         <!--不合格界面-->
         <activity
             android:name=".ui.activity.UnqualifiedActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
 
+        <!--行李登记-->
+        <activity
+            android:name=".ui.activity.BaggageRegistrationActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--行李登记-上传数据-->
+        <activity
+            android:name=".ui.activity.BaggageUploadDataActvitiy"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
 
 
 
