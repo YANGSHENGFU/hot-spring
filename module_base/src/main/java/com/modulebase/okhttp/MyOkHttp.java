@@ -242,7 +242,7 @@ public class MyOkHttp {
                     }
                 }
             }catch (Exception e){
-                Log.d("get_url" ,  "解析链接异常 ," ) ;
+                LogF.i(TAG  ,  "解析链接异常 ," ) ;
                 Toast.makeText( context , "缺少必要的字段" , Toast.LENGTH_SHORT).show();
             }
         }

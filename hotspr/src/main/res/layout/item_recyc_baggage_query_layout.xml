@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="5dp">
+
+    <LinearLayout
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:id="@+id/item_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="6dp"
+        android:orientation="vertical"
+        android:background="@drawable/room_bg_nobg">
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="预约号：1234567"
+            android:id="@+id/reserva_number_tv"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_16sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+
+        </TextView>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="名字：钢铁侠"
+            android:id="@+id/reserva_name_tv"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_16sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+
+        </TextView>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="号码：18800000000"
+            android:id="@+id/reserva_phone_tv"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_16sp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+
+        </TextView>
+
+    </LinearLayout>
+
+</LinearLayout>

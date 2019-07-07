@@ -31,7 +31,7 @@ public class ReadyCleanRoomAdapter extends RecyclerView.Adapter<ReadyCleanRoomAd
     @NonNull
     @Override
     public ReadyCleanRoomAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_ready_clean_room_layout , null );
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_recyc_clean_room_layout, null );
         return new ReadyCleanRoomAdapter.ViewHolder(view);
     }
 

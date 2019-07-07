@@ -26,6 +26,7 @@ import com.hotspr.business.presenter.LoginPresenter;
 import com.hotspr.toolkit.Base64Code;
 import com.hotspr.toolkit.FileHandle;
 import com.hotspr.toolkit.SharepreFHelp;
+import com.hotspr.ui.bean.Deposit;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.bean.User;
 import com.modulebase.log.LogF;
@@ -56,6 +57,7 @@ import java.util.TreeMap;
 public class BaggageUploadDataActvitiy extends BaseActivity implements View.OnClickListener{
 
     private String TAG = "BaggageUploadDataActvitiy";
+    public static String DATA_KEY = "DATA_KEY";
 
     private ImageView photoImg ;
     private TextView uploadphotoTv ;
@@ -74,6 +76,7 @@ public class BaggageUploadDataActvitiy extends BaseActivity implements View.OnCl
     private User mUser ;
     private int state ;
     private String xlID ;
+    private Deposit mDeposit ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,7 @@ public class BaggageUploadDataActvitiy extends BaseActivity implements View.OnCl
     }
 
     private void findViewByID() {
+        findViewById(R.id.back_tv).setOnClickListener(this);
         photoImg = findViewById(R.id.photo_img);
         uploadphotoTv = findViewById(R.id.uploadphoto_tv);
         reservaNumberEt = findViewById(R.id.reserva_number_et);
@@ -122,6 +126,16 @@ public class BaggageUploadDataActvitiy extends BaseActivity implements View.OnCl
             mUser = LoginPresenter.mUser ;
         }
         AidlUtil.getInstance().initPrinter();
+        mDeposit = getIntent().getExtras().getParcelable(DATA_KEY);
+        if(mDeposit!=null){
+            reservaNumberEt.setText(mDeposit.getGROUPNO());
+            reservaNameEt.setText(mDeposit.getNAME());
+            reservaPhoneEt.setText(mDeposit.getTELE());
+            roundNumberEt.setText(mDeposit.getROOM());
+            reservaNumberEt.clearFocus();
+            reservaNameEt.clearFocus();
+            reservaPhoneEt.clearFocus();
+        }
     }
 
 
@@ -136,6 +150,8 @@ public class BaggageUploadDataActvitiy extends BaseActivity implements View.OnCl
             }
         } else if(id == R.id.uploadphoto_tv){
             goPhotograph() ;
+        } else if(id==R.id.back_tv){
+            finish();
         }
     }
 
@@ -222,7 +238,12 @@ public class BaggageUploadDataActvitiy extends BaseActivity implements View.OnCl
                             JSONObject object = res.getJSONObject("Data");
                             if(object!=null){
                                 xlID = object.getString("xl_id") ;
-                                uploadPhoto(xlID , Base64Code.bitmapToBase64(bitmap)) ;
+                                String base = Base64Code.bitmapToBase64(bitmap) ;
+                                if(TextUtils.isEmpty(xlID) ||  TextUtils.isEmpty(base)){
+                                    baggageOk();
+                                    return;
+                                }
+                                uploadPhoto(xlID , base) ;
                             } else {
                                 baggageFild();
                             }
@@ -300,11 +321,23 @@ public class BaggageUploadDataActvitiy extends BaseActivity implements View.OnCl
         uploadphotoTv.setVisibility(View.GONE);
         baggageTv.setText("打  印");
         mDialog.dismiss();
-        reservaNumberEt.setClickable(false);
-        reservaNameEt.setClickable(false);
-        reservaPhoneEt.setClickable(false);
-        roundNumberEt.setClickable(false);
-        remarksEt.setClickable(false);
+
+        reservaNumberEt.setFocusable(false);
+        reservaNumberEt.setFocusableInTouchMode(false);
+
+        reservaNameEt.setFocusable(false);
+        reservaNameEt.setFocusableInTouchMode(false);
+
+        reservaPhoneEt.setFocusable(false);
+        reservaPhoneEt.setFocusableInTouchMode(false);
+
+        roundNumberEt.setFocusable(false);
+        roundNumberEt.setFocusableInTouchMode(false);
+
+        remarksEt.setFocusable(false);
+        remarksEt.setFocusableInTouchMode(false);
+
+
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         if(imm!=null){
             imm.hideSoftInputFromWindow(remarksEt.getWindowToken() , 0);

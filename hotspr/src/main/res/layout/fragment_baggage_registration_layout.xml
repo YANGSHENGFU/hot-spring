@@ -80,8 +80,7 @@
 
         <!--查询预约-->
         <TextView
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
+            android:id="@+id/query_tv"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textColor="@color/color_ffffff"

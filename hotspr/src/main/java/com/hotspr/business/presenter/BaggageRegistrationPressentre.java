@@ -1,22 +1,20 @@
 package com.hotspr.business.presenter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.hotspr.HttpConfig;
 import com.hotspr.business.api.BaggageRegistrationAPI;
 import com.hotspr.toolkit.SharepreFHelp;
+import com.hotspr.ui.bean.Deposit;
 import com.hotspr.ui.bean.Round;
 import com.modulebase.log.LogF;
 import com.modulebase.okhttp.JsonResponseHandler;
 import com.modulebase.okhttp.MyOkHttp;
 import com.modulebase.toolkit.sort.SortTools;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +32,10 @@ public class BaggageRegistrationPressentre implements BaggageRegistrationAPI.Pre
     private Context mContext ;
     private BaggageRegistrationAPI.View mView ;
 
+    public BaggageRegistrationPressentre(Context context ,  BaggageRegistrationAPI.View view){
+        mContext = context ;
+        mView = view ;
+    }
 
     /**
      * 加载数据
@@ -43,19 +45,14 @@ public class BaggageRegistrationPressentre implements BaggageRegistrationAPI.Pre
      */
     @Override
     public void loadData(final int lodelModel, int page, Map<String, String> params) {
-        String url = HttpConfig.HOST_NAME + HttpConfig.INTERFACE_roomClList;
+        String url = HttpConfig.HOST_NAME + HttpConfig.INTERFACE_RESERVATION_QUERY;
         //handler.sendEmptyMessageDelayed(STOP_LOAD, 15 * 1000); // 每次请求数据最多给15s的时间，15s过当作放弃
         String userid = SharepreFHelp.getInstance(mContext).getUserID();
         String userkey = SharepreFHelp.getInstance(mContext).getUserKey();
         Map<String, String> paer = new HashMap<>();
         paer.put(HttpConfig.Field.mid, userid);
         paer.put(HttpConfig.Field.key, userkey);
-        paer.put(HttpConfig.Field.page, String.valueOf(page));
-//
-//        if(mUser!=null && !TextUtils.isEmpty(mUser.getU_NAME())){
-//            paer.put(HttpConfig.Field.onduty3n, mUser.getU_NAME());
-//        }
-
+        //paer.put(HttpConfig.Field.page, String.valueOf(page));
         // 额外的条件
         if ( params!=null && !params.isEmpty() ){
             for (Map.Entry<String, String> entry : params.entrySet()){
@@ -71,7 +68,7 @@ public class BaggageRegistrationPressentre implements BaggageRegistrationAPI.Pre
             @Override
             public void onSuccess(int statusCode, String response) {
                 LogF.i(TAG , "onSuccess statusCode = "+ statusCode + " statusCode = "+ response);
-                ArrayList<Round> datas = new ArrayList<>();
+                ArrayList<Deposit> datas = new ArrayList<>();
                 String page = "0";
                 try {
                     JSONObject resObj = new JSONObject(response);
@@ -81,25 +78,14 @@ public class BaggageRegistrationPressentre implements BaggageRegistrationAPI.Pre
                         page = resObj.getString("total");
                         for (int i = 0; i < resDataList.length(); i++) {
                             JSONObject res = (JSONObject) resDataList.get(i);
-                            Round round = new Round();
-                            round.setCLASS(res.getString("CLASS")); //房型
-                            round.setRoom_id(res.getString("room_id"));
-                            round.setSTATE2(res.getString("STATE2"));//T：停用    D：脏房  L：锁房  R：净房  M：维修S：清扫
-                            round.setRoom_wh_id(res.getString("room_wh_id"));
-                            round.setROOM(res.getString("ROOM")); //房间号
-                            round.setCl_onduty1n(res.getString("cl_onduty1n")); //安排人
-                            round.setCl_onduty2n(res.getString("cl_onduty2n")); //服务员
-                            round.setCl_date1(res.getString("cl_date1")); //安排日期
-                            round.setCl_time1(res.getString("cl_time1")); //安排时间
-                            round.setCl_onduty3n(res.getString("cl_onduty3n")); //清洁员
-                            round.setCl_state(res.getString("cl_state")); //状态0未完成  1已完成 2已检查
-                            round.setCl_class_new(res.getString("cl_class_new")); //状态0未完成  1已完成 2已检查
-                            round.setCl_time3(res.getString("cl_time3")); //安排时间
-                            round.setCl_check_er(res.getString("cl_check_er")); //安排时间
-                            round.setcl_memo1(res.getString("cl_memo1")); //安排时间
-                            round.setFLOOR(res.getString("FLOOR"));
-                            round.setCl_picture_path(res.getString("cl_picture_path")); //安排时间
-                            datas.add(round);
+                            Deposit deposit = new Deposit();
+                            deposit.setRownum(res.getString("rownum"));
+                            deposit.setNAME(res.getString("NAME"));
+                            deposit.setGROUPNO(res.getString("GROUPNO"));
+                            deposit.setTELE(res.getString("TELE"));
+                            deposit.setCINDATE(res.getString("CINDATE"));
+                            deposit.setROOM(res.getString("ROOM"));
+                            datas.add(deposit);
                         }
                     }
                 } catch (JSONException e) {

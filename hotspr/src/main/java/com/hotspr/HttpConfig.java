@@ -21,7 +21,8 @@ public class HttpConfig {
     public static String INTERFACE_GetUserList = "UserInter/GetUserList?";
     public static String INTERFACE_RoomClAdd = "Room/RoomClAdd?";
     public static String INTERFACE_BAGGAGE = "Luggage/Add?" ;
-    public static String  INTERFACE_BAGGAGE_UPLOADPHOTO ="Luggage/UpImg?";
+    public static String INTERFACE_BAGGAGE_UPLOADPHOTO ="Luggage/UpImg?";
+    public static String INTERFACE_RESERVATION_QUERY = "Luggage/ReserveList?";
 
 
     public static class Field{
@@ -56,6 +57,8 @@ public class HttpConfig {
         public static String order_no = "order_no" ;
         public static String memo1 = "memo1" ;
         public static String xl_id = "xl_id" ;
+        public static String kword = "kword";
+        public static String mobile = "mobile";
 
 
 

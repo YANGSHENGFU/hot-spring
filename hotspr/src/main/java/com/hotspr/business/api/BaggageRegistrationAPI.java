@@ -1,14 +1,13 @@
 package com.hotspr.business.api;
 
-import com.hotspr.ui.bean.Round;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 public interface BaggageRegistrationAPI extends BaseBusinessAPI{
-    public interface View {
+    public interface View<T> {
 
-        void upDatd(int mode, ArrayList<Round> rounds, int pageNumber);
+        void upDatd(int mode, ArrayList<T> rounds, int pageNumber);
     }
 
     public interface Pressente {
