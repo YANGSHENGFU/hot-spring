@@ -49,7 +49,8 @@ public class BaggageQueryAdapter extends RecyclerView.Adapter<BaggageQueryAdapte
     public void onBindViewHolder(@NonNull BaggageQueryAdapter.ViewHolder viewHolder , int i) {
         viewHolder.reservaNumberTv.setText("预约号：" + datas.get(i).getGROUPNO());
         viewHolder.reservaNameTv.setText("名字：" + datas.get(i).getNAME());
-        viewHolder. reservaPhotoTv.setText("号码："+datas.get(i).getTELE());;//修改房型
+        viewHolder. reservaPhotoTv.setText("电话："+datas.get(i).getTELE());
+        viewHolder. reserva_room_tv.setText("房间号："+datas.get(i).getROOM());
     }
 
     private OnItemClickListener mOnItemClickListener ;
@@ -67,12 +68,14 @@ public class BaggageQueryAdapter extends RecyclerView.Adapter<BaggageQueryAdapte
         private TextView reservaNumberTv ;
         private TextView reservaNameTv ;
         private TextView reservaPhotoTv ;
+        private TextView reserva_room_tv ;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             reservaNumberTv = itemView.findViewById(R.id.reserva_number_tv);
             reservaNameTv = itemView.findViewById(R.id.reserva_name_tv);
             reservaPhotoTv = itemView.findViewById(R.id.reserva_phone_tv);
+            reserva_room_tv = itemView.findViewById(R.id.reserva_room_tv);
             itemView.findViewById(R.id.item_layout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

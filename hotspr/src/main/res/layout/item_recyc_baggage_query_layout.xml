@@ -19,10 +19,9 @@
             android:layout_marginTop="5dp"
             android:text="预约号：1234567"
             android:id="@+id/reserva_number_tv"
-            android:textColor="@color/color_666666"
-            android:textSize="@dimen/text_size_16sp"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content">
+            android:layout_width="wrap_content"
+            style="@style/txt_item">
 
         </TextView>
 
@@ -30,10 +29,10 @@
             android:layout_marginTop="5dp"
             android:text="名字：钢铁侠"
             android:id="@+id/reserva_name_tv"
-            android:textColor="@color/color_666666"
-            android:textSize="@dimen/text_size_16sp"
+
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content">
+            android:layout_width="wrap_content"
+            style="@style/txt_item">
 
         </TextView>
 
@@ -41,13 +40,21 @@
             android:layout_marginTop="5dp"
             android:text="号码：18800000000"
             android:id="@+id/reserva_phone_tv"
-            android:textColor="@color/color_666666"
-            android:textSize="@dimen/text_size_16sp"
+
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content">
+            android:layout_width="wrap_content"
+            style="@style/txt_item">
 
         </TextView>
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="房号：18800000000"
+            android:id="@+id/reserva_room_tv"
+             android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+             style="@style/txt_item">
 
+        </TextView>
     </LinearLayout>
 
 </LinearLayout>

@@ -36,4 +36,8 @@
         <item name="android:lines">1</item>
         <item name="android:background">@drawable/edittext_background</item>
     </style>
+    <style name="txt_item" >
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/color_666666</item>
+    </style>
 </resources>
