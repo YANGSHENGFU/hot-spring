@@ -72,7 +72,7 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                     } else if(menu.title.equals("行李登记")){
                         goBaggageRegistra() ;
                     } else if(menu.title.equals("行李查寻")){
-
+                        goBaggageFind() ;
                     }
                 }
             }
@@ -164,6 +164,13 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
      */
     private void goBaggageRegistra(){
         Intent intent = new Intent(this ,  BaggageRegistrationActivity.class);
+        startActivity(intent);
+    }
+    /**
+     * 行李登记
+     */
+    private void goBaggageFind(){
+        Intent intent = new Intent(this ,  BaggageFindActivity.class);
         startActivity(intent);
     }
 
