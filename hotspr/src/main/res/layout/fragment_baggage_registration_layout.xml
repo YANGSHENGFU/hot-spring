@@ -16,12 +16,12 @@
 
         <TextView
             android:id="@+id/baggage_tv"
-            android:textColor="@color/color_666666"
+
             android:text="无预约登记"
-            android:textSize="@dimen/text_size_20sp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+            style="@style/bt_blue"
+            >
         </TextView>
 
         <ImageView
@@ -49,47 +49,31 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
+            android:layout_width="120dp"
             android:layout_weight="1">
 
             <!--名字-->
             <EditText
                 android:id="@+id/name_et"
-                android:textColor="@color/color_000000"
                 android:text=""
-                android:hint="输入名字"
-                android:textColorHint="@color/color_666666"
-                android:textSize="@dimen/text_size_14sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:hint="输入关键字"
+               android:layout_width="match_parent"
+                android:layout_height="40dp"
+                style="@style/txt_input">
             </EditText>
 
-            <!--手机号码-->
-            <EditText
-                android:id="@+id/phone_et"
-                android:textColor="@color/color_000000"
-                android:text=""
-                android:hint="输入手机号"
-                android:textColorHint="@color/color_666666"
-                android:textSize="@dimen/text_size_14sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </EditText>
 
         </LinearLayout>
 
         <!--查询预约-->
         <TextView
             android:id="@+id/query_tv"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="@color/color_ffffff"
             android:text="查询预约"
-            android:gravity="center"
-            android:background="@color/color_666666"
-            android:textSize="@dimen/text_size_20sp"
-            android:layout_height="80dp"
-            android:layout_width="wrap_content">
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            style="@style/bt_blue">
         </TextView>
 
     </LinearLayout>

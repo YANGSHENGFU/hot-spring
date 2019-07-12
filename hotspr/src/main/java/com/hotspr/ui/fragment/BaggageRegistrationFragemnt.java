@@ -68,7 +68,7 @@ public class BaggageRegistrationFragemnt extends BaseFragment implements View.On
         view.findViewById(R.id.query_tv).setOnClickListener(this);
         mLRecyclerView = view.findViewById(R.id.recycler_view);
         nameEt = view.findViewById(R.id.name_et);
-        phoneEt = view.findViewById(R.id.phone_et);
+        //phoneEt = view.findViewById(R.id.phone_et);
     }
 
     private void initLRecyclerView(){
@@ -152,11 +152,12 @@ public class BaggageRegistrationFragemnt extends BaseFragment implements View.On
                return;
             }
             // 隐藏键盘
-            InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-            if(imm!=null){
-                imm.hideSoftInputFromWindow(phoneEt.getWindowToken() , 0);
-            }
-            load(nameEt.getText().toString() , phoneEt.getText().toString() , BaggageRegistrationAPI.LOAD_MODLE_REFRASH , 1);
+//            InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+//            if(imm!=null){
+//                imm.hideSoftInputFromWindow(phoneEt.getWindowToken() , 0);
+//            }
+           // load(nameEt.getText().toString() , phoneEt.getText().toString() , BaggageRegistrationAPI.LOAD_MODLE_REFRASH , 1);
+            load(nameEt.getText().toString() ,"" , BaggageRegistrationAPI.LOAD_MODLE_REFRASH , 1);
         }
     }
 

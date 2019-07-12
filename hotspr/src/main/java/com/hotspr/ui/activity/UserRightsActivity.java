@@ -94,17 +94,7 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                 menu.rid = R.drawable.d_ward_round ;
                 menu.title = "查看房间";
                 menus.add(menu);
-
-                Menu m1 = new Menu();
-                m1.rid = R.drawable.d_ward_round ;
-                m1.title = "行李登记";
-                menus.add(m1);
-//
-                Menu m2 = new Menu();
-                m2.rid = R.drawable.d_ward_round ;
-                m2.title = "行李查寻";
-                menus.add(m2);
-            }
+         }
             if(user.getC_NAME().equals("客房保洁")){
                 Menu menu = new Menu();
                 menu.rid = R.drawable.d_cleaning ;
@@ -115,6 +105,20 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                 menu.rid = R.drawable.d_arrange_cleaning ;
                 menu.title = "安排清洁";
                 menus.add(menu);
+            }
+
+            if(user.getHOTEL().equals("T")){
+
+
+                Menu m1 = new Menu();
+                m1.rid = R.drawable.bagregi ;
+                m1.title = "行李登记";
+                menus.add(m1);
+//
+                Menu m2 = new Menu();
+                m2.rid = R.drawable.bagfind ;
+                m2.title = "行李查寻";
+                menus.add(m2);
             }
             menuGv.setAdapter(menuAdapter);
             menuAdapter.notifyDataSetChanged();
