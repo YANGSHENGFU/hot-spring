@@ -257,42 +257,4 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
-    /**
-     * 初始化扫码代码
-     */
-    private void initScan() {
-        Intent intent = new Intent("com.summi.scan");
-        intent.setPackage("com.sunmi.sunmiqrcodescanner");
-        intent.putExtra("CURRENT_PPI", 0X0003);//当前分辨率
-        //M1和V1的最佳是800*480,PPI_1920_1080 = 0X0001;PPI_1280_720 =
-        //0X0002;PPI_BEST = 0X0003;
-        intent.putExtra("PLAY_SOUND", true);// 扫描完成声音提示  默认true
-        intent.putExtra("PLAY_VIBRATE", false);
-        //扫描完成震动,默认false，目前M1硬件支持震动可用该配置，V1不支持
-        intent.putExtra("IDENTIFY_INVERSE_QR_CODE", true);// 识别反色二维码，默认true
-        intent.putExtra("IDENTIFY_MORE_CODE", false);// 识别画面中多个二维码，默认false
-        intent.putExtra("IS_SHOW_SETTING", true);// 是否显示右上角设置按钮，默认true
-        intent.putExtra("IS_SHOW_ALBUM", true);// 是否显示从相册选择图片按钮，默认true
-        startActivityForResult(intent, 2);
-
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 2 && data != null) {
-            Bundle bundle = data.getExtras();
-            ArrayList<HashMap<String, String>> result = (ArrayList<HashMap<String, String>>) bundle.getSerializable("data");
-            Iterator<HashMap<String, String>> it = result.iterator();
-            LogF.i("LoginActivity", "onActivityResult 扫码成功" );
-            while (it.hasNext()) {
-                HashMap<String, String> hashMap = it.next();
-                String value = hashMap.get("VALUE");
-                String[] split = value.split("=");
-                //在这进行网络请求，获取我们的数据，获取我们可使用工具的可用数量，如果可用数量是为0的话，我们就进行跳转
-            }
-        }
-    }
-
 }
