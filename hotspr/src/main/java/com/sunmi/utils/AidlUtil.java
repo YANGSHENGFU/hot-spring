@@ -186,12 +186,10 @@ public class AidlUtil {
             Toast.makeText(context, R.string.toast_2,Toast.LENGTH_LONG).show();
             return;
         }
-
-
         try {
 		    woyouService.setAlignment(1, null);
             woyouService.printQRCode(data, modulesize, errorlevel, null);
-            woyouService.lineWrap(3, null);
+            woyouService.lineWrap(2, null);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -209,7 +207,7 @@ public class AidlUtil {
 
         try {
             woyouService.printBarCode(data, symbology, height, width, textposition, null);
-            woyouService.lineWrap(3, null);
+            woyouService.lineWrap(2, null);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -225,20 +223,22 @@ public class AidlUtil {
         }
 
         try {
+            /**靠左*/
+            woyouService.setAlignment(0, null);
+            /**加粗*/
             if (isBold) {
                 woyouService.sendRAWData(ESCUtil.boldOn(), null);
             } else {
                 woyouService.sendRAWData(ESCUtil.boldOff(), null);
             }
-
+            /**下划线*/
             if (isUnderLine) {
                 woyouService.sendRAWData(ESCUtil.underlineWithOneDotWidthOn(), null);
             } else {
                 woyouService.sendRAWData(ESCUtil.underlineOff(), null);
             }
-
             woyouService.printTextWithFont(content, null, size, null);
-            woyouService.lineWrap(3, null);
+            woyouService.lineWrap(1, null);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -321,6 +321,19 @@ public class AidlUtil {
 
         try {
             woyouService.lineWrap(3, null);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void print5Line(){
+        if (woyouService == null) {
+            Toast.makeText(context,R.string.toast_2,Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try {
+            woyouService.lineWrap(5, null);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
