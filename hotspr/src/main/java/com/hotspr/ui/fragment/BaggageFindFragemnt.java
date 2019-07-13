@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,10 +18,14 @@ import android.widget.Toast;
 import com.hotspr.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.api.BaggageRegistrationAPI;
+import com.hotspr.business.presenter.BaggageFindPressentre;
 import com.hotspr.business.presenter.BaggageRegistrationPressentre;
+import com.hotspr.ui.activity.BaggageFindDataActvitiy;
 import com.hotspr.ui.activity.BaggageUploadDataActvitiy;
+import com.hotspr.ui.adapter.BaggageFindAdapter;
 import com.hotspr.ui.adapter.BaggageQueryAdapter;
 import com.hotspr.ui.bean.Deposit;
+import com.hotspr.ui.bean.Xl;
 import com.modulebase.ui.fragment.BaseFragment;
 import com.modulebase.view.recyclerview.adapter.LRecyclerViewAdapter;
 import com.modulebase.view.recyclerview.view.LRecyclerView;
@@ -31,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BaggageRegistrationFragemnt extends BaseFragment implements View.OnClickListener , BaggageRegistrationAPI.View <Deposit>, BaggageQueryAdapter.OnItemClickListener {
+public class BaggageFindFragemnt extends BaseFragment implements View.OnClickListener , BaggageRegistrationAPI.View <Xl>, BaggageFindAdapter.OnItemClickListener {
 
     private Context mContext ;
     private View mView ;
@@ -40,18 +43,18 @@ public class BaggageRegistrationFragemnt extends BaseFragment implements View.On
     private EditText phoneEt ;
     private TextView queryTv ; // 查询
 
-    private BaggageRegistrationPressentre mPressentre ;
+    private BaggageFindPressentre mPressentre ;
 
     private LRecyclerView mLRecyclerView ;
     private LRecyclerViewAdapter mLRecyclerViewAdapter ;
-    private BaggageQueryAdapter mAdapter ;
+    private BaggageFindAdapter mAdapter ;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if(mView == null ){
             mContext = getContext();
-            mView = LayoutInflater.from(mContext).inflate(R.layout.fragment_baggage_registration_layout ,null);
+            mView = LayoutInflater.from(mContext).inflate(R.layout.fragment_baggage_find_layout ,null);
             findViewByID(mView);
             initLRecyclerView() ;
             initData();
@@ -73,43 +76,18 @@ public class BaggageRegistrationFragemnt extends BaseFragment implements View.On
 
     private void initLRecyclerView(){
         mLRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 2)); // 不设会不显示
-        mAdapter = new BaggageQueryAdapter(mContext);
+        mAdapter = new BaggageFindAdapter(mContext);
         mAdapter.setOnItemClickListener(this);
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mAdapter);
         mLRecyclerView.setAdapter(mLRecyclerViewAdapter);
         mLRecyclerView.setPullRefreshEnabled(false);
         mLRecyclerView.setLoadMoreEnabled(false);
         mLRecyclerView.setHasFixedSize(true);                    //这是item的固定大小
-//        // 刷新
-//        mLRecyclerView.setOnRefreshListener(new OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                if (!NetworkUtils.isNetworkConnected(mContext)) {
-//                    mLRecyclerView.refreshComplete(0);  //不调用这句就表示没有刷新成功(不会回上去)
-//                    mAdapter.notifyDataSetChanged();
-//                    Toast.makeText(mContext, "当前网络不可用,请检查网络设置", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                //mAdapter.upData(new ArrayList<Round>()); // 清空数据
-//                page = 1;
-//                load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_REFRASH , page );
-//            }
-//        });
-//        // 加载更多
-//        mLRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
-//            @Override
-//            public void onLoadMore() {
-//                if (page < TOLTE_PAGE_NUMBER) {
-//                    load(mSearchView.getFloor() , mSearchView.getRoomType() , mSearchView.getRoomNumber() , WardRoundPressenterAPI.Pressente.LOAD_MODLE_MORE , ++page );
-//                } else {
-//                    mLRecyclerView.setNoMore(true); //没有更多了
-//                }
-//            }
-//        });
+
     }
 
     private void initData(){
-        mPressentre = new BaggageRegistrationPressentre(mContext , this);
+        mPressentre = new BaggageFindPressentre(mContext , this);
     }
 
 
@@ -137,7 +115,7 @@ public class BaggageRegistrationFragemnt extends BaseFragment implements View.On
     }
 
     @Override
-    public void upDatd(int mode , ArrayList<Deposit> rounds , int pageNumber) {
+    public void upDatd(int mode , ArrayList<Xl> rounds , int pageNumber) {
         mAdapter.addDatas(rounds);
     }
 
@@ -173,10 +151,10 @@ public class BaggageRegistrationFragemnt extends BaseFragment implements View.On
 
 
     @Override
-    public void onItemClick(Deposit deposit) {
-        Intent intent = new Intent(mContext , BaggageUploadDataActvitiy.class);
+    public void onItemClick(Xl deposit) {
+        Intent intent = new Intent(mContext , BaggageFindDataActvitiy.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable(BaggageUploadDataActvitiy.DATA_KEY , deposit);
+        bundle.putParcelable(BaggageFindDataActvitiy.DATA_KEY , deposit);
         intent.putExtras(bundle);
         startActivity(intent);
     }

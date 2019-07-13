@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/baggage_tv"
 
-            android:text="无预约登记"
+            android:text="扫码"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
             style="@style/bt_blue"
@@ -65,10 +65,10 @@
 
         </LinearLayout>
 
-        <!--查询预约-->
+        <!--查询行李-->
         <TextView
             android:id="@+id/query_tv"
-            android:text="查询预约"
+            android:text="查询行李"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_height="40dp"

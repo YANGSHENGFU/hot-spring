@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_ffffff">
+
+    <include layout="@layout/include_title_layout"></include>
+
+    <!--行李照片-->
+    <RelativeLayout
+        android:id="@+id/phone_layout"
+        android:layout_below="@+id/title"
+        android:background="@color/color_999999"
+        android:layout_height="260dp"
+        android:layout_width="match_parent">
+
+        <ImageView
+            android:id="@+id/photo_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ImageView>
+
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <!--预定单号-->
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:text="预约单号："
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/txt_item">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/reserva_order_no_et"
+
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/txt_item">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <!--寄存人-->
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:text="@string/reserva_name"
+                   android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/txt_item">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/reserva_name_et"
+
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/txt_item">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+            <!--寄存人手机号码-->
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:text="手机号码："
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/txt_item">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/reserva_tel_et"
+
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/txt_item">
+                </TextView>
+
+            </LinearLayout>
+
+            <!--房间号码-->
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:text="房间号码："
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/txt_item">
+                </TextView>
+
+                <TextView
+
+                    android:id="@+id/round_room_et"
+                   android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/txt_item">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <!--备注-->
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:id="@+id/mem1_et"
+                    android:gravity="start"
+                    android:layout_height="80dp"
+                    android:layout_width="match_parent"
+                    style="@style/txt_item">
+                </TextView>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/baggage_tv"
+                android:layout_marginTop="50dp"
+                android:text="寄     存"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                style="@style/bt_blue">
+            </TextView>
+
+            <TextView
+                android:id="@+id/baggage_print_tv"
+                android:layout_marginTop="50dp"
+                android:text="打     印"
+                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                style="@style/bt_blue">
+            </TextView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

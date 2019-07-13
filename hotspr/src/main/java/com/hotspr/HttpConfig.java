@@ -23,6 +23,7 @@ public class HttpConfig {
     public static String INTERFACE_BAGGAGE = "Luggage/Add?" ;
     public static String INTERFACE_BAGGAGE_UPLOADPHOTO ="Luggage/UpImg?";
     public static String INTERFACE_RESERVATION_QUERY = "Luggage/ReserveList?";
+    public static String INTERFACE_RESERVATION_FIND = "Luggage/List?";
     public static String INTERFACE_LUGGAGE_QUERY="Luggage/List?";
 
 
