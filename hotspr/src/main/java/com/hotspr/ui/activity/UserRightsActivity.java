@@ -108,13 +108,11 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
             }
 
             if(user.getHOTEL().equals("T")){
-
-
                 Menu m1 = new Menu();
                 m1.rid = R.drawable.bagregi ;
                 m1.title = "行李登记";
                 menus.add(m1);
-//
+
                 Menu m2 = new Menu();
                 m2.rid = R.drawable.bagfind ;
                 m2.title = "行李查寻";
@@ -167,13 +165,6 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
         startActivity(intent);
     }
 
-    /**
-     * 行李查询
-     */
-    private void goBaggageEnquiry(){
-        Intent intent = new Intent(this ,  BaggageEnquiryActivity.class);
-        startActivity(intent);
-    }
     /**
      * 行李登记
      */

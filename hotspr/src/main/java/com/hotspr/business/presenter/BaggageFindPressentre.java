@@ -114,7 +114,7 @@ public class BaggageFindPressentre implements BaggageRegistrationAPI.Pressente {
             @Override
             public void onFailure(int statusCode, String error_msg) {
                 Log.i(TAG, "onFailure statusCode = " + statusCode + " error_msg = " + error_msg);
-                mView.upDatd(lodelModel, new ArrayList<Round>(), -1);
+                mView.upDatd(lodelModel, new ArrayList<Xl>(), -1);
             }
         });
     }
