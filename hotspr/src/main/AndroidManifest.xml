@@ -99,6 +99,19 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <!--行李查询-->
+        <activity
+            android:name=".ui.activity.BaggageEnquiryActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--行李查询操作-->
+        <activity
+            android:name=".ui.activity.LuggageQueryOperationActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
 
 
     </application>

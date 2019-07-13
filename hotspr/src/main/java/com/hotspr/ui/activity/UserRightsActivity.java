@@ -71,8 +71,8 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                         goArrangeCleaning() ;
                     } else if(menu.title.equals("行李登记")){
                         goBaggageRegistra() ;
-                    } else if(menu.title.equals("行李查寻")){
-
+                    } else if(menu.title.equals("行李查询")){
+                        goBaggageEnquiry();
                     }
                 }
             }
@@ -102,7 +102,7 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
 //
                 Menu m2 = new Menu();
                 m2.rid = R.drawable.d_ward_round ;
-                m2.title = "行李查寻";
+                m2.title = "行李查询";
                 menus.add(m2);
             }
             if(user.getC_NAME().equals("客房保洁")){
@@ -160,6 +160,14 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
      */
     private void goBaggageRegistra(){
         Intent intent = new Intent(this ,  BaggageRegistrationActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * 行李查询
+     */
+    private void goBaggageEnquiry(){
+        Intent intent = new Intent(this ,  BaggageEnquiryActivity.class);
         startActivity(intent);
     }
 
