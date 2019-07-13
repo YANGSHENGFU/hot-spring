@@ -376,6 +376,12 @@ public class BaggageFindDataActvitiy extends BaseActivity implements View.OnClic
      */
     private void printing(){
         AidlUtil.getInstance().printQr(xlID , 8 ,3); // 打印二维码
+        AidlUtil.getInstance().printText("预约号："+reserva_order_no_et.getText().toString() , 30 , false , false );
+        AidlUtil.getInstance().printText("寄存人："+reserva_name_et.getText().toString(), 30 , false , false );
+        AidlUtil.getInstance().printText("手机号："+reserva_tel_et.getText().toString() , 30 , false , false );
+        AidlUtil.getInstance().printText("房间号："+round_room_et.getText().toString() , 30 , false , false );
+        AidlUtil.getInstance().printText("备  注："+mem1_et.getText().toString() , 30 , false , false );
+        AidlUtil.getInstance().print5Line();
     }
 
     @Override
