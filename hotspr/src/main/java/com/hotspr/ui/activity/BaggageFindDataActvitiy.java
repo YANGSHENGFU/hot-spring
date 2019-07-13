@@ -379,8 +379,31 @@ public class BaggageFindDataActvitiy extends BaseActivity implements View.OnClic
         AidlUtil.getInstance().printText("预约号："+reserva_order_no_et.getText().toString() , 30 , false , false );
         AidlUtil.getInstance().printText("寄存人："+reserva_name_et.getText().toString(), 30 , false , false );
         AidlUtil.getInstance().printText("手机号："+reserva_tel_et.getText().toString() , 30 , false , false );
+        AidlUtil.getInstance().printText("寄存日期："+mDeposit.getDate2() , 30 , false , false );
+        AidlUtil.getInstance().printText("寄存时间："+mDeposit.getTime2() , 30 , false , false );
         AidlUtil.getInstance().printText("房间号："+round_room_et.getText().toString() , 30 , false , false );
         AidlUtil.getInstance().printText("备  注："+mem1_et.getText().toString() , 30 , false , false );
+
+        //AidlUtil.getInstance().print2Line();
+
+        AidlUtil.getInstance().printText("登记人："+mDeposit.getOnduty1n() , 30 , false , false );
+        AidlUtil.getInstance().printText("登记日期："+mDeposit.getDate1() , 30 , false , false );
+        AidlUtil.getInstance().printText("登记时间："+mDeposit.getTime1() , 30 , false , false );
+
+        //AidlUtil.getInstance().print2Line();
+
+        AidlUtil.getInstance().printText("领取人："+mDeposit.getOnduty3n() , 30 , false , false );
+        AidlUtil.getInstance().printText("领取日期："+mDeposit.getDate3() , 30 , false , false );
+        AidlUtil.getInstance().printText("领取时间："+mDeposit.getTime3() , 30 , false , false );
+
+        if (mDeposit.getTag().equals("2") ){
+            AidlUtil.getInstance().printText("状态：登记" , 30 , false , false );
+        } else if (mDeposit.getTag().equals("1") ){
+            AidlUtil.getInstance().printText("状态：寄存" , 30 , false , false );
+        } else if (mDeposit.getTag().equals("0") ){
+            AidlUtil.getInstance().printText("状态：领取" , 30 , false , false );
+        }
+
         AidlUtil.getInstance().print5Line();
     }
 

@@ -326,6 +326,19 @@ public class AidlUtil {
         }
     }
 
+    public void print2Line(){
+        if (woyouService == null) {
+            Toast.makeText(context,R.string.toast_2,Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try {
+            woyouService.lineWrap(2, null);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void print5Line(){
         if (woyouService == null) {
             Toast.makeText(context,R.string.toast_2,Toast.LENGTH_LONG).show();
