@@ -15,6 +15,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +48,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private Button butLogin;
     private ProgressDialog progressDialog;
     private Button daying_but;
+    private CheckBox checkBox;
 
     private static int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private LoginPresenter presenter;
@@ -58,6 +61,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         et_password = findViewById(R.id.et_password);
         butLogin = findViewById(R.id.btn_login);
         tv_set = findViewById(R.id.tv_set);
+        checkBox = findViewById(R.id.check_box);
         butLogin.setOnClickListener(this);
         tv_set.setOnClickListener(this);
         daying_but = findViewById(R.id.daying_but);
@@ -69,8 +73,22 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         initProgressDialog();
         chekPermission();
         String s = new String(BytesUtil.getMeituanBill());
-        LogF.i("LoginActivity", "美团字节 ：" + s);
+        initUserData();
 
+    }
+
+    private void initUserData(){
+        checkBox.setChecked(SharepreFHelp.getInstance(this).getKeepPasswordState());
+        et_username.setText(SharepreFHelp.getInstance(this).getUserName());
+        if(checkBox.isChecked()){
+            et_password.setText(SharepreFHelp.getInstance(this).getPassword());
+        }
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharepreFHelp.getInstance(LoginActivity.this).setKeepPasswordState(isChecked);
+            }
+        });
     }
 
     /**
@@ -97,18 +115,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             FileHandle.creatUserExists();
         }
     }
-
-    /**
-     * 打开窗口不带参数
-     *
-     * @param classname
-     */
-    public void OpenNew(Class classname) {
-        //新建一个显式意图，第一个参数为当前Activity类对象，第二个参数为你要打开的Activity类
-        Intent intent = new Intent(LoginActivity.this, classname);
-        startActivity(intent);
-    }
-
 
     @Override
     protected void onResume() {
@@ -214,6 +220,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
             return;
         }
+        SharepreFHelp.getInstance(this).setUserName(username); // 保存用户名
         presenter.loging(username, password);
     }
 
@@ -236,6 +243,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void lodingResult(boolean isOk, String error_msg) {
         dismissDialog();
         if (isOk) {
+            if(checkBox.isChecked()){
+                SharepreFHelp.getInstance(this).setPassword(et_password.getText().toString()); // 保存用户名
+            } else {
+                SharepreFHelp.getInstance(this).setPassword(""); // 保存用户名
+            }
             Intent intent = new Intent(this, UserRightsActivity.class);
             startActivity(intent);
         } else {

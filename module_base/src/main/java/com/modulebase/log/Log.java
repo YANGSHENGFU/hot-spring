@@ -9,7 +9,7 @@ public class Log {
     private static boolean SHOW_HIGH_PRIORITY;
     private static int INVALID = -1;
     private static String DEFAULTTAG = "Hotspring";
-    private static String APPLICATIONID = "com.gzqmh.goldenshark.app";
+    private static String APPLICATIONID = "com.hotspr.app";
 
     static {
         Class configFile = null;

@@ -19,6 +19,9 @@ public class SharepreFHelp {
 
     private String KEY_HOSTKEY = "host" ;
     private String KEY_PIC_HOSTKEY = "pic_host" ;
+    private String KEY_KEEP_PASSWORD_STATE = "KeepPasswordState";
+    private String KEY_USER_NAME = "username";
+    private String KEY_PASSWORD = "password";
     public static  SharepreFHelp getInstance( Context context){
         if(g==null){
             synchronized (SharepreFHelp.class){
@@ -73,6 +76,37 @@ public class SharepreFHelp {
 
     public String getPICHOSTURL(){
         return sharedpreferences.getString(KEY_PIC_HOSTKEY , "http://47.112.97.81:8006/");
+    }
+
+    /**
+     * 获取记住密码状态
+     * @return
+     */
+    public void setKeepPasswordState(boolean b){
+        editor.putBoolean(KEY_KEEP_PASSWORD_STATE , b);
+        editor.commit();
+    }
+
+    public boolean getKeepPasswordState(){
+        return sharedpreferences.getBoolean(KEY_KEEP_PASSWORD_STATE , true); // 默认返回true
+    }
+
+    public void setUserName(String name){
+        editor.putString(KEY_USER_NAME , name);
+        editor.commit();
+    }
+
+    public String getUserName(){
+        return sharedpreferences.getString(KEY_USER_NAME , ""); // 默认返回true
+    }
+
+    public void setPassword(String name){
+        editor.putString(KEY_PASSWORD , name);
+        editor.commit();
+    }
+
+    public String getPassword(){
+        return sharedpreferences.getString(KEY_PASSWORD , ""); // 默认返回true
     }
 
 }
