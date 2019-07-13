@@ -23,7 +23,7 @@ public class BaggageEnquiryPresenter implements BaggageEnquiryAPI.Pressente {
 
     private String TAG = BaggageEnquiryPresenter.class.getSimpleName() ;
 
-    private Context mContext ;
+    private Context mContext;
     private BaggageEnquiryAPI.View mView ;
 
     public BaggageEnquiryPresenter(Context context, BaggageEnquiryAPI.View view) {
