@@ -26,6 +26,9 @@ public class HttpConfig {
     public static String INTERFACE_RESERVATION_FIND = "Luggage/List?";
     public static String INTERFACE_LUGGAGE_QUERY="Luggage/List?";
     public static String INTERFACE_DESK_NUMBER = "FoodCom/CzList?";
+    public static String INTERFACE_REGION = "FoodCom/CzTwsList?";
+    public static String INTERFACE_FLAVOR = "FoodCom/KwList?";
+    public static String INTERFACE_PROCESSING_METHOD = "FoodCom/ZfList?";
 
 
     public static class Field{
@@ -62,7 +65,8 @@ public class HttpConfig {
         public static String xl_id = "xl_id" ;
         public static String kword = "kword";
         public static String mobile = "mobile";
-
+        public static String ctbm = "ctbm";
+        public static String tws = "tws";
 
 
 

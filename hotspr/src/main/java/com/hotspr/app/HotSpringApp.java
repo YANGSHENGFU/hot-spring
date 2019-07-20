@@ -13,9 +13,6 @@ public class HotSpringApp extends Application {
         super.onCreate();
         CrashHandler.getInstance().init(getApplicationContext());
         AidlUtil.getInstance().connectPrinterService(this);
-
-
-
-//        XLogHelper.initXlog(getApplicationContext());
+        //XLogHelper.initXlog(getApplicationContext());
     }
 }

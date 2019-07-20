@@ -111,6 +111,12 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait">
         </activity>
+        <!--台号-->
+        <activity
+            android:name="com.restaurant.ui.activity.DeskNumberActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
 
 
     </application>
