@@ -25,7 +25,7 @@ import com.hotspr.R;
 import com.hotspr.business.api.LogingAPI;
 import com.hotspr.business.presenter.LoginPresenter;
 import com.hotspr.toolkit.FileHandle;
-import com.hotspr.toolkit.SharepreFHelp;
+import com.modulebase.toolkit.SharepreFHelp;
 import com.hotspr.ui.dialog.PermissionPromptDialog;
 import com.modulebase.toolkit.FileUtils;
 import com.modulebase.ui.activity.BaseActivity;

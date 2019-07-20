@@ -1,4 +1,4 @@
-package com.hotspr.toolkit;
+package com.modulebase.toolkit;
 
 import android.content.Context;
 import android.content.SharedPreferences;

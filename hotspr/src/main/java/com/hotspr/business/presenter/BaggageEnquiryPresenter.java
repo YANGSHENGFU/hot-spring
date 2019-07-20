@@ -3,7 +3,7 @@ import android.content.Context;
 import android.util.Log;
 import com.modulebase.HttpConfig;
 import com.hotspr.business.api.BaggageEnquiryAPI;
-import com.hotspr.toolkit.SharepreFHelp;
+import com.modulebase.toolkit.SharepreFHelp;
 import com.hotspr.ui.bean.LuggageQuiryData;
 import com.modulebase.log.LogF;
 import com.modulebase.okhttp.JsonResponseHandler;
