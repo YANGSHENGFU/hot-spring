@@ -1,4 +1,4 @@
-package com.hotspr;
+package com.modulebase;
 
 public class HttpConfig {
 
@@ -25,6 +25,7 @@ public class HttpConfig {
     public static String INTERFACE_RESERVATION_QUERY = "Luggage/ReserveList?";
     public static String INTERFACE_RESERVATION_FIND = "Luggage/List?";
     public static String INTERFACE_LUGGAGE_QUERY="Luggage/List?";
+    public static String INTERFACE_DESK_NUMBER = "FoodCom/CzList?";
 
 
     public static class Field{

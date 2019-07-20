@@ -5,7 +5,7 @@ package com.hotspr.business.presenter;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.business.api.LogingAPI;
 import com.hotspr.toolkit.FileHandle;
 import com.hotspr.toolkit.SharepreFHelp;

@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.presenter.LoginPresenter;
 import com.hotspr.toolkit.Base64Code;

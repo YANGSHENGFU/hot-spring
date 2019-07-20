@@ -13,7 +13,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.presenter.LoginPresenter;
 import com.hotspr.toolkit.FileHandle;

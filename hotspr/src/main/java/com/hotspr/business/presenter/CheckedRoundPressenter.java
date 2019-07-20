@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.business.api.CleanRoundAPI;
 import com.hotspr.toolkit.FileHandle;
 import com.hotspr.toolkit.SharepreFHelp;

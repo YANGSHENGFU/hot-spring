@@ -1,7 +1,7 @@
 package com.hotspr.business.presenter;
 import android.content.Context;
 import android.util.Log;
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.business.api.BaggageEnquiryAPI;
 import com.hotspr.toolkit.SharepreFHelp;
 import com.hotspr.ui.bean.LuggageQuiryData;

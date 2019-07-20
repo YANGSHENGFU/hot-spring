@@ -15,14 +15,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.presenter.LoginPresenter;
 import com.hotspr.toolkit.FileHandle;
