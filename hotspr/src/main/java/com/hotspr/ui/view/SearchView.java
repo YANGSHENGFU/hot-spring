@@ -15,7 +15,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.hotspr.R;
-import com.hotspr.ui.adapter.SpinnerPopAdapter;
+import com.modulebase.ui.adapter.SpinnerPopAdapter;
 import com.hotspr.toolkit.CacheHandle;
 import com.modulebase.toolkit.DisplayUtil;
 

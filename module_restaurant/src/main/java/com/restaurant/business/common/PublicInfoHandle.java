@@ -169,7 +169,6 @@ public class PublicInfoHandle {
                         CacheHandle.processingMethodCache.add("");
                         for (int i = 0; i < resDataList.length(); i++) {
                             JSONObject jo = (JSONObject) resDataList.get(i);
-                            Log.i(TAG, "onSuccess 加工 = " + jo.getString("zf_name"));
                             CacheHandle.processingMethodCache.add(jo.getString("zf_name"));
                         }
                     }

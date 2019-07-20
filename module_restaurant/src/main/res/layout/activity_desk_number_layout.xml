@@ -7,16 +7,60 @@
 
     <include layout="@layout/include_title_layout"/>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="40dp"
+        android:layout_width="match_parent">
 
-    <TextView
-        android:id="@+id/text"
-        android:text="获取台号"
-        android:layout_gravity="center"
-        android:background="@color/color_666666"
-        android:textColor="@color/color_ffffff"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/edittext_background">
 
-    </TextView>
+            <EditText
+                android:id="@+id/region_et"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_size_16sp"
+                android:textColor="@color/color_666666"
+                android:lines="1"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:paddingLeft="5dp">
+
+            </EditText>
+
+            <ImageView
+                android:id="@+id/region_img"
+                android:layout_marginLeft="2dp"
+                android:src="@drawable/button_open"
+                android:layout_height="20dp"
+                android:layout_width="20dp"
+                android:layout_marginRight="5dp">
+            </ImageView>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/search_tv"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_size_16sp"
+            android:text="搜索"
+            android:layout_height="match_parent"
+            android:layout_width="150dp"
+            android:gravity="center"
+            android:background="@color/color_666666">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <com.modulebase.view.recyclerview.view.LRecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+    </com.modulebase.view.recyclerview.view.LRecyclerView>
 
 </LinearLayout>
