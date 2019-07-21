@@ -28,7 +28,17 @@ public class OpneTableDialog extends Dialog{
         return okTv ;
     }
 
+    public void setOkTv(boolean can){
+        okTv.setClickable(can);
+    }
+
     public String getNumberString(){
         return numberEt.getText().toString();
+    }
+
+    @Override
+    public void dismiss() {
+        okTv.setClickable(true);
+        super.dismiss();
     }
 }

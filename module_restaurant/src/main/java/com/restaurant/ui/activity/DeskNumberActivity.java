@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.hotspr.toolkit.FileHandle;
 import com.hotspr.ui.bean.User;
 import com.modulebase.HttpConfig;
@@ -34,7 +33,6 @@ import com.restaurant.toolkit.CacheHandle;
 import com.restaurant.ui.adapter.DeskNumberAdapter;
 import com.restaurant.ui.bean.TableNumber;
 import com.restaurant.ui.dialog.OpneTableDialog;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -138,12 +136,15 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
      */
     private void intiDialog(){
         mDialog = new OpneTableDialog(this);
+        mDialog.setCancelable(true);
+        mDialog.setCanceledOnTouchOutside(false);
         mDialog.getOkText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(TextUtils.isEmpty(mDialog.getNumberString()) || mDialog.getNumberString().startsWith("0")){
                     Toast.makeText(DeskNumberActivity.this , "请输入就餐人数", Toast.LENGTH_SHORT).show();
                 } else {
+                    mDialog.setOkTv(false);
                     Map<String, String> map = new HashMap<>();
                     map.put(HttpConfig.Field.czbm , mTableNumber.getCZBM());
                     map.put(HttpConfig.Field.czmc , mTableNumber.getCZMC());
@@ -242,6 +243,10 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
      */
     @Override
     public void openTabelResult(TableNumber tabel) {
+        if(mDialog!=null && mDialog.isShowing()){
+            mDialog.dismiss();
+        }
+        mDialog.setOkTv(true);
         LogF.i("DeskNumberActivity", "TableNumber "+ tabel!=null?tabel.toString():"kong");
         if(tabel!=null && tabel.getCZZT().equals("I")){
             mAdapter.onUpData(mPosition , tabel);

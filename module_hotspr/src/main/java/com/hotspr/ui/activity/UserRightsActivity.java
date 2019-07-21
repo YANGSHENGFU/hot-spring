@@ -73,7 +73,7 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
                         goBaggageRegistra();
                     } else if (menu.title.equals("行李查寻")) {
                         goBaggageFind();
-                    } else if(menu.title.equals("中餐厅")){
+                    } else if (menu.title.equals("中餐厅")) {
                         goChineseFood();
                     }
                 }
@@ -185,8 +185,13 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
      * 中餐厅
      */
     private void goChineseFood() {
-//        Intent intent = new Intent(this, DeskNumberActivity.class);
-//        startActivity(intent);
+        try {
+            Class c = Class.forName("com.restaurant.ui.activity.DeskNumberActivity");
+            Intent intent = new Intent(this, c);
+            startActivity(intent);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 

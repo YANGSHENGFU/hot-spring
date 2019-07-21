@@ -31,7 +31,7 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
     public void onUpData(int position, TableNumber tableNumber){
         datas.remove(position);
         datas.add(position, tableNumber);
-
+        notifyItemChanged(position);
     }
 
     public void upData(ArrayList<TableNumber> rounds){
