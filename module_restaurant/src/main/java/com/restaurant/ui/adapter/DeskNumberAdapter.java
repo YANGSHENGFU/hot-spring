@@ -23,6 +23,17 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
         datas = new ArrayList<>();
     }
 
+    /**
+     * 更新某项
+     * @param position
+     * @param tableNumber
+     */
+    public void onUpData(int position, TableNumber tableNumber){
+        datas.remove(position);
+        datas.add(position, tableNumber);
+
+    }
+
     public void upData(ArrayList<TableNumber> rounds){
         datas.clear();
         datas.addAll(rounds);
@@ -83,12 +94,12 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
             if(mOnClickListener == null){
                 return;
             }
-            int i = getAdapterPosition()-1;
-            TableNumber table = datas.get(i);
+            int position = getAdapterPosition()-1;
+            TableNumber table = datas.get(position);
             if(id == R.id.open_order_tv){
-                mOnClickListener.onClickOpenOrder(table);
+                mOnClickListener.onClickOpenOrder(table , position);
             } else if(id == R.id.table_layout){
-                mOnClickListener.onItemClick(table);
+                mOnClickListener.onItemClick(table , position);
             }
         }
     }
@@ -100,7 +111,7 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
     }
 
     public interface OnClickListener{
-        void onClickOpenOrder(TableNumber tableNumber);
-        void onItemClick(TableNumber tableNumber);
+        void onClickOpenOrder(TableNumber tableNumber , int position);
+        void onItemClick(TableNumber tableNumber ,int position);
     }
 }

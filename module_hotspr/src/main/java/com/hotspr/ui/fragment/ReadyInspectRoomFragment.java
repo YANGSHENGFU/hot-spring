@@ -207,7 +207,7 @@ public class ReadyInspectRoomFragment extends ArrangCleanBaseFragment implements
                     if (round != null) {
 
                        mAdapter.getData().remove(index);
-                        mAdapter.getData().add(index, round);
+                       mAdapter.getData().add(index, round);
                        mAdapter.notifyItemChanged(index);
                     }
                 }
