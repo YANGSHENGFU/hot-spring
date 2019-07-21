@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="login_dialog_style" parent="android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 没有标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="bt_red" >
+        <item name="android:background"> @drawable/search_tv_background</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+    <style name="bt_blue" >
+        <item name="android:background"> @drawable/blue_tv_background</item>
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+        <item name="android:textColor">@color/color_ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_weight">1</item>
+
+    </style>
+    <style name="txt_input" >
+        <item name="android:textSize">@dimen/text_size_10sp</item>
+        <item name="android:textColor">@color/color_666666</item>
+        <item name="android:lines">1</item>
+        <item name="android:background">@drawable/edittext_background</item>
+    </style>
+    <style name="txt_item" >
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/color_666666</item>
+    </style>
+</resources>

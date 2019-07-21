@@ -1,1 +1,1 @@
-include ':hotspr', ':module_base', ':module_restaurant'
+include ':hotspr', ':module_base', ':module_restaurant', ':module_hotspr'
