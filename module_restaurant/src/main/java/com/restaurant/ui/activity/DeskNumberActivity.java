@@ -88,6 +88,7 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
         mPublicInfoHandle.getRegion(this, map); // 获取区域
         mPublicInfoHandle.getFlavor(this, null);// 获取口味
         mPublicInfoHandle.getProcessingMethod(this, null); // 获取加工方法
+        mPublicInfoHandle.getChinFoodCalss(this , null);
         mPressenter = new TableNumberPressenter(this ,this);
         user = FileHandle.getUser();
     }

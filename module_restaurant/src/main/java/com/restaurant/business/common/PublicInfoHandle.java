@@ -3,6 +3,7 @@ package com.restaurant.business.common;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.modulebase.HttpConfig;
 import com.modulebase.log.LogF;
 import com.modulebase.okhttp.JsonResponseHandler;
@@ -10,6 +11,7 @@ import com.modulebase.okhttp.MyOkHttp;
 import com.modulebase.toolkit.SharepreFHelp;
 import com.modulebase.toolkit.sort.SortTools;
 import com.restaurant.toolkit.CacheHandle;
+import com.restaurant.ui.bean.FoodCategory;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -185,5 +187,57 @@ public class PublicInfoHandle {
         });
     }
 
+
+    /**
+     * 获取中餐菜品类别
+     * @param context
+     * @param params
+     */
+    public void getChinFoodCalss(Context context, Map<String, String> params) {
+        String url = HttpConfig.HOST_NAME + HttpConfig.INTERFACE_FOOD_CHINES_LIST;
+        String userid = SharepreFHelp.getInstance(context).getUserID();
+        String userkey = SharepreFHelp.getInstance(context).getUserKey();
+        Map<String, String> paer = new HashMap<>();
+        paer.put(HttpConfig.Field.mid, userid);
+        paer.put(HttpConfig.Field.key, userkey);
+        // 额外的条件
+        if (params != null && !params.isEmpty()) {
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                paer.put(entry.getKey(), entry.getValue());
+            }
+        }
+        paer.put(HttpConfig.Field.timestamp, String.valueOf(System.currentTimeMillis() / 1000));
+        Set<String> keySet = paer.keySet();  //获取set集合
+        List<String> sortKey = SortTools.listSort(keySet);
+        TreeMap<String, String> parameter = SortTools.getSortMap(sortKey, paer);
+        MyOkHttp.get().get(context, url, parameter, new JsonResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, String response) {
+                LogF.i(TAG, "onSuccess statusCode = " + statusCode + " statusCode = " + response);
+                try {
+                    JSONObject resObj = new JSONObject(response);
+                    if (resObj.getString("errCode").equals("200")) {
+                        JSONArray resDataList = resObj.getJSONArray("DataList");
+                        CacheHandle.foodCategoryCache.clear();
+                        for (int i = 0; i < resDataList.length(); i++) {
+                            JSONObject jo = (JSONObject) resDataList.get(i);
+                            Gson gson = new Gson();
+                            FoodCategory fc = gson.fromJson(jo.toString()  , FoodCategory.class);
+                            LogF.d(TAG, " FoodCategory fc toString "+ fc.toString());
+                            CacheHandle.foodCategoryCache.add(fc);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+
+                }
+            }
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                Log.i(TAG, "onFailure statusCode = " + statusCode + " error_msg = " + error_msg);
+            }
+        });
+    }
 
 }
