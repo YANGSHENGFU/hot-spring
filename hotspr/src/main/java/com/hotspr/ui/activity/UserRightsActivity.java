@@ -26,7 +26,6 @@ import com.hotspr.toolkit.CacheHandle;
 import com.modulebase.toolkit.sort.SortTools;
 import com.modulebase.ui.activity.BaseActivity;
 import com.restaurant.ui.activity.DeskNumberActivity;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

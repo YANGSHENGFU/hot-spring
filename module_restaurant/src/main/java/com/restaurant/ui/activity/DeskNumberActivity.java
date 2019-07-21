@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.modulebase.HttpConfig;
-import com.modulebase.log.Log;
 import com.modulebase.log.LogF;
 import com.modulebase.toolkit.NetworkUtils;
 import com.modulebase.ui.activity.BaseActivity;
@@ -36,7 +35,6 @@ import com.restaurant.ui.bean.TableNumber;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.FileHandler;
 
 public class DeskNumberActivity extends BaseActivity implements View.OnClickListener , TableNumberAPI.View<TableNumber> , DeskNumberAdapter.OnClickListener {
 
