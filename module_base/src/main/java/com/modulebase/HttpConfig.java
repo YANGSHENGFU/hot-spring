@@ -31,7 +31,8 @@ public class HttpConfig {
     public static String INTERFACE_PROCESSING_METHOD = "FoodCom/ZfList?";
     public static String INTERFACE_TABLE_INFO_CHIN = "FoodCh/CzList?";
     public static String INTERFACE_OPEN_TABLE = "FoodCh/CkzkAdd?";
-    public static String INTERFACE_FOOD_CHINES_LIST= "FoodCh/BmList?";
+    public static String INTERFACE_FOOD_CHINES_LIST = "FoodCh/BmList?";
+    public static String INTERFACE_FOOD_CHINES_VARIETY_OF_DISHES_LIST = "FoodCh/CddmList?";
 
 
     public static class Field{
@@ -75,6 +76,8 @@ public class HttpConfig {
         public static String czmc = "czmc";
         public static String rs = "rs";
         public static String pzrdm = "pzrdm";
+        public static String zxbm = "zxbm";
+        public static String krbh = "krbh";
 
 
 

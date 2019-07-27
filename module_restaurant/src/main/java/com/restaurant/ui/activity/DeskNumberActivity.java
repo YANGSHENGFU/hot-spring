@@ -1,5 +1,6 @@
 package com.restaurant.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -88,7 +89,7 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
         mPublicInfoHandle.getRegion(this, map); // 获取区域
         mPublicInfoHandle.getFlavor(this, null);// 获取口味
         mPublicInfoHandle.getProcessingMethod(this, null); // 获取加工方法
-        mPublicInfoHandle.getChinFoodCalss(this , null);
+        mPublicInfoHandle.getChinFoodCalss(this , null); // 获取菜品类别
         mPressenter = new TableNumberPressenter(this ,this);
         user = FileHandle.getUser();
     }
@@ -251,6 +252,11 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
         LogF.i("DeskNumberActivity", "TableNumber "+ tabel!=null?tabel.toString():"kong");
         if(tabel!=null && tabel.getCZZT().equals("I")){
             mAdapter.onUpData(mPosition , tabel);
+            Intent intent = new Intent(this, ColourNameListActivtiy.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(ColourNameListActivtiy.KEY , tabel);
+            intent.putExtras(bundle);
+            startActivity(intent);
             // 进入点菜
         }
     }
@@ -263,7 +269,11 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
                 mTableNumber = tableNumber ;
                 mDialog.show();
             }  else if(tableNumber.getCZZT().equals("I")){ // 点菜
-
+                Intent intent = new Intent(this, ColourNameListActivtiy.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(ColourNameListActivtiy.KEY , tableNumber);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         }
     }
