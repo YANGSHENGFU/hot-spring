@@ -1,5 +1,7 @@
 package com.restaurant.ui.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +26,9 @@ import java.util.HashMap;
 
 public class ColourNameListActivtiy extends BaseActivity implements VarietyDishesAPI.View<VarietyDishes> ,
         FoodCategoryAdapter.OnItemClickListener ,FoodInfoAdapter.OnItemClickListener {
+
+    public static String KEY_VD = "KEY_VD";
+    public static String KEY_I = "KEY_I";
 
 
     private String TAG = "ColourNameListActivtiy" ;
@@ -75,6 +80,7 @@ public class ColourNameListActivtiy extends BaseActivity implements VarietyDishe
 
         infoAdapter = new FoodInfoAdapter(this);
         recColourInfoList.setAdapter(infoAdapter);
+        infoAdapter.setListener(this);
     }
 
 
@@ -103,7 +109,26 @@ public class ColourNameListActivtiy extends BaseActivity implements VarietyDishe
     @Override
     public void onItmeClick(VarietyDishes vd, int i) {
         if(vd!=null){
+            Intent intent = new Intent(this,OrderActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(OrderActivity.KEY_VD , vd);
+            bundle.putInt(OrderActivity.KEY_I , i);
+            bundle.putString(OrderActivity.KEY_KRBH,tableNumber.getKRBH());
+            intent.putExtras(bundle);
+            startActivityForResult(intent , 500);
+        }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 500 && resultCode == Activity.RESULT_OK){
+            if(data!=null){
+                Bundle bundle = data.getExtras() ;
+                int i = bundle.getInt(KEY_I);
+                VarietyDishes vd = bundle.getParcelable(KEY_VD);
+                infoAdapter.upData(vd, i);
+            }
         }
     }
 }

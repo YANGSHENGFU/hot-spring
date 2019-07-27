@@ -39,6 +39,21 @@ public class FoodInfoAdapter extends RecyclerView.Adapter<FoodInfoAdapter.ViewHo
         notifyDataSetChanged();
     }
 
+    /***
+     * 更行某一项数据
+     * @param vd
+     * @param i
+     */
+    public void upData(VarietyDishes vd , int i ){
+        if(vd == null || (i<0) || i >=datas.size()){
+            return;
+        }
+        datas.remove(i);
+        datas.add(i, vd);
+        notifyDataSetChanged();
+
+    }
+
     public ArrayList<VarietyDishes> getDatas(){
         return datas;
     }
@@ -77,8 +92,9 @@ public class FoodInfoAdapter extends RecyclerView.Adapter<FoodInfoAdapter.ViewHo
         void onItmeClick(VarietyDishes vd , int i);
     }
 
-
-
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
@@ -93,6 +109,7 @@ public class FoodInfoAdapter extends RecyclerView.Adapter<FoodInfoAdapter.ViewHo
             foofIV = itemView.findViewById(R.id.image_view);
             foodNameTv = itemView.findViewById(R.id.name_tv);
             numberTv = itemView.findViewById(R.id.number_tv);
+            food_name_layout.setOnClickListener(this);
         }
 
 

@@ -118,12 +118,21 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <!--台号-->
+        <!--菜品列表-->
         <activity
             android:name="com.restaurant.ui.activity.ColourNameListActivtiy"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait">
         </activity>
+
+        <!--点菜-->
+        <activity
+            android:name="com.restaurant.ui.activity.OrderActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+
 
 
     </application>

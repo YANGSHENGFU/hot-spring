@@ -34,6 +34,8 @@ public class HttpConfig {
     public static String INTERFACE_FOOD_CHINES_LIST = "FoodCh/BmList?";
     public static String INTERFACE_FOOD_CHINES_VARIETY_OF_DISHES_LIST = "FoodCh/CddmList?";
 
+    public static String INTERFACE_FOOD_CHINES_ORDER ="FoodCh/XslsdAdd?";
+
 
     public static class Field{
 
@@ -78,6 +80,13 @@ public class HttpConfig {
         public static String pzrdm = "pzrdm";
         public static String zxbm = "zxbm";
         public static String krbh = "krbh";
+
+        public static String cddm = "cddm";
+        public static String sl = "sl";
+        public static String skbh = "skbh";
+        public static String skxm = "skxm";
+        public static String kw = "kw";
+        public static String zf = "zf";
 
 
 
