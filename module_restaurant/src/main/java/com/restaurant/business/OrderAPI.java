@@ -3,7 +3,7 @@ package com.restaurant.business;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class OrderAPI {
+public interface OrderAPI {
     int LOAD_MODLE_REFRASH = 1;
     int LOAD_MODLE_MORE = 2;
     int LOAD_MODLE_SEARCH = 3;

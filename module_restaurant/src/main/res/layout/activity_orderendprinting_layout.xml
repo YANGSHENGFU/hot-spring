@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff">
+
+    <include
+        android:id="@+id/title_include"
+        layout="@layout/include_title_layout"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/title_include"
+        android:id="@+id/recyc_view"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/print_tv"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="打 印"
+        android:gravity="center"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/color_666666"
+        android:textSize="@dimen/text_size_18sp"
+        android:background="@color/color_999999">
+
+    </TextView>
+
+</RelativeLayout>

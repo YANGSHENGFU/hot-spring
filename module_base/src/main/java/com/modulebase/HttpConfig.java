@@ -34,7 +34,9 @@ public class HttpConfig {
     public static String INTERFACE_FOOD_CHINES_LIST = "FoodCh/BmList?";
     public static String INTERFACE_FOOD_CHINES_VARIETY_OF_DISHES_LIST = "FoodCh/CddmList?";
 
-    public static String INTERFACE_FOOD_CHINES_ORDER ="FoodCh/XslsdAdd?";
+    public static String INTERFACE_FOOD_CHINES_ORDER = "FoodCh/XslsdAdd?";
+
+    public static String INTERFACE_FOOD_CHINES_GET_ORDER_RESTER = "FoodCh/XslsdList?";
 
 
     public static class Field{

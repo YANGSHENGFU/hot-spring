@@ -280,8 +280,12 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onItemClick(TableNumber tableNumber , int position) {
-        if(tableNumber!=null){
-
+        if(tableNumber!=null && tableNumber.getCZZT().equals("I")){
+            Intent intent = new Intent(this, OrderEndPrintingActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(OrderEndPrintingActivity.KEY_TN , tableNumber);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     }
 }

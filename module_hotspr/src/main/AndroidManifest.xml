@@ -132,6 +132,16 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <!--点菜结果打印-->
+        <activity
+            android:name="com.restaurant.ui.activity.OrderEndPrintingActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+
+
 
 
 

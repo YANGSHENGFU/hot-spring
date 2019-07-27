@@ -90,10 +90,6 @@ public class ColourNameListActivtiy extends BaseActivity implements VarietyDishe
     }
 
 
-    @Override
-    public void openTabelResult(VarietyDishes tabel) {
-
-    }
 
     @Override
     public void onItmeClick(FoodCategory fc) {
