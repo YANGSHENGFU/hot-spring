@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_ffffff">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/include_title_layout">
+    </include>
+
+    <RelativeLayout
+        android:id="@+id/phone_layout"
+        android:layout_below="@+id/title"
+        android:background="@color/color_666666"
+        android:layout_height="260dp"
+        android:layout_width="match_parent">
+
+        <ImageView
+            android:id="@+id/photo_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ImageView>
+
+        <TextView
+            android:background="@drawable/upload_phone_tv_background"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/uploadphoto_tv"
+            android:padding="5dp"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_size_20sp"
+            android:text="上传照片"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+
+        </TextView>
+
+    </RelativeLayout>
+
+    <EditText
+        android:layout_below="@+id/phone_layout"
+        android:layout_marginTop="10dp"
+        android:hint="输入备注"
+        android:textColor="@color/color_666666"
+        android:textColorHint="@color/color_666666"
+        android:id="@+id/remarks_et"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:maxHeight="100dp">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/confirm_tv"
+        android:background="@drawable/upload_phone_tv_background"
+        android:padding="5dp"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_size_20sp"
+        android:text="确认查房"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+    </TextView>
+
+</RelativeLayout>

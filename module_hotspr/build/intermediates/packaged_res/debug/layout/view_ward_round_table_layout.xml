@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:orientation="horizontal"
+    android:background="@color/color_ffffff">
+
+   <RelativeLayout
+       android:id="@+id/all_round_layout"
+       android:orientation="vertical"
+       android:layout_height="match_parent"
+       android:layout_width="0dp"
+       android:layout_weight="1">
+
+       <TextView
+           android:id="@+id/text_one"
+           android:text="全部房"
+           android:textSize="@dimen/text_size_18sp"
+           android:textColor="@color/color_666666"
+           android:gravity="center"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+       </TextView>
+
+       <View
+           android:id="@+id/all_round_line"
+           android:background="@color/color_D81B60"
+           android:layout_alignParentBottom="true"
+           android:layout_height="1dp"
+           android:layout_width="match_parent">
+       </View>
+
+   </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/clear_round_layout"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/text_two"
+            android:text="已查房"
+            android:textSize="@dimen/text_size_18sp"
+            android:textColor="@color/color_666666"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TextView>
+
+        <View
+            android:id="@+id/clear_round_line"
+            android:background="@color/color_ffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_height="1dp"
+            android:layout_width="match_parent">
+        </View>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/unclear_round_layout"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/text_three"
+            android:text="未查房"
+            android:textSize="@dimen/text_size_18sp"
+            android:textColor="@color/color_666666"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TextView>
+
+        <View
+            android:id="@+id/unclear_round_line"
+            android:background="@color/color_ffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_height="1dp"
+            android:layout_width="match_parent">
+        </View>
+
+    </RelativeLayout>
+
+</LinearLayout>

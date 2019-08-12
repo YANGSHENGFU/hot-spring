@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_shape_back"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/copntent_tv"
+        android:text="正在处理，请稍等..."
+        android:textSize="@dimen/text_size_18sp"
+        android:textColor="@color/color_3f3f3f"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+
+    <TextView
+        android:layout_gravity="right"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:text="知道了"
+        android:id="@+id/i_know"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/color_008aff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
