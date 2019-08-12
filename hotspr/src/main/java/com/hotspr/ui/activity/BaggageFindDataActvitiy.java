@@ -14,19 +14,15 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.presenter.LoginPresenter;
-import com.hotspr.toolkit.Base64Code;
 import com.hotspr.toolkit.FileHandle;
-import com.hotspr.toolkit.SharepreFHelp;
-import com.hotspr.ui.bean.Deposit;
+import com.modulebase.toolkit.SharepreFHelp;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.bean.User;
 import com.hotspr.ui.bean.Xl;
@@ -376,6 +372,35 @@ public class BaggageFindDataActvitiy extends BaseActivity implements View.OnClic
      */
     private void printing(){
         AidlUtil.getInstance().printQr(xlID , 8 ,3); // 打印二维码
+        AidlUtil.getInstance().printText("预约号："+reserva_order_no_et.getText().toString() , 30 , false , false );
+        AidlUtil.getInstance().printText("寄存人："+reserva_name_et.getText().toString(), 30 , false , false );
+        AidlUtil.getInstance().printText("手机号："+reserva_tel_et.getText().toString() , 30 , false , false );
+        AidlUtil.getInstance().printText("寄存日期："+mDeposit.getDate2() , 30 , false , false );
+        AidlUtil.getInstance().printText("寄存时间："+mDeposit.getTime2() , 30 , false , false );
+        AidlUtil.getInstance().printText("房间号："+round_room_et.getText().toString() , 30 , false , false );
+        AidlUtil.getInstance().printText("备  注："+mem1_et.getText().toString() , 30 , false , false );
+
+        //AidlUtil.getInstance().print2Line();
+
+        AidlUtil.getInstance().printText("登记人："+mDeposit.getOnduty1n() , 30 , false , false );
+        AidlUtil.getInstance().printText("登记日期："+mDeposit.getDate1() , 30 , false , false );
+        AidlUtil.getInstance().printText("登记时间："+mDeposit.getTime1() , 30 , false , false );
+
+        //AidlUtil.getInstance().print2Line();
+
+        AidlUtil.getInstance().printText("领取人："+mDeposit.getOnduty3n() , 30 , false , false );
+        AidlUtil.getInstance().printText("领取日期："+mDeposit.getDate3() , 30 , false , false );
+        AidlUtil.getInstance().printText("领取时间："+mDeposit.getTime3() , 30 , false , false );
+
+        if (mDeposit.getTag().equals("2") ){
+            AidlUtil.getInstance().printText("状态：登记" , 30 , false , false );
+        } else if (mDeposit.getTag().equals("1") ){
+            AidlUtil.getInstance().printText("状态：寄存" , 30 , false , false );
+        } else if (mDeposit.getTag().equals("0") ){
+            AidlUtil.getInstance().printText("状态：领取" , 30 , false , false );
+        }
+
+        AidlUtil.getInstance().print5Line();
     }
 
     @Override

@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -21,23 +20,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.api.LogingAPI;
 import com.hotspr.business.presenter.LoginPresenter;
 import com.hotspr.toolkit.FileHandle;
-import com.hotspr.toolkit.SharepreFHelp;
+import com.modulebase.toolkit.SharepreFHelp;
 import com.hotspr.ui.dialog.PermissionPromptDialog;
-import com.modulebase.log.LogF;
-import com.modulebase.toolkit.Compress;
 import com.modulebase.toolkit.FileUtils;
 import com.modulebase.ui.activity.BaseActivity;
 import com.sunmi.utils.AidlUtil;
 import com.sunmi.utils.BytesUtil;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, LogingAPI.View {

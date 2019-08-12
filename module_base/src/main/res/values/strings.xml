@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">appname</string>
     <string name="send_button">send</string>
     <!--<headler>-->
     <string name="listview_header_hint_normal">下拉刷新</string>

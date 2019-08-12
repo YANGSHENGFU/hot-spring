@@ -8,7 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.api.CleanRoundAPI;
 import com.hotspr.business.api.WardRoundPressenterAPI;

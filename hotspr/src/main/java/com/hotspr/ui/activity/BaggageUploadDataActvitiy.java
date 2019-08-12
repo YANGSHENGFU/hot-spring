@@ -20,12 +20,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.presenter.LoginPresenter;
 import com.hotspr.toolkit.Base64Code;
 import com.hotspr.toolkit.FileHandle;
-import com.hotspr.toolkit.SharepreFHelp;
+import com.modulebase.toolkit.SharepreFHelp;
 import com.hotspr.ui.bean.Deposit;
 import com.hotspr.ui.bean.Round;
 import com.hotspr.ui.bean.User;
@@ -350,10 +350,6 @@ public class BaggageUploadDataActvitiy extends BaseActivity implements View.OnCl
      */
     private void printing(){
         AidlUtil.getInstance().printQr(xlID , 8 ,3); // 打印二维码
-        reservaNumberEt.setText(mDeposit.getGROUPNO());
-        reservaNameEt.setText(mDeposit.getNAME());
-        reservaPhoneEt.setText(mDeposit.getTELE());
-        roundNumberEt.setText(mDeposit.getROOM());
         AidlUtil.getInstance().printText("预约号："+reservaNumberEt.getText().toString() , 30 , false , false );
         AidlUtil.getInstance().printText("寄存人："+reservaNameEt.getText().toString(), 30 , false , false );
         AidlUtil.getInstance().printText("手机号："+reservaPhoneEt.getText().toString() , 30 , false , false );

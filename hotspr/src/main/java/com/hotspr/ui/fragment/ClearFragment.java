@@ -11,10 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.hotspr.HttpConfig;
+import com.modulebase.HttpConfig;
 import com.hotspr.R;
 import com.hotspr.business.api.WardRoundPressenterAPI;
 import com.hotspr.business.presenter.ClearRoundPressenter;
@@ -31,7 +30,6 @@ import com.modulebase.view.recyclerview.recinterface.OnLoadMoreListener;
 import com.modulebase.view.recyclerview.recinterface.OnRefreshListener;
 import com.modulebase.view.recyclerview.view.LRecyclerView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.hotspr.R;
-import com.hotspr.toolkit.ActivityUtils;
+import com.modulebase.toolkit.ActivityUtils;
 import com.hotspr.ui.fragment.BaggageFindFragemnt;
 
 import com.modulebase.ui.activity.BaseActivity;

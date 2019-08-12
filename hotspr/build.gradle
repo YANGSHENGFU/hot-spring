@@ -31,4 +31,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':module_base')
     implementation files('libs/core-3.3.0.jar')
+    implementation project(':module_restaurant')
 }

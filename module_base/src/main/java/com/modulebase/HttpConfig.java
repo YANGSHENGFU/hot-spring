@@ -1,4 +1,4 @@
-package com.hotspr;
+package com.modulebase;
 
 public class HttpConfig {
 
@@ -25,6 +25,12 @@ public class HttpConfig {
     public static String INTERFACE_RESERVATION_QUERY = "Luggage/ReserveList?";
     public static String INTERFACE_RESERVATION_FIND = "Luggage/List?";
     public static String INTERFACE_LUGGAGE_QUERY="Luggage/List?";
+    public static String INTERFACE_DESK_NUMBER = "FoodCom/CzList?";
+    public static String INTERFACE_REGION = "FoodCom/CzTwsList?";
+    public static String INTERFACE_FLAVOR = "FoodCom/KwList?";
+    public static String INTERFACE_PROCESSING_METHOD = "FoodCom/ZfList?";
+    public static String INTERFACE_TABLE_INFO_CHIN = "FoodCh/CzList?";
+    public static String INTERFACE_OPEN_TABLE = "FoodCh/CkzkAdd?";
 
 
     public static class Field{
@@ -54,14 +60,20 @@ public class HttpConfig {
         public static String onduty3n = "onduty3n"; // 被安排清洁的人名字
         public static String class_new = "class_new" ; // 房间类型
 
-        public static String name = "name" ;
-        public static String tel = "tel" ;
-        public static String order_no = "order_no" ;
-        public static String memo1 = "memo1" ;
-        public static String xl_id = "xl_id" ;
+        public static String name = "name";
+        public static String tel = "tel";
+        public static String order_no = "order_no";
+        public static String memo1 = "memo1";
+        public static String xl_id = "xl_id";
         public static String kword = "kword";
         public static String mobile = "mobile";
-
+        public static String cxbm = "cxbm";
+        public static String tws = "tws"; // ctbm
+        public static String ctbm = "ctbm";
+        public static String czbm = "czbm";
+        public static String czmc = "czmc";
+        public static String rs = "rs";
+        public static String pzrdm = "pzrdm";
 
 
 
