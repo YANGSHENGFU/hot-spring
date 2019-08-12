@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/tv"
+        android:gravity="center"
+        android:background="@drawable/foodnamecategory_bg"
+        android:textColor="@color/color_666666"
+        android:text="dddd"
+        android:textSize="@dimen/text_size_16sp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+    </TextView>
+
+</LinearLayout>

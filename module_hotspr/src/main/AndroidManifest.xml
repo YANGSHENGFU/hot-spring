@@ -1,0 +1,150 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hotspr">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name="com.hotspr.app.HotSpringApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.hotspr.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+        <!--登录界面-->
+        <activity
+            android:name="com.hotspr.ui.activity.LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+
+        <!--用户选择权限管理界面-->
+        <activity
+            android:name="com.hotspr.ui.activity.UserRightsActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--查房列表界面-->
+        <activity
+            android:name="com.hotspr.ui.activity.WardRoundListInfoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--安排列表清洁-->
+        <activity
+            android:name="com.hotspr.ui.activity.ArrangeCleanListInfoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--查房-->
+        <activity
+            android:name="com.hotspr.ui.activity.WardRoundActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--安排清洁-->
+        <activity
+            android:name="com.hotspr.ui.activity.ArrangeCleaningActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--清洁房间-->
+        <activity
+            android:name="com.hotspr.ui.activity.CleanRoomListIfnoActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--不合格界面-->
+        <activity
+            android:name="com.hotspr.ui.activity.UnqualifiedActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--行李登记-->
+        <activity
+            android:name="com.hotspr.ui.activity.BaggageRegistrationActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--行李登记-上传数据-->
+        <activity
+            android:name="com.hotspr.ui.activity.BaggageUploadDataActvitiy"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--行李查询-->
+        <activity
+            android:name="com.hotspr.ui.activity.BaggageFindActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+        <!--行李操作-详情-->
+        <activity
+            android:name="com.hotspr.ui.activity.BaggageFindDataActvitiy"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+        <!--台号-->
+        <activity
+            android:name="com.restaurant.ui.activity.DeskNumberActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--菜品列表-->
+        <activity
+            android:name="com.restaurant.ui.activity.ColourNameListActivtiy"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--点菜-->
+        <activity
+            android:name="com.restaurant.ui.activity.OrderActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--点菜结果打印-->
+        <activity
+            android:name="com.restaurant.ui.activity.OrderEndPrintingActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+
+
+
+
+
+    </application>
+
+</manifest>

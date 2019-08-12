@@ -1,5 +1,6 @@
 package com.restaurant.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,7 +15,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.hotspr.toolkit.FileHandle;
+import com.hotspr.ui.bean.User;
 import com.modulebase.HttpConfig;
 import com.modulebase.log.LogF;
 import com.modulebase.toolkit.NetworkUtils;
@@ -31,7 +33,7 @@ import com.restaurant.business.common.PublicInfoHandle;
 import com.restaurant.toolkit.CacheHandle;
 import com.restaurant.ui.adapter.DeskNumberAdapter;
 import com.restaurant.ui.bean.TableNumber;
-
+import com.restaurant.ui.dialog.OpneTableDialog;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +50,10 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
     private DeskNumberAdapter mAdapter;
     private int page = 1;
     private int TOLTE_PAGE_NUMBER;
+    private OpneTableDialog mDialog;
+    private User user ;
+    private TableNumber mTableNumber;
+    private int mPosition ;// 当前点击的项
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +63,7 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
         findViewById();
         intiRecycView();
         loadData(TableNumberAPI.LOAD_MODLE_REFRASH , "" , page);
+        intiDialog();
     }
 
     private void findViewById() {
@@ -82,7 +89,9 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
         mPublicInfoHandle.getRegion(this, map); // 获取区域
         mPublicInfoHandle.getFlavor(this, null);// 获取口味
         mPublicInfoHandle.getProcessingMethod(this, null); // 获取加工方法
+        mPublicInfoHandle.getChinFoodCalss(this , null); // 获取菜品类别
         mPressenter = new TableNumberPressenter(this ,this);
+        user = FileHandle.getUser();
     }
 
 
@@ -124,8 +133,33 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
         });
     }
 
+    /**
+     * 开台
+     */
+    private void intiDialog(){
+        mDialog = new OpneTableDialog(this);
+        mDialog.setCancelable(true);
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.getOkText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(TextUtils.isEmpty(mDialog.getNumberString()) || mDialog.getNumberString().startsWith("0")){
+                    Toast.makeText(DeskNumberActivity.this , "请输入就餐人数", Toast.LENGTH_SHORT).show();
+                } else {
+                    mDialog.setOkTv(false);
+                    Map<String, String> map = new HashMap<>();
+                    map.put(HttpConfig.Field.czbm , mTableNumber.getCZBM());
+                    map.put(HttpConfig.Field.czmc , mTableNumber.getCZMC());
+                    map.put(HttpConfig.Field.pzrdm , user.getU_NAME());
+                    map.put(HttpConfig.Field.rs , mDialog.getNumberString());//就餐人数
+                    mPressenter.openTable(map); // 台开
+                }
+            }
+        });
+    }
 
-    @Override
+
+   @Override
     public void onClick(View v) {
         int id = v.getId();
         if(id ==R.id.region_img){
@@ -211,29 +245,47 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
      */
     @Override
     public void openTabelResult(TableNumber tabel) {
+        if(mDialog!=null && mDialog.isShowing()){
+            mDialog.dismiss();
+        }
+        mDialog.setOkTv(true);
         LogF.i("DeskNumberActivity", "TableNumber "+ tabel!=null?tabel.toString():"kong");
+        if(tabel!=null && tabel.getCZZT().equals("I")){
+            mAdapter.onUpData(mPosition , tabel);
+            Intent intent = new Intent(this, ColourNameListActivtiy.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(ColourNameListActivtiy.KEY , tabel);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            // 进入点菜
+        }
     }
 
     @Override
-    public void onClickOpenOrder(TableNumber tableNumber) {
+    public void onClickOpenOrder(final TableNumber tableNumber , int position) {
+        mPosition = position ;
         if(tableNumber!=null){
             if(tableNumber.getCZZT().equals("V")){ // 开台
-                Map<String, String> map = new HashMap<>();
-                map.put(HttpConfig.Field.czbm , tableNumber.getCZBM());
-                map.put(HttpConfig.Field.czmc , tableNumber.getCZMC());
-                map.put(HttpConfig.Field.pzrdm , "何雪");
-                map.put(HttpConfig.Field.rs , "5");
-                mPressenter.openTable(map);
+                mTableNumber = tableNumber ;
+                mDialog.show();
             }  else if(tableNumber.getCZZT().equals("I")){ // 点菜
-
+                Intent intent = new Intent(this, ColourNameListActivtiy.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(ColourNameListActivtiy.KEY , tableNumber);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         }
     }
 
     @Override
-    public void onItemClick(TableNumber tableNumber) {
-        if(tableNumber!=null){
-
+    public void onItemClick(TableNumber tableNumber , int position) {
+        if(tableNumber!=null && tableNumber.getCZZT().equals("I")){
+            Intent intent = new Intent(this, OrderEndPrintingActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(OrderEndPrintingActivity.KEY_TN , tableNumber);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     }
 }
