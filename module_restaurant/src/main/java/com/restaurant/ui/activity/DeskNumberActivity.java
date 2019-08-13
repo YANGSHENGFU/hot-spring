@@ -166,7 +166,7 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
             initrtypePopupWindow();
         } else if(id ==R.id.search_tv){
             page = 1; // 复位
-            loadData(TableNumberAPI.LOAD_MODLE_REFRASH,searchTv.getText().toString(),page);
+            loadData(TableNumberAPI.LOAD_MODLE_REFRASH,regionEt.getText().toString(),page);
         }
     }
 
@@ -201,9 +201,9 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
      * 加载数据
      */
     private void loadData(int mode , String tws , int page){
-        if(!TextUtils.isEmpty(tws)){
+       if(!TextUtils.isEmpty(tws)){
             Map<String, String> map = new HashMap<>();
-            map.put(HttpConfig.Field.tws, "1");
+            map.put(HttpConfig.Field.tws, tws);
             mPressenter.loadData(mode,page,map);
         } else {
             mPressenter.loadData(mode,page,null);

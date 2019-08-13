@@ -66,8 +66,10 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
         viewHolder.tableNumberTv.setText("台号：" + t.getCZBM());
         if(t.getCZZT().equals("V")){
             viewHolder.openOrderTv.setText("开 台");
+            viewHolder.stateTv.setBackgroundResource(R.drawable.check_round_light_unclear);
         } else if(t.getCZZT().equals("I")){
             viewHolder.openOrderTv.setText("点 菜");
+            viewHolder.stateTv.setBackgroundResource(R.drawable.check_round_light_leave);
         }
     }
 
