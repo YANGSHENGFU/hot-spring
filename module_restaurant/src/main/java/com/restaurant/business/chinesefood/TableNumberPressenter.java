@@ -80,6 +80,7 @@ public class TableNumberPressenter implements TableNumberAPI.Pressente {
                             table.setCZZT(res.getString("CZZT"));
                             table.setCZMC(res.getString("CZMC"));
                             table.setKRBH(res.getString("KRBH"));
+                            table.setCTMC(res.getString("CTMC"));
                             datas.add(table);
                         }
                     }

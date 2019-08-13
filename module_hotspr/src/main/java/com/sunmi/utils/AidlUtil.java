@@ -245,6 +245,43 @@ public class AidlUtil {
 
     }
 
+    /**
+     *打印文字5个参数
+     * @param content 打印的内容
+     * @param size 文字大小
+     * @param isBold 是否加粗
+     * @param isUnderLine  下划线
+     * @param Alig  靠左：0，居中:1,靠右:2
+     */
+    public void printText5(String content, float size, boolean isBold, boolean isUnderLine ,int Alig) {
+        if (woyouService == null) {
+            Toast.makeText(context, R.string.toast_2,Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try {
+            /**靠左*/
+            woyouService.setAlignment(Alig, null);
+            /**加粗*/
+            if (isBold) {
+                woyouService.sendRAWData(ESCUtil.boldOn(), null);
+            } else {
+                woyouService.sendRAWData(ESCUtil.boldOff(), null);
+            }
+            /**下划线*/
+            if (isUnderLine) {
+                woyouService.sendRAWData(ESCUtil.underlineWithOneDotWidthOn(), null);
+            } else {
+                woyouService.sendRAWData(ESCUtil.underlineOff(), null);
+            }
+            woyouService.printTextWithFont(content, null, size, null);
+            woyouService.lineWrap(1, null);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     /*
     *打印图片
      */

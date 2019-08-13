@@ -9,18 +9,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.modulebase.HttpConfig;
+import com.modulebase.log.Log;
 import com.modulebase.log.LogF;
 import com.modulebase.ui.activity.BaseActivity;
 import com.restaurant.R;
 import com.restaurant.business.OrderResultAPI;
 import com.restaurant.business.chinesefood.OrderResultPressenter;
 import com.restaurant.ui.adapter.OrdreResultAdapter;
+import com.restaurant.ui.bean.OrderResult;
 import com.restaurant.ui.bean.TableNumber;
+import com.sunmi.utils.AidlUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OrderEndPrintingActivity extends BaseActivity implements  View.OnClickListener , OrderResultAPI.View {
+public class OrderEndPrintingActivity extends BaseActivity implements  View.OnClickListener , OrderResultAPI.View , OrdreResultAdapter.OnClickListener{
 
 
     public static String KEY_TN = "KEY_TN" ;
@@ -36,6 +39,7 @@ public class OrderEndPrintingActivity extends BaseActivity implements  View.OnCl
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orderendprinting_layout);
+
         findViewByID();
         init();
     }
@@ -49,7 +53,7 @@ public class OrderEndPrintingActivity extends BaseActivity implements  View.OnCl
         });
         recView = findViewById(R.id.recyc_view);
         prinitTv = findViewById(R.id.print_tv);
-
+        prinitTv.setOnClickListener(this);
     }
 
     private void init(){
@@ -68,10 +72,36 @@ public class OrderEndPrintingActivity extends BaseActivity implements  View.OnCl
 
     @Override
     public void onClick(View v) {
+
         int id = v.getId();
-        if(id == R.id.print_tv){
+        if (id == R.id.print_tv) {
             // 调用打印方法
+            String str_title = String.format("%s,名称:%s,台号:%s", tableNumber.getCTMC(), tableNumber.getCZMC(), tableNumber.getCZBM());
+            AidlUtil.getInstance().printText5(str_title, 30, false, false, 1);
+            String str_print_content = "";
+            for (OrderResult data_item : mAdapter.datas) {
+                str_print_content = str_print_content + data_item.getSL() + " X ";
+                str_print_content = str_print_content + data_item.getMC();
+
+//            str_print_content=str_print_content+String.format("%-13S X ",data_item.getMC());
+//            str_print_content=str_print_content+data_item.getSL();
+
+                str_print_content = str_print_content + "\r\n";
+                //  str_print_content=str_print_content
+                //AidlUtil.getInstance().printText(data_item.getSL() , 30 , false , false );
+            }
+            AidlUtil.getInstance().printText5(str_print_content, 25, false, false, 0);
+            // AidlUtil.getInstance().printText("预约号：\r\n夏洪" , 30 , false , false );
+
+            AidlUtil.getInstance().print5Line();
         }
+    }
+    @Override
+    //public void onItemPrintClick(final OrderResult ordata , int position) {
+        public void onClickPintItem() {
+        // 调用打印方法
+        String str_title = String.format("%s,名称:%s,台号:%s", tableNumber.getCTMC(), tableNumber.getCZMC(), tableNumber.getCZBM());
+        AidlUtil.getInstance().printText5(str_title, 30, false, false, 1);
     }
 
     @Override
