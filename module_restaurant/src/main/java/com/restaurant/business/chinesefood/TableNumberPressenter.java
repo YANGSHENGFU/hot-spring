@@ -75,9 +75,11 @@ public class TableNumberPressenter implements TableNumberAPI.Pressente {
                         for (int i = 0; i < resDataList.length(); i++) {
                             JSONObject res = (JSONObject) resDataList.get(i);
                             TableNumber table = new TableNumber();
+                            table.setCTBM(res.getString("CTBM"));
                             table.setCZBM(res.getString("CZBM"));
                             table.setCZZT(res.getString("CZZT"));
                             table.setCZMC(res.getString("CZMC"));
+                            table.setKRBH(res.getString("KRBH"));
                             datas.add(table);
                         }
                     }

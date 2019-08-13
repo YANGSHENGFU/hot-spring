@@ -74,11 +74,13 @@ public class FoodInfoAdapter extends RecyclerView.Adapter<FoodInfoAdapter.ViewHo
         LogF.i("TAGURL" , "URL = "+ vd.getPicture_path());
         Picasso.with(mContext).load(HttpConfig.PIC_HOST_NAME+ vd.getPicture_path()).into(viewHolder.foofIV);
         viewHolder.foodNameTv.setText(vd.getMC());
-        if(vd.getSLOrder().equals("0")){
+       if(vd.getSLOrder().toString().equals("0")&&1==2 ){
             viewHolder.numberTv.setVisibility(View.GONE);
         } else {
             viewHolder.numberTv.setText(vd.getSLOrder() + " 份");
         }
+
+
     }
 
     @Override

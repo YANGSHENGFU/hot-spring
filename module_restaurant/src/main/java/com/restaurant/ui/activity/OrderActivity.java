@@ -16,6 +16,7 @@ import com.hotspr.business.presenter.LoginPresenter;
 import com.hotspr.toolkit.FileHandle;
 import com.hotspr.ui.bean.User;
 import com.modulebase.HttpConfig;
+import com.modulebase.log.LogF;
 import com.modulebase.ui.activity.BaseActivity;
 import com.restaurant.R;
 import com.restaurant.business.OrderAPI;
@@ -136,7 +137,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
             if(mNumber<=0){
 
             } else {
-                orderTv.setClickable(false);
+               orderTv.setClickable(false);
                 HashMap<String, String> params = new HashMap<>();
                 params.put(HttpConfig.Field.cddm , vd.getCDDM());
                 params.put(HttpConfig.Field.krbh , krbh);
@@ -144,10 +145,10 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
                 params.put(HttpConfig.Field.skbh , user.getUser_id());
                 params.put(HttpConfig.Field.skxm , user.getU_NAME());
 
-                if(TextUtils.isEmpty(flavorEt.getText().toString())){
+                if(!TextUtils.isEmpty(flavorEt.getText().toString())){
                     params.put(HttpConfig.Field.kw , flavorEt.getText().toString());
                 }
-                if(TextUtils.isEmpty(handleEt.getText().toString())){
+                if(!TextUtils.isEmpty(handleEt.getText().toString())){
                     params.put(HttpConfig.Field.zf ,handleEt.getText().toString());
                 }
                 mPressenter.loadData(params);
