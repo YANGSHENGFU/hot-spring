@@ -75,6 +75,7 @@ public class VarietyDishesPressenter implements VarietyDishesAPI.Pressente {
                             table.setPicture_path(res.getString("picture_path"));
                             table.setSLOrder(res.getString("SLOrder"));
                             table.setCDDM(res.getString("CDDM"));
+                            table.setLSJG(res.getString("LSJG"));//LQL
                             datas.add(table);
                         }
                     }

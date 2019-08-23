@@ -64,6 +64,8 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
             return;
         }
         viewHolder.tableNumberTv.setText("台号：" + t.getCZBM());
+        viewHolder.round_number_tv.setText(t.getTWS());//LQL
+        viewHolder.tableRsTv.setText("人数：" + t.getRS());
         if(t.getCZZT().equals("V")){
             viewHolder.openOrderTv.setText("开 台");
             viewHolder.stateTv.setBackgroundResource(R.drawable.check_round_light_unclear);
@@ -77,7 +79,9 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
 
         private LinearLayout tableLayout;
         private TextView stateTv;
-        private TextView tableNumberTv;
+        private TextView round_number_tv;   //区域
+        private TextView tableNumberTv; //台号
+        private TextView tableRsTv; //人数
         private TextView openOrderTv;
 
         public ViewHolder(@NonNull View itemView) {
@@ -85,7 +89,9 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
             tableLayout = itemView.findViewById(R.id.table_layout);
             openOrderTv = itemView.findViewById(R.id.open_order_tv);
             stateTv = itemView.findViewById(R.id.state_tv);
+            round_number_tv = itemView.findViewById(R.id.round_number_tv);//LQL
             tableNumberTv = itemView.findViewById(R.id.table_number_tv);
+            tableRsTv = itemView.findViewById(R.id.table_rs_tv);
             tableLayout.setOnClickListener(this);
             openOrderTv.setOnClickListener(this);
         }

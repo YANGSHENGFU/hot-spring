@@ -22,20 +22,20 @@ import java.util.ArrayList;
 
 public class FoodInfoAdapter extends RecyclerView.Adapter<FoodInfoAdapter.ViewHolder> {
 
-    private Context mContext ;
+    private Context mContext;
 
-    private ArrayList<VarietyDishes> datas ;
+    private ArrayList<VarietyDishes> datas;
 
-    public FoodInfoAdapter(Context context){
-        mContext = context ;
+    public FoodInfoAdapter(Context context) {
+        mContext = context;
         datas = new ArrayList();
     }
 
 
-    public void addData(ArrayList<VarietyDishes> data ){
+    public void addData(ArrayList<VarietyDishes> data) {
         datas.clear();
         datas.addAll(data);
-        datas = data ;
+        datas = data;
         notifyDataSetChanged();
     }
 
@@ -44,8 +44,8 @@ public class FoodInfoAdapter extends RecyclerView.Adapter<FoodInfoAdapter.ViewHo
      * @param vd
      * @param i
      */
-    public void upData(VarietyDishes vd , int i ){
-        if(vd == null || (i<0) || i >=datas.size()){
+    public void upData(VarietyDishes vd, int i) {
+        if (vd == null || (i < 0) || i >= datas.size()) {
             return;
         }
         datas.remove(i);
@@ -54,56 +54,61 @@ public class FoodInfoAdapter extends RecyclerView.Adapter<FoodInfoAdapter.ViewHo
 
     }
 
-    public ArrayList<VarietyDishes> getDatas(){
+    public ArrayList<VarietyDishes> getDatas() {
         return datas;
     }
 
     @NonNull
     @Override
     public FoodInfoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recyc_item_food_info_list_layout ,null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.recyc_item_food_info_list_layout, null);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FoodInfoAdapter.ViewHolder viewHolder, int i) {
         VarietyDishes vd = datas.get(i);
-        if(vd == null){
+        if (vd == null) {
             return;
         }
-        LogF.i("TAGURL" , "URL = "+ vd.getPicture_path());
-        Picasso.with(mContext).load(HttpConfig.PIC_HOST_NAME+ vd.getPicture_path()).into(viewHolder.foofIV);
+        LogF.i("TAGURL", "URL = " + vd.getPicture_path());
+        Picasso.with(mContext).load(HttpConfig.PIC_HOST_NAME + vd.getPicture_path()).into(viewHolder.foofIV);
         viewHolder.foodNameTv.setText(vd.getMC());
-       if(vd.getSLOrder().toString().equals("0")&&1==2 ){
+        if (vd.getSLOrder().toString().equals("0") && 1 == 2) {
             viewHolder.numberTv.setVisibility(View.GONE);
         } else {
             viewHolder.numberTv.setText(vd.getSLOrder() + " 份");
         }
 
-
+        //LQL
+        String price = "";
+        if(vd.getLSJG()!=null)
+            price = vd.getLSJG();
+        viewHolder.priceTv.setText("¥：" + price);
     }
 
     @Override
     public int getItemCount() {
-        return datas!=null?datas.size():0;
+        return datas != null ? datas.size() : 0;
     }
 
-    public OnItemClickListener listener ;
+    public OnItemClickListener listener;
 
-    public interface OnItemClickListener{
-        void onItmeClick(VarietyDishes vd , int i);
+    public interface OnItemClickListener {
+        void onItmeClick(VarietyDishes vd, int i);
     }
 
     public void setListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private LinearLayout food_name_layout;
         private ImageView foofIV;
         private TextView foodNameTv;
         private TextView numberTv;
+        private TextView priceTv;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -111,17 +116,18 @@ public class FoodInfoAdapter extends RecyclerView.Adapter<FoodInfoAdapter.ViewHo
             foofIV = itemView.findViewById(R.id.image_view);
             foodNameTv = itemView.findViewById(R.id.name_tv);
             numberTv = itemView.findViewById(R.id.number_tv);
+            priceTv = itemView.findViewById(R.id.price_tv);
             food_name_layout.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == R.id.food_name_layout){
-                if(listener!=null){
+            if (v.getId() == R.id.food_name_layout) {
+                if (listener != null) {
                     int i = getAdapterPosition();
                     VarietyDishes vd = datas.get(i);
-                    listener.onItmeClick(vd , i);
+                    listener.onItmeClick(vd, i);
                 }
             }
         }
