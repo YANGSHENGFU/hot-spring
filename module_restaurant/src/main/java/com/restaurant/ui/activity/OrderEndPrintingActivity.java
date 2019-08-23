@@ -36,7 +36,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class OrderEndPrintingActivity extends BaseActivity implements  View.OnClickListener , OrderResultAPI.View , OrdreResultAdapter.OnClickListener{
+public class OrderEndPrintingActivity extends BaseActivity implements  View.OnClickListener ,
+        OrderResultAPI.View , OrdreResultAdapter.OnClickListener{
 
 
     public static String KEY_TN = "KEY_TN" ;
@@ -79,6 +80,7 @@ public class OrderEndPrintingActivity extends BaseActivity implements  View.OnCl
         mAdapter = new OrdreResultAdapter(this);
         recView.setLayoutManager(new LinearLayoutManager(this));
         recView.setAdapter(mAdapter);
+        mAdapter.setOnClickListener(this);
         mPressenter = new OrderResultPressenter(this,this);
 
 
@@ -116,9 +118,24 @@ public class OrderEndPrintingActivity extends BaseActivity implements  View.OnCl
             sendKitchen();
         }
     }
+
     @Override
-    //public void onItemPrintClick(final OrderResult ordata , int position) {
-        public void onClickPintItem() {
+    public void onClickPintItem(OrderResult ordata, int position) {
+        String str_title = String.format("%s,台号:%s", ordata.getCTMC(), ordata.getCZDM());
+        AidlUtil.getInstance().printText5(str_title, 30, false, false, 1);
+
+        String str_print_content = "";
+
+        str_print_content = str_print_content + ordata.getSL() + " X ";
+        str_print_content = str_print_content + ordata.getMC();
+        str_print_content = str_print_content + "\r\n";
+        str_print_content = str_print_content + "\r\n";
+        str_print_content = str_print_content + "\r\n";
+        AidlUtil.getInstance().printText5(str_print_content, 25, false, false, 0);
+    }
+
+    @Override
+    public void onClickPintItem() {
         // 调用打印方法
         String str_title = String.format("%s,名称:%s,台号:%s", tableNumber.getCTMC(), tableNumber.getCZMC(), tableNumber.getCZBM());
         AidlUtil.getInstance().printText5(str_title, 30, false, false, 1);

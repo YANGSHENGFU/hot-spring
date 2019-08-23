@@ -64,28 +64,14 @@ public class OrdreResultAdapter extends RecyclerView.Adapter<OrdreResultAdapter.
         @Override
         public void onClick(View v) {
             int id = v.getId();
-
-//            if(mOnClickListener == null){
-//                return;
-//            }
-            int position = getAdapterPosition();
-           OrderResult ordata = datas.get(position);
             if(id == R.id.tv_bt){
+                int position = getAdapterPosition();
+                OrderResult ordata = datas.get(position);
                 // 调用打印方法
-                String str_title = String.format("%s,台号:%s", ordata.getCTMC(), ordata.getCZDM());
-                AidlUtil.getInstance().printText5(str_title, 30, false, false, 1);
-
-                String str_print_content = "";
-
-                    str_print_content = str_print_content + ordata.getSL() + " X ";
-                    str_print_content = str_print_content + ordata.getMC();
-                str_print_content = str_print_content + "\r\n";
-                str_print_content = str_print_content + "\r\n";
-                str_print_content = str_print_content + "\r\n";
-                AidlUtil.getInstance().printText5(str_print_content, 25, false, false, 0);
-
-               //mOnClickListener.onClickPintItem(ordata , position);
-             //   mOnClickListener.onClickPintItem();
+                if(mOnClickListener!=null && ordata!=null){
+                    mOnClickListener.onClickPintItem(ordata , position);
+                    mOnClickListener.onClickPintItem();
+                }
             }
         }
 
@@ -96,7 +82,7 @@ public class OrdreResultAdapter extends RecyclerView.Adapter<OrdreResultAdapter.
         mOnClickListener = onClickListener;
     }
     public interface OnClickListener{
-      //  void onClickPintItem( OrderResult ordata , int position);
+        void onClickPintItem( OrderResult ordata , int position);
         void onClickPintItem( );
     }
 
