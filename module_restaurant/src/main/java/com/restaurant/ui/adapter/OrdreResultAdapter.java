@@ -1,6 +1,7 @@
 package com.restaurant.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,16 +18,16 @@ import java.util.ArrayList;
 
 public class OrdreResultAdapter extends RecyclerView.Adapter<OrdreResultAdapter.ViewHolder> {
 
-    private Context mContext ;
+    private Context mContext;
 
-    public ArrayList<OrderResult> datas ;
+    public ArrayList<OrderResult> datas;
 
-    public OrdreResultAdapter (Context context){
+    public OrdreResultAdapter(Context context) {
         mContext = context;
         datas = new ArrayList();
     }
 
-    public void addDatas( ArrayList<OrderResult> data){
+    public void addDatas(ArrayList<OrderResult> data) {
         datas.clear();
         datas.addAll(data);
         notifyDataSetChanged();
@@ -34,25 +35,27 @@ public class OrdreResultAdapter extends RecyclerView.Adapter<OrdreResultAdapter.
 
     @Override
     public int getItemCount() {
-        return datas!=null?datas.size():0;
+        return datas != null ? datas.size() : 0;
     }
 
     @NonNull
     @Override
     public OrdreResultAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recyc_item_order_result_layout, null );
+        View view = LayoutInflater.from(mContext).inflate(R.layout.recyc_item_order_result_layout, null);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull OrdreResultAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.tv.setText(datas.get(i).getSL()+" X "+datas.get(i).getMC() );
+        viewHolder.tv.setText(String.format("%2s", datas.get(i).getSL()) +" "+ String.format("%6s", "¥"+datas.get(i).getLSJG()) +"  "+ datas.get(i).getMC());
+        if (datas.get(i).getFLAG() == null || !"Y".equals(datas.get(i).getFLAG().toUpperCase()))
+            viewHolder.tv.setTextColor(Color.BLUE);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tv ;
-        private TextView tv_bt ;
+        private TextView tv;
+        private TextView tv_bt;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -61,31 +64,34 @@ public class OrdreResultAdapter extends RecyclerView.Adapter<OrdreResultAdapter.
             tv_bt = itemView.findViewById(R.id.tv_bt);
             tv_bt.setOnClickListener(this);
         }
+
         @Override
         public void onClick(View v) {
             int id = v.getId();
-            if(id == R.id.tv_bt){
+            if (id == R.id.tv_bt) {
                 int position = getAdapterPosition();
                 OrderResult ordata = datas.get(position);
                 // 调用打印方法
-                if(mOnClickListener!=null && ordata!=null){
-                    mOnClickListener.onClickPintItem(ordata , position);
+                if (mOnClickListener != null && ordata != null) {
+                    mOnClickListener.onClickPintItem(ordata, position);
                     mOnClickListener.onClickPintItem();
                 }
             }
         }
 
     }
+
     public OnClickListener mOnClickListener;
 
-    public void setOnClickListener(OnClickListener onClickListener){
+    public void setOnClickListener(OnClickListener onClickListener) {
         mOnClickListener = onClickListener;
     }
-    public interface OnClickListener{
-        void onClickPintItem( OrderResult ordata , int position);
-        void onClickPintItem( );
-    }
 
+    public interface OnClickListener {
+        void onClickPintItem(OrderResult ordata, int position);
+
+        void onClickPintItem();
+    }
 
 
 }

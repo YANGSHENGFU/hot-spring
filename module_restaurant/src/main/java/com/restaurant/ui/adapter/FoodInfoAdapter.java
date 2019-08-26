@@ -114,6 +114,7 @@ public class FoodInfoAdapter extends RecyclerView.Adapter<FoodInfoAdapter.ViewHo
             super(itemView);
             food_name_layout = itemView.findViewById(R.id.food_name_layout);
             foofIV = itemView.findViewById(R.id.image_view);
+            foofIV.setAdjustViewBounds(true);
             foodNameTv = itemView.findViewById(R.id.name_tv);
             numberTv = itemView.findViewById(R.id.number_tv);
             priceTv = itemView.findViewById(R.id.price_tv);

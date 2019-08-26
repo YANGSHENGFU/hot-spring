@@ -80,6 +80,8 @@ public class OrderResultPressenter implements OrderResultAPI.Pressente {
                             table.setSL(res.getString("SL"));
                             table.setCTMC(res.getString("CTMC"));
                             table.setCZDM(res.getString("SL"));
+                            table.setLSJG(res.getString("LSJG"));
+                            table.setFLAG(res.getString("FLAG"));
                             datas.add(table);
                         }
                     }

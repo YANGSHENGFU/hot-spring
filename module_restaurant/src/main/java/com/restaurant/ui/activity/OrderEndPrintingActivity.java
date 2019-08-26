@@ -44,7 +44,7 @@ public class OrderEndPrintingActivity extends BaseActivity implements  View.OnCl
 
     private RecyclerView recView;
     private TextView prinitTv ;
-    private TextView sendkitchenTv ;
+    private TextView sendkitchenTv, sendkitchen2Tv ;
     private TextView statusTv ;
     private OrdreResultAdapter mAdapter;
     private OrderResultPressenter mPressenter ;
@@ -70,9 +70,11 @@ public class OrderEndPrintingActivity extends BaseActivity implements  View.OnCl
         recView = findViewById(R.id.recyc_view);
         prinitTv = findViewById(R.id.print_tv);
         sendkitchenTv = findViewById(R.id.sendkitchen_tv);
+        sendkitchen2Tv = findViewById(R.id.sendkitchen2_tv);
         statusTv = findViewById(R.id.status_tv);
         prinitTv.setOnClickListener(this);
         sendkitchenTv.setOnClickListener(this);
+        sendkitchen2Tv.setOnClickListener(this);
     }
 
     private void init(){
@@ -114,7 +116,7 @@ public class OrderEndPrintingActivity extends BaseActivity implements  View.OnCl
             // AidlUtil.getInstance().printText("预约号：\r\n夏洪" , 30 , false , false );
 
             AidlUtil.getInstance().print5Line();
-        }else if (id == R.id.sendkitchen_tv) {
+        }else if (id == R.id.sendkitchen_tv||id == R.id.sendkitchen2_tv) {
             sendKitchen();
         }
     }

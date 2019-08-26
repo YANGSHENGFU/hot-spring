@@ -16,12 +16,11 @@
 
         <TextView
             android:id="@+id/print_tv"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="10dp"
-            android:background="#F44336"
             android:gravity="center"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
@@ -32,17 +31,31 @@
 
         <TextView
             android:id="@+id/sendkitchen_tv"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="10dp"
             android:layout_toRightOf="@id/print_tv"
-            android:background="#00BCD4"
             android:gravity="center"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
             android:text="送厨房"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_18sp">
+        </TextView>
+        <TextView
+            android:id="@+id/sendkitchen2_tv"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/sendkitchen_tv"
+            android:gravity="center"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="加 急"
             android:textColor="@color/color_666666"
             android:textSize="@dimen/text_size_18sp">
         </TextView>
@@ -51,7 +64,7 @@
             android:id="@+id/status_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/sendkitchen_tv"
+            android:layout_toRightOf="@id/sendkitchen2_tv"
             android:text="TextView"
             android:textColor="#3F51B5"
             android:visibility="invisible"
