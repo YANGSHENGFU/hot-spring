@@ -156,6 +156,12 @@ public class DeskNumberActivity extends BaseActivity implements View.OnClickList
                 }
             }
         });
+        mDialog.getCancelText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.dismiss();
+            }
+        });
     }
 
 

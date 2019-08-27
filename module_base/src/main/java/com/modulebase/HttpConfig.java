@@ -39,6 +39,7 @@ public class HttpConfig {
 
     public static String INTERFACE_FOOD_CHINES_GET_ORDER_RESTER = "FoodCh/XslsdList?";
 
+    public static String INTERFACE_USER_MESSAGE = "UserInter/GetUserMessage?";
 
     public static class Field{
 

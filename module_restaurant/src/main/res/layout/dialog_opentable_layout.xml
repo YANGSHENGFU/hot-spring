@@ -21,19 +21,42 @@
     </EditText>
 
 
-    <TextView
-        android:id="@+id/ok_tv"
-        android:layout_marginTop="20dp"
-        android:text="确 认"
-        android:textSize="@dimen/text_size_16sp"
-        android:textColor="@color/color_666666"
-        android:background="@color/color_999999"
-        android:gravity="center"
-        android:paddingBottom="3dp"
-        android:paddingTop="3dp"
-        android:layout_height="wrap_content"
-        android:layout_width="80dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
 
-    </TextView>
+        <TextView
+            android:id="@+id/ok_tv"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/color_999999"
+            android:gravity="center"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="确 认"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_16sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/cancel_tv"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/color_999999"
+            android:gravity="center"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="取 消"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_16sp">
+
+        </TextView>
+
+    </LinearLayout>
 
 </LinearLayout>

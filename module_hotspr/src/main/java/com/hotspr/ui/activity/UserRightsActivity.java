@@ -22,6 +22,7 @@ import com.modulebase.HttpConfig;
 import com.modulebase.log.LogF;
 import com.modulebase.okhttp.JsonResponseHandler;
 import com.modulebase.okhttp.MyOkHttp;
+import com.modulebase.toolkit.MessageTimer;
 import com.modulebase.toolkit.SharepreFHelp;
 import com.modulebase.toolkit.sort.SortTools;
 import com.modulebase.ui.activity.BaseActivity;
@@ -81,6 +82,9 @@ public class UserRightsActivity extends BaseActivity implements View.OnClickList
         });
         initData();
         loadingBaseDataArr();
+
+        MessageTimer messageTimer = new MessageTimer(this, 10000,WardRoundListInfoActivity.class,ArrangeCleanListInfoActivity.class);
+        messageTimer.start();
     }
 
     private void initData() {
