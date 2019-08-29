@@ -77,6 +77,7 @@ public class VarietyDishes implements Parcelable {
     private String y1;
     private String z;
     private String z1;
+    private String ff_tag;
     private String picture_path;
     private String SLOrder;
 
@@ -156,6 +157,7 @@ public class VarietyDishes implements Parcelable {
         y1 = in.readString();
         z = in.readString();
         z1 = in.readString();
+        ff_tag = in.readString();
         picture_path = in.readString();
         SLOrder = in.readString();
     }
@@ -171,6 +173,14 @@ public class VarietyDishes implements Parcelable {
             return new VarietyDishes[size];
         }
     };
+
+    public String getFf_tag() {
+        return ff_tag;
+    }
+
+    public void setFf_tag(String ff_tag) {
+        this.ff_tag = ff_tag;
+    }
 
     public String getRownum() {
         return rownum;
@@ -839,6 +849,7 @@ public class VarietyDishes implements Parcelable {
                 ", y1='" + y1 + '\'' +
                 ", z='" + z + '\'' +
                 ", z1='" + z1 + '\'' +
+                ", ff_tag='" + ff_tag + '\'' +
                 ", picture_path='" + picture_path + '\'' +
                 ", SLOrder='" + SLOrder + '\'' +
                 '}';
@@ -923,6 +934,7 @@ public class VarietyDishes implements Parcelable {
         dest.writeString(y1);
         dest.writeString(z);
         dest.writeString(z1);
+        dest.writeString(ff_tag);
         dest.writeString(picture_path);
         dest.writeString(SLOrder);
     }

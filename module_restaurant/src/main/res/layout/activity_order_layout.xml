@@ -81,6 +81,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/flavor_ll"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
@@ -88,7 +89,8 @@
                 android:layout_marginRight="10dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="invisible">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -119,17 +121,20 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
-                android:numColumns="3">
+                android:numColumns="3"
+                android:visibility="invisible">
 
             </GridView>
 
             <LinearLayout
+                android:id="@+id/handle_ll"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="invisible">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -160,7 +165,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
-                android:numColumns="3">
+                android:numColumns="3"
+                android:visibility="invisible">
 
             </GridView>
 

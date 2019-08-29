@@ -76,6 +76,7 @@ public class VarietyDishesPressenter implements VarietyDishesAPI.Pressente {
                             table.setSLOrder(res.getString("SLOrder"));
                             table.setCDDM(res.getString("CDDM"));
                             table.setLSJG(res.getString("LSJG"));//LQL
+                            table.setFf_tag(res.getString("ff_tag"));
                             datas.add(table);
                         }
                     }

@@ -12,7 +12,8 @@
         android:id="@+id/tools_rl"
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:layout_below="@+id/title_include">
+        android:layout_below="@+id/title_include"
+        android:layout_marginTop="5dp">
 
         <TextView
             android:id="@+id/print_tv"
@@ -126,15 +127,15 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/status_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/sendkitchen2_tv"
-            android:text="TextView"
-            android:textColor="#3F51B5"
-            android:textSize="@dimen/text_size_18sp"
-            android:visibility="invisible"></TextView>
+        <!--<TextView-->
+            <!--android:id="@+id/status_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_toRightOf="@id/sendkitchen2_tv"-->
+            <!--android:text=""-->
+            <!--android:textColor="#3F51B5"-->
+            <!--android:textSize="@dimen/text_size_18sp"-->
+            <!--android:visibility="invisible"></TextView>-->
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

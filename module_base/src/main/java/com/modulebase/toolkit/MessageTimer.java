@@ -36,7 +36,7 @@ public class MessageTimer {
 
     public MessageTimer(Context context) {
         SharedPreferences sp = context.getSharedPreferences("setting", Context.MODE_PRIVATE);
-        editor=sp.edit();
+        editor = sp.edit();
         lookID = sp.getLong("lookID", 0L);
         clID = sp.getLong("clID", 0L);
 
@@ -117,18 +117,18 @@ public class MessageTimer {
                             Long id = resObj.getJSONObject("look").getLong("ID");
                             if (id > lookID) {
                                 lookID = id;
-                                editor.putLong("lookID",lookID);
+                                editor.putLong("lookID", lookID);
                                 editor.apply();
                                 editor.commit();
 
                                 Intent intent = new Intent(context, look);
                                 context.startActivity(intent);
                             }
-                        }else  if (resObj.getJSONObject("cl") != null) {
+                        } else if (resObj.getJSONObject("cl") != null) {
                             Long id = resObj.getJSONObject("cl").getLong("room_wh_id");
                             if (id > clID) {
                                 clID = id;
-                                editor.putLong("clID",clID);
+                                editor.putLong("clID", clID);
                                 editor.apply();
                                 editor.commit();
 

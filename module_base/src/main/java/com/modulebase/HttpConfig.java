@@ -32,6 +32,7 @@ public class HttpConfig {
     public static String INTERFACE_TABLE_INFO_CHIN = "FoodCh/CzList?";
     public static String INTERFACE_OPEN_TABLE = "FoodCh/CkzkAdd?";
     public static String INTERFACE_SEND_KITCHEN = "FoodCh/SendKitchen?";
+    public static String INTERFACE_SEND_RS_FOOD = "FoodCh/SendReadyStartFood?";
     public static String INTERFACE_FOOD_CHINES_LIST = "FoodCh/BmList?";
     public static String INTERFACE_FOOD_CHINES_VARIETY_OF_DISHES_LIST = "FoodCh/CddmList?";
 
