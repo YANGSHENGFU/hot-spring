@@ -65,9 +65,9 @@ public class OrdreResultAdapter extends RecyclerView.Adapter<OrdreResultAdapter.
     public void onBindViewHolder(@NonNull OrdreResultAdapter.ViewHolder viewHolder, int i) {
         String line = "";
         if (i == 0) {
-            viewHolder.tv_no.setText("序号");
+            viewHolder.tv_no.setText("序");
             viewHolder.tv_mc.setText("名称");
-            viewHolder.tv_num.setText("数量");
+            viewHolder.tv_num.setText("量");
             viewHolder.tv_price.setText("价格");
             viewHolder.tv_flavor.setText("口味");
         } else if (i == 1) {

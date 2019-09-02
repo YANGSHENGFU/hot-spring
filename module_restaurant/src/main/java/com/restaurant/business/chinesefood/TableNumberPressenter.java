@@ -83,6 +83,7 @@ public class TableNumberPressenter implements TableNumberAPI.Pressente {
                             table.setCTMC(res.getString("CTMC"));
                             table.setTWS(res.getString("TWS"));//LQL
                             table.setRS(res.getString("RS"));
+                            table.setQH(res.getString("QH"));
                             datas.add(table);
                         }
                     }

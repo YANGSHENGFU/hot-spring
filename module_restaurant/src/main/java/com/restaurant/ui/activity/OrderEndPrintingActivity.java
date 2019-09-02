@@ -145,7 +145,7 @@ public class OrderEndPrintingActivity extends BaseActivity implements View.OnCli
         } else if (id == R.id.sendkitchen_tv || id == R.id.sendkitchen2_tv) {
             sendKitchen();
         } else if (id == R.id.prepare_tv|| id == R.id.cooking_tv) {
-            prepareKitchen();
+            prepareKitchen(id == R.id.prepare_tv?1:2);
         }
     }
 
@@ -243,7 +243,7 @@ public class OrderEndPrintingActivity extends BaseActivity implements View.OnCli
     /**
      * 备起菜
      */
-    public void prepareKitchen() {
+    public void prepareKitchen(int type) {
         String url = HttpConfig.HOST_NAME + HttpConfig.INTERFACE_SEND_RS_FOOD;
         String userid = SharepreFHelp.getInstance(this).getUserID();
         String userName = SharepreFHelp.getInstance(this).getUserName();
@@ -254,6 +254,7 @@ public class OrderEndPrintingActivity extends BaseActivity implements View.OnCli
         // 额外的条件
         HashMap<String, String> params = new HashMap<>();
         params.put(HttpConfig.Field.krbh, tableNumber.getKRBH());
+        params.put("call_time", type==1?"备菜":"起菜");//起菜、备菜
         if (params != null && !params.isEmpty()) {
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 paer.put(entry.getKey(), entry.getValue());

@@ -65,8 +65,8 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
             return;
         }
         viewHolder.tableNumberTv.setText("台号：" + t.getCZBM());
-        viewHolder.round_number_tv.setText(t.getTWS());//LQL
-        viewHolder.tableRsTv.setText("人数：" + t.getRS());
+        viewHolder.round_number_tv.setText(t.getQH());//LQL
+        viewHolder.tableRsTv.setText("人数：" + t.getTWS());
         if(t.getCZZT().equals("V")){
             viewHolder.openOrderTv.setText("开 台");
             viewHolder.openOrderTv.setBackgroundColor(Color.parseColor("#51b5e6"));
@@ -74,6 +74,7 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
             viewHolder.stateTv.setBackgroundResource(0);//R.drawable.check_round_light_unclear
         } else if(t.getCZZT().equals("I")){
             viewHolder.openOrderTv.setText("点 菜");
+            viewHolder.tableRsTv.setText("人数：" + t.getRS());
             viewHolder.openOrderTv.setBackgroundColor(Color.parseColor("#e65151"));
             viewHolder.openOrderTv.setTextColor(Color.WHITE);
             //if(t.getFS)
