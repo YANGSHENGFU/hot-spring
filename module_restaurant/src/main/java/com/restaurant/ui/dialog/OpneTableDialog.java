@@ -13,7 +13,7 @@ public class OpneTableDialog extends Dialog{
     private Context mContext;
     private EditText numberEt;
     private TextView okTv;
-
+    private TextView cancelTv;
 
     public OpneTableDialog(@NonNull Context context) {
         super(context, com.hotspr.R.style.login_dialog_style);
@@ -21,11 +21,15 @@ public class OpneTableDialog extends Dialog{
         setContentView(R.layout.dialog_opentable_layout);
         numberEt = findViewById(R.id.number_et);
         okTv = findViewById(R.id.ok_tv);
+        cancelTv = findViewById(R.id.cancel_tv);
     }
-
 
     public TextView getOkText(){
         return okTv ;
+    }
+
+    public TextView getCancelText(){
+        return cancelTv ;
     }
 
     public void setOkTv(boolean can){

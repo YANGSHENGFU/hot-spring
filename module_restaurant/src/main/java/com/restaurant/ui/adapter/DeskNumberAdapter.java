@@ -1,6 +1,7 @@
 package com.restaurant.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -64,10 +65,20 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
             return;
         }
         viewHolder.tableNumberTv.setText("台号：" + t.getCZBM());
+        viewHolder.round_number_tv.setText(t.getQH());//LQL
+        viewHolder.tableRsTv.setText("人数：" + t.getTWS());
         if(t.getCZZT().equals("V")){
             viewHolder.openOrderTv.setText("开 台");
+            viewHolder.openOrderTv.setBackgroundColor(Color.parseColor("#51b5e6"));
+            viewHolder.openOrderTv.setTextColor(Color.WHITE);
+            viewHolder.stateTv.setBackgroundResource(0);//R.drawable.check_round_light_unclear
         } else if(t.getCZZT().equals("I")){
             viewHolder.openOrderTv.setText("点 菜");
+            viewHolder.tableRsTv.setText("人数：" + t.getRS());
+            viewHolder.openOrderTv.setBackgroundColor(Color.parseColor("#e65151"));
+            viewHolder.openOrderTv.setTextColor(Color.WHITE);
+            //if(t.getFS)
+            viewHolder.stateTv.setBackgroundResource(R.drawable.check_round_light_leave);
         }
     }
 
@@ -75,7 +86,9 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
 
         private LinearLayout tableLayout;
         private TextView stateTv;
-        private TextView tableNumberTv;
+        private TextView round_number_tv;   //区域
+        private TextView tableNumberTv; //台号
+        private TextView tableRsTv; //人数
         private TextView openOrderTv;
 
         public ViewHolder(@NonNull View itemView) {
@@ -83,7 +96,9 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
             tableLayout = itemView.findViewById(R.id.table_layout);
             openOrderTv = itemView.findViewById(R.id.open_order_tv);
             stateTv = itemView.findViewById(R.id.state_tv);
+            round_number_tv = itemView.findViewById(R.id.round_number_tv);//LQL
             tableNumberTv = itemView.findViewById(R.id.table_number_tv);
+            tableRsTv = itemView.findViewById(R.id.table_rs_tv);
             tableLayout.setOnClickListener(this);
             openOrderTv.setOnClickListener(this);
         }

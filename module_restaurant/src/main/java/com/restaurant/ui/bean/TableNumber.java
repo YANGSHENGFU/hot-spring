@@ -13,6 +13,7 @@ public class TableNumber implements Parcelable {
     private String CTMC;
     private String KCM;
     private String QH;
+    private String TWS;
     private String RS;
     private String JDBM;
     private String JDXM;
@@ -74,6 +75,7 @@ public class TableNumber implements Parcelable {
         CTMC = in.readString();
         KCM = in.readString();
         QH = in.readString();
+        TWS = in.readString();
         RS = in.readString();
         JDBM = in.readString();
         JDXM = in.readString();
@@ -566,6 +568,14 @@ public class TableNumber implements Parcelable {
         this.TAGE = TAGE;
     }
 
+    public String getTWS() {
+        return TWS;
+    }
+
+    public void setTWS(String TWS) {
+        this.TWS = TWS;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -581,6 +591,7 @@ public class TableNumber implements Parcelable {
         dest.writeString(CTMC);
         dest.writeString(KCM);
         dest.writeString(QH);
+        dest.writeString(TWS);
         dest.writeString(RS);
         dest.writeString(JDBM);
         dest.writeString(JDXM);
@@ -640,6 +651,7 @@ public class TableNumber implements Parcelable {
                 ", CTMC='" + CTMC + '\'' +
                 ", KCM='" + KCM + '\'' +
                 ", QH='" + QH + '\'' +
+                ", TWS='" + TWS + '\'' +
                 ", RS='" + RS + '\'' +
                 ", JDBM='" + JDBM + '\'' +
                 ", JDXM='" + JDXM + '\'' +

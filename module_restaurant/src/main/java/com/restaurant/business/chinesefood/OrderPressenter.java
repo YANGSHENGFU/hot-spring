@@ -68,7 +68,14 @@ public class OrderPressenter implements OrderAPI.Pressente {
                         JSONObject object = resObj.getJSONObject("Data");
                        if(object!=null){
                            Gson gson = new Gson();
-                           datas = gson.fromJson(object.toString() , VarietyDishes.class);
+                          datas = gson.fromJson(object.toString() , VarietyDishes.class);
+       //                   LogF.i("xiahong",datas.toString());
+
+//                           datas.setMC(object.getString("MC"));
+//                           datas.setPicture_path(object.getString("picture_path"));
+//                           datas.setSLOrder(object.getString("SLOrder"));
+//                           datas.setCDDM(object.getString("CDDM"));
+
                        }
                     }
                 } catch (JSONException e) {

@@ -93,10 +93,10 @@ public class ColourNameListActivtiy extends BaseActivity implements VarietyDishe
 
     @Override
     public void onItmeClick(FoodCategory fc) {
-        if(fc!=null){
+         if(fc!=null){
             LogF.i(TAG , "onItmeClick bm = "+ fc.getBM());
             HashMap<String,String> params = new HashMap<>();
-            //params.put(HttpConfig.Field.zxbm , fc.getBM());
+            params.put("zxdm" , fc.getBM());
             params.put(HttpConfig.Field.krbh , tableNumber.getKRBH());
             mPressenter.loadData(VarietyDishesAPI.LOAD_MODLE_REFRASH , 0 ,params );
         }
