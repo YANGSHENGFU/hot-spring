@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.modulebase.HttpConfig;
 import com.modulebase.log.LogF;
@@ -71,6 +72,10 @@ public class ColourNameListActivtiy extends BaseActivity implements VarietyDishe
         recColourNameList.setAdapter(foodNameAdapter);
         foodNameAdapter.setOnItemClickListener(this);
         tableNumber = getIntent().getExtras().getParcelable(KEY);
+        TextView textView = findViewById(R.id.table_tv);
+        textView.setText("台号:"+tableNumber.getCZBM()+"  人数:"+ tableNumber.getRS()+"  时间: "+tableNumber.getKTRQ());
+
+
         if(CacheHandle.foodCategoryCache.size()!=0){
             HashMap<String,String> params = new HashMap<>();
             //params.put(HttpConfig.Field.zxbm , CacheHandle.foodCategoryCache.get(0).getBM());

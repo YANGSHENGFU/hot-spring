@@ -11,15 +11,30 @@
     <RelativeLayout
         android:id="@+id/tools_rl"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="180dp"
         android:layout_below="@+id/title_include"
         android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/table_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/title_tv"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="台号： 人数："
+            android:textColor="@color/color_40ffff"
+            android:textSize="@dimen/text_size_18sp"></TextView>
 
         <TextView
             android:id="@+id/print_tv"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@+id/title_tv"
+            android:layout_below="@+id/table_tv"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
@@ -128,14 +143,14 @@
         </RelativeLayout>
 
         <!--<TextView-->
-            <!--android:id="@+id/status_tv"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_toRightOf="@id/sendkitchen2_tv"-->
-            <!--android:text=""-->
-            <!--android:textColor="#3F51B5"-->
-            <!--android:textSize="@dimen/text_size_18sp"-->
-            <!--android:visibility="invisible"></TextView>-->
+        <!--android:id="@+id/status_tv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_toRightOf="@id/sendkitchen2_tv"-->
+        <!--android:text=""-->
+        <!--android:textColor="#3F51B5"-->
+        <!--android:textSize="@dimen/text_size_18sp"-->
+        <!--android:visibility="invisible"></TextView>-->
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

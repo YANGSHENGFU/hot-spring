@@ -16,6 +16,9 @@
         android:hint="请输入就餐人数"
         android:background="@drawable/edittext_background"
         android:digits="0123456789"
+        android:inputType="phone|number"
+        android:maxLength="4"
+        android:singleLine="true"
         android:layout_height="40dp"
         android:layout_width="wrap_content">
     </EditText>

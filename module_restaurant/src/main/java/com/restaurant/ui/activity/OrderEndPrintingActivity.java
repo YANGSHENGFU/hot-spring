@@ -90,6 +90,8 @@ public class OrderEndPrintingActivity extends BaseActivity implements View.OnCli
         recView.setAdapter(mAdapter);
         mAdapter.setOnClickListener(this);
         mPressenter = new OrderResultPressenter(this, this);
+        TextView textView = findViewById(R.id.table_tv);
+        textView.setText("台号:"+tableNumber.getCZBM()+"  人数:"+ tableNumber.getRS()+"  时间: "+tableNumber.getKTRQ());
 
 
         HashMap<String, String> params = new HashMap<>();
