@@ -38,6 +38,7 @@ public class HttpConfig {
     public static String INTERFACE_FOOD_HOTPOT_TCINFO_LIST = "FoodHotpot/TcInfoList?";
     public static String INTERFACE_FOOD_TC_LIST = "FoodCom/TcList?";
     public static String INTERFACE_FOOD_CHINES_TCINFO_LIST = "FoodCh/TcInfoList?";
+    public static String INTERFACE_FOODCH_SEND_KITCHEN = "FoodCh/XslsdTcAdd?";
 
     public static String INTERFACE_FOOD_CHINES_ORDER = "FoodCh/XslsdAdd?";
 

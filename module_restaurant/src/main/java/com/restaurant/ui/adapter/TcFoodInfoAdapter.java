@@ -1,6 +1,7 @@
 package com.restaurant.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -73,14 +74,21 @@ public class TcFoodInfoAdapter extends RecyclerView.Adapter<TcFoodInfoAdapter.Vi
                 return;
             }
             LogF.i("TAGURL", "URL = " + vd.getPicture_path());
+            viewHolder.selectCB.setVisibility(View.GONE);
             viewHolder.selectCB.setText(vd.getJDBH());
+            if("1".equals(vd.getSLOrder())) {
+                viewHolder.selectCB.setChecked(true);
+                viewHolder.numberTv.setTextColor(Color.RED);
+            }else{
+                viewHolder.numberTv.setTextColor(Color.BLACK);
+            }
             viewHolder.foofIV.setVisibility(View.VISIBLE);
             Picasso.with(mContext).load(HttpConfig.PIC_HOST_NAME + vd.getPicture_path()).into(viewHolder.foofIV);
             viewHolder.foodNameTv.setText(vd.getMC());
             if (vd.getSLOrder().toString().equals("0") && 1 == 2) {
                 viewHolder.numberTv.setVisibility(View.GONE);
             } else {
-                viewHolder.numberTv.setText(vd.getSLOrder() + " 份");
+                viewHolder.numberTv.setText(vd.getSLOrder() + " 份/ "+vd.getJDBH());
             }
 
             String price = "";
@@ -131,7 +139,7 @@ public class TcFoodInfoAdapter extends RecyclerView.Adapter<TcFoodInfoAdapter.Vi
             if (v.getId() == R.id.food_name_layout) {
                 if (listener != null) {
                     int i = getAdapterPosition();
-                    TcVarietyDishes vd = null;
+                    TcVarietyDishes vd = datas.get(i);
                     listener.onItmeClick(vd, i);
                 }
             }

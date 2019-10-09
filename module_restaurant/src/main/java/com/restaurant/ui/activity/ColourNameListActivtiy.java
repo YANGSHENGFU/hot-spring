@@ -126,7 +126,7 @@ public class ColourNameListActivtiy extends BaseActivity implements VarietyDishe
         }else if(vd!=null&&isSetMeal){
             Intent intent = new Intent(this,SetMealActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable(OrderActivity.KEY_VD , (SetMeal)vd);
+            bundle.putParcelable(SetMealActivity.KEY_VD , (SetMeal)vd);
             bundle.putParcelable(SetMealActivity.KEY , tableNumber);
             bundle.putInt(OrderActivity.KEY_I , i);
             bundle.putString(OrderActivity.KEY_KRBH, tableNumber.getKRBH());

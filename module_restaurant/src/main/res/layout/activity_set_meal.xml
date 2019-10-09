@@ -14,6 +14,25 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/sendkitchen_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3px"
+            android:layout_marginBottom="3px"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:gravity="center"
+            android:background="@color/color_51b6e6"
+            android:textColor="@color/color_40ffff"
+            android:textSize="@dimen/text_size_18sp"
+            android:text="送 厨 房">
+
+        </TextView>
+
+        <TextView
             android:id="@+id/table_tv"
             android:layout_width="match_parent"
             android:layout_height="40dp"
