@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /Users/yangshengfu/Documents/HotSpring/hot-spring/module_hotspr/src/main/aidl/woyou/aidlservice/jiuiv5/ICallback.aidl
+ * Original file: D:\\projects\\i-systems\\hot-spring\\module_hotspr\\src\\main\\aidl\\woyou\\aidlservice\\jiuiv5\\ICallback.aidl
  */
 package woyou.aidlservice.jiuiv5;
 /**

@@ -14,6 +14,7 @@ import com.modulebase.log.LogF;
 import com.modulebase.ui.activity.BaseActivity;
 import com.restaurant.R;
 import com.restaurant.business.VarietyDishesAPI;
+import com.restaurant.business.SetMealAPI;
 import com.restaurant.business.chinesefood.VarietyDishesPressenter;
 import com.restaurant.toolkit.CacheHandle;
 import com.restaurant.ui.adapter.FoodCategoryAdapter;
@@ -21,11 +22,11 @@ import com.restaurant.ui.adapter.FoodInfoAdapter;
 import com.restaurant.ui.bean.FoodCategory;
 import com.restaurant.ui.bean.TableNumber;
 import com.restaurant.ui.bean.VarietyDishes;
-
+import com.restaurant.ui.bean.SetMeal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ColourNameListActivtiy extends BaseActivity implements VarietyDishesAPI.View<VarietyDishes> ,
+public class ColourNameListActivtiy extends BaseActivity implements VarietyDishesAPI.View<VarietyDishes> , SetMealAPI.View<SetMeal>,
         FoodCategoryAdapter.OnItemClickListener ,FoodInfoAdapter.OnItemClickListener {
 
     public static String KEY_VD = "KEY_VD";
@@ -65,7 +66,7 @@ public class ColourNameListActivtiy extends BaseActivity implements VarietyDishe
     }
 
     private void initData(){
-        mPressenter = new VarietyDishesPressenter(this,this);
+        mPressenter = new VarietyDishesPressenter(this,this,this);
 
         foodNameAdapter = new FoodCategoryAdapter(this);
         foodNameAdapter.setData(CacheHandle.foodCategoryCache);
@@ -73,7 +74,7 @@ public class ColourNameListActivtiy extends BaseActivity implements VarietyDishe
         foodNameAdapter.setOnItemClickListener(this);
         tableNumber = getIntent().getExtras().getParcelable(KEY);
         TextView textView = findViewById(R.id.table_tv);
-        textView.setText("台号:"+tableNumber.getCZBM()+"  人数:"+ tableNumber.getRS()+"  时间: "+tableNumber.getKTRQ());
+        textView.setText("台号:"+tableNumber.getCZBM()+"  人数:"+ tableNumber.getRS()+"  时间: "+(tableNumber.getKTRQ()==null?"":tableNumber.getKTRQ()));
 
 
         if(CacheHandle.foodCategoryCache.size()!=0){
@@ -94,27 +95,41 @@ public class ColourNameListActivtiy extends BaseActivity implements VarietyDishe
         infoAdapter.addData(tables);
     }
 
-
+    @Override
+    public void upDatd2(int mode, ArrayList<SetMeal> tables, int pageNumber) {
+        infoAdapter.addSetMeal(tables);
+    }
 
     @Override
     public void onItmeClick(FoodCategory fc) {
          if(fc!=null){
             LogF.i(TAG , "onItmeClick bm = "+ fc.getBM());
             HashMap<String,String> params = new HashMap<>();
+            //Toast.makeText(this,fc.getBM(),Toast.LENGTH_LONG).show();
             params.put("zxdm" , fc.getBM());
             params.put(HttpConfig.Field.krbh , tableNumber.getKRBH());
+            params.put("zxmc" , fc.getMC());
             mPressenter.loadData(VarietyDishesAPI.LOAD_MODLE_REFRASH , 0 ,params );
         }
     }
 
     @Override
-    public void onItmeClick(VarietyDishes vd, int i) {
-        if(vd!=null){
+    public void onItmeClick(Object vd, int i, boolean isSetMeal) {
+        if(vd!=null&&!isSetMeal){
             Intent intent = new Intent(this,OrderActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putParcelable(OrderActivity.KEY_VD , vd);
+            bundle.putParcelable(OrderActivity.KEY_VD , (VarietyDishes)vd);
             bundle.putInt(OrderActivity.KEY_I , i);
-            bundle.putString(OrderActivity.KEY_KRBH,tableNumber.getKRBH());
+            bundle.putString(OrderActivity.KEY_KRBH, tableNumber.getKRBH());
+            intent.putExtras(bundle);
+            startActivityForResult(intent , 500);
+        }else if(vd!=null&&isSetMeal){
+            Intent intent = new Intent(this,SetMealActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(OrderActivity.KEY_VD , (SetMeal)vd);
+            bundle.putParcelable(SetMealActivity.KEY , tableNumber);
+            bundle.putInt(OrderActivity.KEY_I , i);
+            bundle.putString(OrderActivity.KEY_KRBH, tableNumber.getKRBH());
             intent.putExtras(bundle);
             startActivityForResult(intent , 500);
         }

@@ -77,6 +77,8 @@ public class DeskNumberAdapter extends RecyclerView.Adapter<DeskNumberAdapter.Vi
             viewHolder.tableRsTv.setText("人数：" + t.getRS());
             viewHolder.openOrderTv.setBackgroundColor(Color.parseColor("#e65151"));
             viewHolder.openOrderTv.setTextColor(Color.WHITE);
+            viewHolder.round_number_tv.setText("￥:"+t.getTOTAL());
+            //viewHolder.round_number_tv.setText(data_item.getLSJG());//金额
             //if(t.getFS)
             viewHolder.stateTv.setBackgroundResource(R.drawable.check_round_light_leave);
         }

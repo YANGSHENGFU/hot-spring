@@ -145,6 +145,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" >
         </activity>
+
+        <!-- 套餐详情列表 -->
+        <activity
+            android:name="com.restaurant.ui.activity.SetMealActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

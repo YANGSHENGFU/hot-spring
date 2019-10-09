@@ -84,6 +84,7 @@ public class TableNumberPressenter implements TableNumberAPI.Pressente {
                             table.setTWS(res.getString("TWS"));//LQL
                             table.setRS(res.getString("RS"));
                             table.setQH(res.getString("QH"));
+                            table.setTOTAL(res.getString("TOTAL"));;
                             datas.add(table);
                         }
                     }

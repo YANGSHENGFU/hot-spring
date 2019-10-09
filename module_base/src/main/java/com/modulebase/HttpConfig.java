@@ -35,6 +35,9 @@ public class HttpConfig {
     public static String INTERFACE_SEND_RS_FOOD = "FoodCh/SendReadyStartFood?";
     public static String INTERFACE_FOOD_CHINES_LIST = "FoodCh/BmList?";
     public static String INTERFACE_FOOD_CHINES_VARIETY_OF_DISHES_LIST = "FoodCh/CddmList?";
+    public static String INTERFACE_FOOD_HOTPOT_TCINFO_LIST = "FoodHotpot/TcInfoList?";
+    public static String INTERFACE_FOOD_TC_LIST = "FoodCom/TcList?";
+    public static String INTERFACE_FOOD_CHINES_TCINFO_LIST = "FoodCh/TcInfoList?";
 
     public static String INTERFACE_FOOD_CHINES_ORDER = "FoodCh/XslsdAdd?";
 
@@ -87,6 +90,7 @@ public class HttpConfig {
         public static String krbh = "krbh";
         public static String jdxm="jdxm";
 
+        public static String tcno = "tcno";
         public static String cddm = "cddm";
         public static String sl = "sl";
         public static String skbh = "skbh";

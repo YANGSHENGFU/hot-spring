@@ -360,6 +360,8 @@ color color_000000
 color color_008577
 color color_008aff
 color color_3f3f3f
+color color_40ffff
+color color_51b6e6
 color color_52b6e8
 color color_5e5656
 color color_666666
@@ -989,6 +991,7 @@ drawable bagregi
 drawable blue_tv_background
 drawable button_circle_shape
 drawable button_open
+drawable check_round_blue
 drawable check_round_light_clear
 drawable check_round_light_leave
 drawable check_round_light_unclear

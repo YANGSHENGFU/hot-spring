@@ -27,7 +27,7 @@
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
             android:text="台号： 人数："
-            android:textColor="@color/color_40ffff"
+            android:textColor="@color/color_000000"
             android:textSize="@dimen/text_size_18sp"></TextView>
 
         <TextView
