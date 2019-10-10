@@ -75,8 +75,8 @@ public class TcFoodInfoAdapter extends RecyclerView.Adapter<TcFoodInfoAdapter.Vi
             }
             LogF.i("TAGURL", "URL = " + vd.getPicture_path());
             viewHolder.selectCB.setVisibility(View.GONE);
-            viewHolder.selectCB.setText(vd.getJDBH());
-            if("1".equals(vd.getSLOrder())) {
+            viewHolder.selectCB.setText(vd.getSL());
+            if(1==vd.getSelectNum()) {
                 viewHolder.selectCB.setChecked(true);
                 viewHolder.numberTv.setTextColor(Color.RED);
             }else{
@@ -88,7 +88,7 @@ public class TcFoodInfoAdapter extends RecyclerView.Adapter<TcFoodInfoAdapter.Vi
             if (vd.getSLOrder().toString().equals("0") && 1 == 2) {
                 viewHolder.numberTv.setVisibility(View.GONE);
             } else {
-                viewHolder.numberTv.setText(vd.getSLOrder() + " 份/ "+vd.getJDBH());
+                viewHolder.numberTv.setText(vd.getSelectNum() + " 份/ "+vd.getZS());
             }
 
             String price = "";

@@ -98,7 +98,7 @@ public class SetMealActivity extends BaseActivity implements View.OnClickListene
         int id = v.getId();
         if (id == R.id.sendkitchen_tv) {
             sendKitchen();
-            finish();
+            //finish();
         }
     }
 
@@ -109,10 +109,10 @@ public class SetMealActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onItmeClick(TcVarietyDishes vd, int i) {
-        if("1".equals(vd.getSLOrder()))
-            vd.setSLOrder("0");
+        if(1==vd.getSelectNum())
+            vd.setSelectNum(0);
         else
-            vd.setSLOrder("1");
+            vd.setSelectNum(1);
         infoAdapter.upData(vd, i);
     }
 
@@ -139,11 +139,33 @@ public class SetMealActivity extends BaseActivity implements View.OnClickListene
         datas = infoAdapter.getDatas();
         String cddms = "";
         boolean isSelected = false;
+        String ZS="0";
+        int SL=0;
         for(TcVarietyDishes vd: datas){
-            if("1".equals(vd.getSLOrder()))
-                cddms = cddms + vd.getCDDM()+",";
+            if(ZS.equals(vd.getZS())){
+                SL+=vd.getSelectNum();
+                if(SL>Integer.parseInt(ZS)){
+                    Toast.makeText(this,"选择数量超出最大值!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }else{
+                if("0".equals(ZS)){
+                    SL+=vd.getSelectNum();
+                }else{
+                    if(SL<Integer.parseInt(ZS)){
+                        Toast.makeText(this,"选择数量不足!",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                ZS=vd.getZS();
+            }
+
+            if(1==vd.getSelectNum()) {
+                cddms = cddms + vd.getCDDM() + ",";
+            }
         }
-        if(!"".equals(cddms)) cddms = cddms.substring(0,cddms.length()-1);
+        if(!"".equals(cddms))
+            cddms = cddms.substring(0,cddms.length()-1);
         params.put(HttpConfig.Field.cddm, cddms);
 
         if (params != null && !params.isEmpty()) {
@@ -166,6 +188,7 @@ public class SetMealActivity extends BaseActivity implements View.OnClickListene
 //                    statusTv.setVisibility(View.VISIBLE);
                     if (resObj.getString("errCode").equals("200")) {
                         Toast.makeText(getApplicationContext(),"已送厨房！",Toast.LENGTH_LONG).show();
+                        finish();
 //                        statusTv.setTextColor(Color.BLUE);
 //                        statusTv.setText("已送厨房！");
                     } else {

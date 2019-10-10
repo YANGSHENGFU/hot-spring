@@ -77,7 +77,7 @@ public class SetMealPressenter implements VarietyDishesAPI.Pressente {
                         for (int i = 0; i < resDataList.length(); i++) {
                             JSONObject res = (JSONObject) resDataList.get(i);
                             TcVarietyDishes table = new TcVarietyDishes();
-                            String key = res.getString("JDBH");
+                            String key = res.getString("ZS");
                             ArrayList<TcVarietyDishes> vds = null;
                             vds = (ArrayList<TcVarietyDishes>)maps.get(key);
                             if(vds==null) {
@@ -93,6 +93,8 @@ public class SetMealPressenter implements VarietyDishesAPI.Pressente {
                             table.setCDDM(res.getString("CDDM"));
                             table.setLSJG(res.getString("LSJG"));//LQL
                             table.setJDBH(res.getString("JDBH"));
+                            table.setSL(res.getString("SL"));
+                            table.setZS(res.getString("ZS"));
                             table.setFf_tag(res.getString("ff_tag"));
                             vds.add(table);
                         }

@@ -7,6 +7,7 @@ public class TcVarietyDishes implements Parcelable {
 
     private String rownum;
     private String ID;
+    private int selectNum=0;
     private String MARK;
     private String JDBH;
     private String ZXDM;
@@ -192,6 +193,13 @@ public class TcVarietyDishes implements Parcelable {
         this.rownum = rownum;
     }
 
+    public int getSelectNum() {
+        return selectNum;
+    }
+
+    public void setSelectNum(int selectNum) {
+        this.selectNum = selectNum;
+    }
 
     public String getJDBH() {
         return JDBH;
